@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trámite Fácil SCZ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#f4f7fb;color:#1f2937}
+header{background:linear-gradient(135deg,#075985,#0ea5e9);color:white;padding:20px 7%;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:25px;font-weight:bold}.logo span{color:#fde047}
+nav a{color:white;text-decoration:none;margin-left:22px}
+.hero{background:linear-gradient(135deg,#075985,#0284c7);color:white;text-align:center;padding:65px 20px 80px}
+.hero h1{font-size:42px;margin-bottom:15px}.hero p{font-size:18px;max-width:700px;margin:auto}
+.search{max-width:700px;margin:30px auto 0;background:white;padding:7px;border-radius:12px;display:flex}
+.search input{flex:1;border:0;outline:0;padding:15px;font-size:16px}.search button{border:0;background:#facc15;padding:0 24px;border-radius:9px;font-weight:bold;cursor:pointer}
+.container{width:86%;max-width:1200px;margin:45px auto}.title{text-align:center;margin-bottom:28px}.title h2{font-size:30px;margin-bottom:8px}.title p{color:#64748b}
+.categories,.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px}
+.category,.card{background:white;border-radius:15px;padding:24px;box-shadow:0 5px 18px #00000010}
+.category{text-align:center;cursor:pointer;transition:.2s}.category:hover{transform:translateY(-4px)}
+.icon{font-size:35px;margin-bottom:10px}.card p{color:#64748b;font-size:14px;line-height:1.6;margin:10px 0}
+.btn{width:100%;padding:12px;border:0;background:#0284c7;color:white;border-radius:8px;cursor:pointer;font-weight:bold}.btn:hover{background:#0369a1}
+#resultados{margin-top:30px}.resultado{background:white;padding:20px;border-radius:12px;margin-bottom:14px;border-left:5px solid #0284c7}
+.resultado button{margin-top:12px;padding:9px 15px;border:0;background:#0284c7;color:white;border-radius:7px;cursor:pointer}
+.ia{background:#0f172a;color:white;padding:32px;border-radius:16px;margin-top:50px}.ia h2{margin-bottom:10px}
+.iaform{display:flex;margin-top:20px}.iaform input{flex:1;padding:13px;border:0;border-radius:8px 0 0 8px;outline:0}.iaform button{padding:13px 20px;border:0;background:#facc15;border-radius:0 8px 8px 0;cursor:pointer;font-weight:bold}
+#respuesta{display:none;background:#334155;padding:18px;border-radius:8px;margin-top:18px;line-height:1.6}
+.modal{display:none;position:fixed;inset:0;background:#000a;z-index:10;overflow:auto}.modalbox{background:white;width:90%;max-width:750px;margin:50px auto;padding:30px;border-radius:15px;position:relative}
+.close{position:absolute;right:20px;top:12px;font-size:28px;cursor:pointer}.info{margin:18px 0}.info h3{color:#075985;margin-bottom:7px}.info ul,.info ol{margin-left:22px;line-height:1.8}
+.check{background:#eff6ff;padding:18px;border-radius:10px}.check label{display:block;margin:10px 0}
+footer{background:#0f172a;color:white;text-align:center;padding:32px;margin-top:60px}footer p{color:#cbd5e1;margin-top:7px}
+@media(max-width:700px){header{flex-direction:column;gap:15px}nav a{margin:0 7px}.hero h1{font-size:32px}.search,.iaform{flex-direction:column;gap:7px}.search button,.iaform button{padding:13px;border-radius:8px}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">Trámite Fácil <span>SCZ</span></div>
+<nav><a href="#inicio">Inicio</a><a href="#tramites">Trámites</a><a href="#asistente">Asistente IA</a></nav>
+</header>
+
+<section class="hero" id="inicio">
+<h1>Haz tus trámites más fáciles</h1>
+<p>Encuentra requisitos, documentos, pasos y orientación para realizar tus trámites.</p>
+<div class="search">
+<input id="buscador" placeholder="Ejemplo: licencia de conducir">
+<button onclick="buscar()">🔎 Buscar</button>
+</div>
+</section>
+
+<div class="container">
+<div class="title"><h2>¿Qué trámite necesitas?</h2><p>Selecciona una categoría o utiliza el buscador.</p></div>
+<div class="categories">
+<div class="category" onclick="filtrar('vehiculos')"><div class="icon">🚗</div><h3>Vehículos</h3></div>
+<div class="category" onclick="filtrar('identificacion')"><div class="icon">🪪</div><h3>Identificación</h3></div>
+<div class="category" onclick="filtrar('impuestos')"><div class="icon">💰</div><h3>Impuestos</h3></div>
+<div class="category" onclick="filtrar('educacion')"><div class="icon">🎓</div><h3>Educación</h3></div>
+<div class="category" onclick="filtrar('documentos')"><div class="icon">📄</div><h3>Documentos</h3></div>
+<div class="category" onclick="filtrar('otros')"><div class="icon">🏛️</div><h3>Otros</h3></div>
+</div>
+
+<div class="title" id="tramites"><h2>Trámites disponibles</h2><p>Selecciona uno para consultar su guía.</p></div>
+<div class="cards" id="cards"></div>
+<div id="resultados"></div>
+
+<div class="ia" id="asistente">
+<h2>🤖 Asistente Trámite Fácil</h2>
+<p>Escribe qué trámite necesitas y recibe una orientación inicial.</p>
+<div class="iaform"><input id="pregunta" placeholder="Ejemplo: necesito sacar mi licencia"><button onclick="ia()">Consultar</button></div>
+<div id="respuesta"></div>
+</div>
+</div>
+
+<div class="modal" id="modal"><div class="modalbox"><span class="close" onclick="cerrar()">×</span><div id="modalContenido"></div></div></div>
+
+<footer><h3>Trámite Fácil SCZ</h3><p>Proyecto académico · Santa Cruz de la Sierra</p><p>La información debe verificarse en la institución oficial correspondiente.</p></footer>
+
+<script>
+const datos={
+licencia:{cat:"vehiculos",icon:"🚗",titulo:"Licencia de conducir",desc:"Guía de orientación para el trámite de licencia de conducir.",req:["Cumplir las condiciones establecidas por la normativa vigente.","Presentar la documentación correspondiente.","Completar los procedimientos exigidos."],docs:["Cédula de identidad.","Documentación adicional según corresponda.","Certificados requeridos según el caso."],lugar:"SEGIP",costo:"Verificar el costo vigente según el tipo de licencia.",pasos:["Verificar requisitos actuales.","Reunir documentos.","Realizar pagos correspondientes.","Acudir a la institución responsable.","Completar el procedimiento."]},
+cedula:{cat:"identificacion",icon:"🪪",titulo:"Cédula de identidad",desc:"Orientación general para obtención, renovación o actualización.",req:["Contar con la documentación requerida.","Realizar las verificaciones correspondientes."],docs:["Documento de identidad y documentación requerida según el caso."],lugar:"SEGIP",costo:"Verificar el costo vigente.",pasos:["Identificar el tipo de trámite.","Verificar requisitos.","Preparar documentos.","Acudir a la institución.","Completar el procedimiento."]},
+nacimiento:{cat:"documentos",icon:"📄",titulo:"Certificado de nacimiento",desc:"Orientación para solicitar un certificado de nacimiento.",req:["Verificar los datos registrados.","Cumplir los requisitos del tipo de solicitud."],docs:["Documento de identidad.","Documentación adicional cuando corresponda."],lugar:"SERECI u oficina correspondiente",costo:"Verificar el costo vigente.",pasos:["Identificar el certificado requerido.","Verificar requisitos.","Presentar documentación.","Realizar el pago si corresponde.","Recibir el certificado."]},
+nit:{cat:"impuestos",icon:"💰",titulo:"NIT",desc:"Orientación general sobre el Número de Identificación Tributaria.",req:["Identificar la actividad económica.","Contar con la documentación requerida.","Cumplir las condiciones vigentes."],docs:["Cédula de identidad.","Documentación relacionada con la actividad económica.","Otros documentos según corresponda."],lugar:"Servicio de Impuestos Nacionales (SIN)",costo:"Verificar condiciones vigentes.",pasos:["Determinar el tipo de registro.","Preparar documentación.","Realizar el procedimiento.","Completar el registro."]},
+matricula:{cat:"educacion",icon:"🎓",titulo:"Matrícula universitaria",desc:"Guía general para organizar información sobre procesos de matrícula.",req:["Ser estudiante de la institución correspondiente.","Cumplir los requisitos académicos y administrativos."],docs:["Documento de identidad.","Comprobante o documentos solicitados por la institución."],lugar:"Universidad correspondiente",costo:"Verificar aranceles vigentes.",pasos:["Consultar convocatoria.","Verificar requisitos.","Realizar pagos si corresponde.","Completar la matrícula."]}
+};
+function render(filtro=null){let c=document.getElementById("cards");c.innerHTML="";Object.entries(datos).forEach(([id,t])=>{if(!filtro||t.cat===filtro||filtro==="otros")c.innerHTML+=`<div class="card" data-cat="${t.cat}"><div class="icon">${t.icon}</div><h3>${t.titulo}</h3><p>${t.desc}</p><button class="btn" onclick="ver('${id}')">Ver información</button></div>`})}
+function ver(id){let t=datos[id];document.getElementById("modalContenido").innerHTML=`<h2>${t.icon} ${t.titulo}</h2><p>${t.desc}</p><div class="info"><h3>📋 Requisitos</h3><ul>${t.req.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="info"><h3>📄 Documentos</h3><ul>${t.docs.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="info"><h3>📍 Lugar</h3><p>${t.lugar}</p></div><div class="info"><h3>💰 Costo</h3><p>${t.costo}</p></div><div class="info"><h3>🪜 Pasos</h3><ol>${t.pasos.map(x=>`<li>${x}</li>`).join("")}</ol></div><div class="check"><h3>✅ Mi checklist</h3>${t.docs.map(x=>`<label><input type="checkbox"> ${x}</label>`).join("")}</div><p style="margin-top:18px;font-size:13px;color:#64748b">⚠️ Verifica siempre la información vigente en la institución oficial.</p>`;document.getElementById("modal").style.display="block"}
+function cerrar(){document.getElementById("modal").style.display="none"}
+function filtrar(cat){render(cat);document.getElementById("tramites").scrollIntoView({behavior:"smooth"})}
+function buscar(){let q=document.getElementById("buscador").value.toLowerCase().trim(),r=document.getElementById("resultados");r.innerHTML="";if(!q){r.innerHTML='<div class="resultado">Escribe el trámite que necesitas buscar.</div>';return}let ok=false;Object.entries(datos).forEach(([id,t])=>{if((t.titulo+" "+t.desc).toLowerCase().includes(q)){ok=true;r.innerHTML+=`<div class="resultado"><h3>${t.icon} ${t.titulo}</h3><p>${t.desc}</p><button onclick="ver('${id}')">Ver información</button></div>`}});if(!ok)r.innerHTML='<div class="resultado"><h3>🔎 No encontramos ese trámite</h3><p>Prueba con palabras como licencia, cédula, nacimiento, NIT o matrícula.</p></div>'}
+function ia(){let q=document.getElementById("pregunta").value.toLowerCase(),r=document.getElementById("respuesta");r.style.display="block";let id=q.includes("licencia")||q.includes("conducir")?"licencia":q.includes("cedula")||q.includes("cédula")||q.includes("identidad")?"cedula":q.includes("nacimiento")||q.includes("certificado")?"nacimiento":q.includes("nit")||q.includes("impuesto")||q.includes("tribut")?"nit":q.includes("matricula")||q.includes("universidad")||q.includes("matrícula")?"matricula":null;if(id)r.innerHTML=`<strong>${datos[id].icon} Creo que necesitas información sobre: ${datos[id].titulo}.</strong><br><br>Te recomiendo revisar los requisitos, documentos y pasos de la guía.<br><br><button class="btn" onclick="ver('${id}')">Abrir guía</button>`;else r.innerHTML='🤖 No pude identificar el trámite. Prueba con: “quiero sacar mi licencia”, “necesito mi cédula”, “certificado de nacimiento”, “quiero sacar mi NIT” o “matrícula universitaria”.'}
+window.onclick=e=>{if(e.target===document.getElementById("modal"))cerrar()}
+render();
+</script>
+</body>
+</html>
