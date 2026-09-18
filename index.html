@@ -31,13 +31,28 @@ nav a{color:white;text-decoration:none;margin-left:22px}
 .check{background:#eff6ff;padding:18px;border-radius:10px}.check label{display:block;margin:10px 0}
 .costo-box{background:#fef9c3;border-left:4px solid #eab308;padding:14px;border-radius:8px;margin:10px 0}
 footer{background:#0f172a;color:white;text-align:center;padding:32px;margin-top:60px}footer p{color:#cbd5e1;margin-top:7px}
-@media(max-width:700px){header{flex-direction:column;gap:15px}nav a{margin:0 7px}.hero h1{font-size:32px}.search,.iaform{flex-direction:column;gap:7px}.search button,.iaform button{padding:13px;border-radius:8px}}
+/* === ACTIVIDAD === */
+.actividad{background:white;padding:28px;border-radius:16px;margin-top:50px;box-shadow:0 5px 18px #00000010}
+.actividad h2{color:#075985;margin-bottom:8px}
+.actividad .subt{color:#64748b;font-size:14px;margin-bottom:18px}
+.tabla-act{width:100%;border-collapse:collapse;font-size:14px}
+.tabla-act th{background:#0ea5e9;color:white;padding:10px;text-align:left}
+.tabla-act td{padding:10px;border-bottom:1px solid #e2e8f0}
+.tabla-act tr:hover{background:#f0f9ff}
+.accion{display:inline-block;padding:3px 9px;border-radius:20px;font-size:12px;font-weight:bold}
+.accion.ver{background:#dbeafe;color:#1e40af}
+.accion.buscar{background:#fef3c7;color:#92400e}
+.accion.filtrar{background:#e0e7ff;color:#3730a3}
+.accion.ia{background:#dcfce7;color:#166534}
+.accion.checklist{background:#fce7f3;color:#9d174d}
+.vacio{color:#94a3b8;font-style:italic;text-align:center;padding:20px}
+@media(max-width:700px){header{flex-direction:column;gap:15px}nav a{margin:0 7px}.hero h1{font-size:32px}.search,.iaform{flex-direction:column;gap:7px}.search button,.iaform button{padding:13px;border-radius:8px}.tabla-act{font-size:12px}.tabla-act th,.tabla-act td{padding:6px}}
 </style>
 </head>
 <body>
 <header>
 <div class="logo">Trámite Fácil <span>SCZ</span></div>
-<nav><a href="#inicio">Inicio</a><a href="#tramites">Trámites</a><a href="#asistente">Asistente IA</a></nav>
+<nav><a href="#inicio">Inicio</a><a href="#tramites">Trámites</a><a href="#asistente">Asistente IA</a><a href="#actividad">Actividad</a></nav>
 </header>
 
 <section class="hero" id="inicio">
@@ -70,6 +85,14 @@ footer{background:#0f172a;color:white;text-align:center;padding:32px;margin-top:
 <div class="iaform"><input id="pregunta" placeholder="Ejemplo: necesito sacar mi licencia"><button onclick="ia()">Consultar</button></div>
 <div id="respuesta"></div>
 </div>
+
+<!-- ==== SECCIÓN ACTIVIDAD ==== -->
+<div class="actividad" id="actividad">
+  <h2>📊 Actividad reciente</h2>
+  <p class="subt">Últimas interacciones registradas en el sistema.</p>
+  <div id="tablaActividad"><div class="vacio">Cargando actividad...</div></div>
+  <button class="btn" style="margin-top:14px;background:#0f172a" onclick="cargarActividad()">🔄 Actualizar</button>
+</div>
 </div>
 
 <div class="modal" id="modal"><div class="modalbox"><span class="close" onclick="cerrar()">×</span><div id="modalContenido"></div></div></div>
@@ -77,12 +100,28 @@ footer{background:#0f172a;color:white;text-align:center;padding:32px;margin-top:
 <footer><h3>Trámite Fácil SCZ</h3><p>Proyecto académico · Santa Cruz de la Sierra</p><p>Los costos y direcciones se actualizan periódicamente, pero pueden variar. Verifica siempre la información vigente en la institución oficial correspondiente.</p></footer>
 
 <script>
-// === DATOS VACÍOS: se llenan desde Google Sheets ===
+// === CONFIGURACIÓN ===
+const URL_API = "https://script.google.com/macros/s/AKfycbzZ6FkVu1YmhjXGqhBIUedmqjRC8WX6NOWb15aeQWq6WElrC85QroB6cUE0gKDL1asa/exec";
+
+// === DATOS ===
 let datos = {};
 
-// === CONEXIÓN CON GOOGLE APPS SCRIPT ===
+// === REGISTRO DE ACTIVIDAD ===
+async function registrar(tipo, tramite, detalle = "") {
+  try {
+    await fetch(URL_API, {
+      method: "POST",
+      mode: "no-cors", // evita problemas de CORS
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tipo, tramite, detalle })
+    });
+  } catch (e) {
+    console.warn("No se pudo registrar la actividad:", e);
+  }
+}
+
+// === CARGAR TRÁMITES ===
 async function cargarDatos() {
-  const URL_API = "https://script.google.com/macros/s/AKfycbzZ6FkVu1YmhjXGqhBIUedmqjRC8WX6NOWb15aeQWq6WElrC85QroB6cUE0gKDL1asa/exec";
   try {
     const res = await fetch(URL_API);
     if (!res.ok) throw new Error("HTTP " + res.status);
@@ -92,11 +131,45 @@ async function cargarDatos() {
   } catch (e) {
     console.error("Error cargando datos:", e);
     document.getElementById("cards").innerHTML =
-      '<div class="resultado">⚠️ No se pudieron cargar los trámites. Verifica tu conexión o intenta más tarde.</div>';
+      '<div class="resultado">⚠️ No se pudieron cargar los trámites.</div>';
   }
 }
 
-// === RESTO DE FUNCIONES (sin cambios) ===
+// === CARGAR ACTIVIDAD ===
+async function cargarActividad() {
+  const cont = document.getElementById("tablaActividad");
+  cont.innerHTML = '<div class="vacio">Cargando actividad...</div>';
+  try {
+    const res = await fetch(URL_API + "?accion=registros");
+    const data = await res.json();
+    if (!data.registros || data.registros.length === 0) {
+      cont.innerHTML = '<div class="vacio">Aún no hay interacciones registradas. ¡Prueba a consultar un trámite!</div>';
+      return;
+    }
+    let html = '<table class="tabla-act"><thead><tr><th>Fecha</th><th>Hora</th><th>Acción</th><th>Trámite / Término</th><th>Detalle</th></tr></thead><tbody>';
+    data.registros.forEach(r => {
+      const clase = (r.tipo || "").toLowerCase().includes("ver") ? "ver"
+                  : (r.tipo || "").toLowerCase().includes("busc") ? "buscar"
+                  : (r.tipo || "").toLowerCase().includes("filtr") ? "filtrar"
+                  : (r.tipo || "").toLowerCase().includes("ia") ? "ia"
+                  : "checklist";
+      html += `<tr>
+        <td>${r.fecha || "-"}</td>
+        <td>${r.hora || "-"}</td>
+        <td><span class="accion ${clase}">${r.tipo || "-"}</span></td>
+        <td>${r.tramite || "-"}</td>
+        <td>${r.detalle || ""}</td>
+      </tr>`;
+    });
+    html += "</tbody></table>";
+    cont.innerHTML = html;
+  } catch (e) {
+    console.error("Error cargando actividad:", e);
+    cont.innerHTML = '<div class="vacio">No se pudo cargar la actividad.</div>';
+  }
+}
+
+// === RENDER DE TRÁMITES ===
 function render(filtro=null){
   let c=document.getElementById("cards");c.innerHTML="";
   Object.entries(datos).forEach(([id,t])=>{
@@ -104,25 +177,38 @@ function render(filtro=null){
       c.innerHTML+=`<div class="card" data-cat="${t.cat}"><div class="icon">${t.icon}</div><h3>${t.titulo}</h3><p>${t.desc}</p><button class="btn" onclick="ver('${id}')">Ver información</button></div>`
   })
 }
+
+// === VER GUÍA ===
 function ver(id){
   let t=datos[id];
+  // Registrar la acción
+  registrar("ver", t.titulo, `Categoría: ${t.cat}`);
   document.getElementById("modalContenido").innerHTML=`<h2>${t.icon} ${t.titulo}</h2><p>${t.desc}</p>
   <div class="info"><h3>📋 Requisitos</h3><ul>${t.req.map(x=>`<li>${x}</li>`).join("")}</ul></div>
   <div class="info"><h3>📄 Documentos</h3><ul>${t.docs.map(x=>`<li>${x}</li>`).join("")}</ul></div>
   <div class="info"><h3>📍 Lugar</h3><p>${t.lugar}</p><a class="linkbtn" style="background:#0284c7" href="${t.mapaLink}" target="_blank" rel="noopener">📍 ${t.mapaTexto}</a></div>
   <div class="info"><h3>💰 Costo</h3><div class="costo-box">${t.costo}</div></div>
   <div class="info"><h3>🪜 Pasos</h3><ol>${t.pasos.map(x=>`<li>${x}</li>`).join("")}</ol></div>
-  <div class="check"><h3>✅ Mi checklist</h3>${t.docs.map(x=>`<label><input type="checkbox"> ${x}</label>`).join("")}</div>
+  <div class="check"><h3>✅ Mi checklist</h3>${t.docs.map((x,i)=>`<label><input type="checkbox" onchange="registrar('checklist','${t.titulo}','${x.replace(/'/g,"\\'")}')"> ${x}</label>`).join("")}</div>
   <a class="linkbtn" href="${t.link}" target="_blank" rel="noopener">🔗 ${t.linkTexto}</a>
   <p style="margin-top:18px;font-size:13px;color:#64748b">⚠️ Verifica siempre la información vigente en la institución oficial.</p>`;
   document.getElementById("modal").style.display="block"
 }
 function cerrar(){document.getElementById("modal").style.display="none"}
-function filtrar(cat){render(cat);document.getElementById("tramites").scrollIntoView({behavior:"smooth"})}
+
+// === FILTRAR ===
+function filtrar(cat){
+  registrar("filtrar", cat, "Filtro por categoría");
+  render(cat);
+  document.getElementById("tramites").scrollIntoView({behavior:"smooth"})
+}
+
+// === BUSCAR ===
 function buscar(){
   let q=document.getElementById("buscador").value.toLowerCase().trim(),r=document.getElementById("resultados");
   r.innerHTML="";
   if(!q){r.innerHTML='<div class="resultado">Escribe el trámite que necesitas buscar.</div>';return}
+  registrar("buscar", q, "Búsqueda en el buscador");
   let ok=false;
   Object.entries(datos).forEach(([id,t])=>{
     if((t.titulo+" "+t.desc).toLowerCase().includes(q)){
@@ -132,6 +218,8 @@ function buscar(){
   });
   if(!ok)r.innerHTML='<div class="resultado"><h3>🔎 No encontramos ese trámite</h3><p>Prueba con palabras como licencia, cédula, nacimiento, NIT o matrícula.</p></div>'
 }
+
+// === ASISTENTE IA ===
 function ia(){
   let q=document.getElementById("pregunta").value.toLowerCase(),r=document.getElementById("respuesta");
   r.style.display="block";
@@ -141,13 +229,20 @@ function ia(){
     :q.includes("nit")||q.includes("impuesto")||q.includes("tribut")?"nit"
     :q.includes("matricula")||q.includes("universidad")||q.includes("matrícula")?"matricula"
     :null;
-  if(id)r.innerHTML=`<strong>${datos[id].icon} Creo que necesitas información sobre: ${datos[id].titulo}.</strong><br><br>Te recomiendo revisar los requisitos, documentos, costo y pasos de la guía.<br><br><button class="btn" onclick="ver('${id}')">Abrir guía</button>`;
-  else r.innerHTML='🤖 No pude identificar el trámite. Prueba con: "quiero sacar mi licencia", "necesito mi cédula", "certificado de nacimiento", "quiero sacar mi NIT" o "matrícula universitaria".'
+  if(id){
+    registrar("ia", datos[id].titulo, "Consulta IA: " + q);
+    r.innerHTML=`<strong>${datos[id].icon} Creo que necesitas información sobre: ${datos[id].titulo}.</strong><br><br>Te recomiendo revisar los requisitos, documentos, costo y pasos de la guía.<br><br><button class="btn" onclick="ver('${id}')">Abrir guía</button>`;
+  } else {
+    registrar("ia", "no identificado", "Consulta IA: " + q);
+    r.innerHTML='🤖 No pude identificar el trámite. Prueba con: "quiero sacar mi licencia", "necesito mi cédula", "certificado de nacimiento", "quiero sacar mi NIT" o "matrícula universitaria".'
+  }
 }
+
 window.onclick=e=>{if(e.target===document.getElementById("modal"))cerrar()}
 
-// === INICIO: cargar desde Google Sheets ===
+// === INICIO ===
 cargarDatos();
+cargarActividad();
 </script>
 </body>
 </html>
