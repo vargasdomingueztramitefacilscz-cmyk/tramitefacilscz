@@ -77,60 +77,77 @@ footer{background:#0f172a;color:white;text-align:center;padding:32px;margin-top:
 <footer><h3>Trámite Fácil SCZ</h3><p>Proyecto académico · Santa Cruz de la Sierra</p><p>Los costos y direcciones se actualizan periódicamente, pero pueden variar. Verifica siempre la información vigente en la institución oficial correspondiente.</p></footer>
 
 <script>
-const datos={
-licencia:{cat:"vehiculos",icon:"🚗",titulo:"Licencia de conducir",desc:"Guía de orientación para el trámite de licencia de conducir.",
-req:["Tener la edad mínima según categoría (16 años categoría P con autorización de padres/tutor; 26 años categoría B; 31 años categoría C).","Cédula de identidad física o digital vigente.","Certificado de evaluación médica emitido por un centro de salud acreditado por el SEGIP.","Para licencia nueva: certificado de aprobación de habilidades de conducción emitido por una autoescuela autorizada por el Ministerio de Educación."],
-docs:["Cédula de identidad vigente (original y copia).","Certificado médico (Bs 50, se paga en el centro de salud elegido).","Certificado de autoescuela (solo licencia nueva).","Comprobante de pago del trámite en el Banco Unión."],
-lugar:"SEGIP - Oficina Distrito 5: Av. 2 de Agosto esq. St. Exupery, zona norte, entre 6to y 7mo anillo, Santa Cruz de la Sierra. Atención de lunes a viernes, 07:00 a 15:00. Consulta la oficina más cercana a ti en el localizador oficial.",
-costo:"Bs 225 para categorías P, A, B y C. Bs 80 para categorías M y T (motorizados/tricimotos), pago en Banco Unión indicando SEGIP-SEGELIC. El certificado médico se paga aparte: Bs 50.",
-pasos:["Sacar turno o verificar requisitos vigentes en el sitio oficial del SEGIP.","Realizar el certificado médico en un centro autorizado.","Pagar el trámite en Banco Unión (SEGIP-SEGELIC).","Acudir a la oficina del SEGIP con toda la documentación.","Retirar la licencia (física o digital vía app SEGIP)."],
-link:"https://www.segip.gob.bo/licencia-para-conducir/",linkTexto:"Ver requisitos y costos en SEGIP",
-mapaLink:"https://www.segip.gob.bo/lista-direcciones-page/",mapaTexto:"Buscar oficina SEGIP más cercana"},
+// === DATOS VACÍOS: se llenan desde Google Sheets ===
+let datos = {};
 
-cedula:{cat:"identificacion",icon:"🪪",titulo:"Cédula de identidad",desc:"Orientación general para obtención, renovación o actualización de la cédula de identidad.",
-req:["Presentar cédula anterior si es renovación (o partida de nacimiento si es primera vez).","Realizar el registro biométrico correspondiente.","No tener observaciones pendientes en el sistema del SEGIP."],
-docs:["Certificado de nacimiento (para primera cédula).","Cédula de identidad anterior (para renovación o duplicado).","Comprobante de pago del trámite."],
-lugar:"SEGIP - mismas oficinas que licencia de conducir, por ejemplo la de Distrito 5: Av. 2 de Agosto esq. St. Exupery, zona norte, Santa Cruz de la Sierra.",
-costo:"El costo varía según el tipo de trámite (primera vez, renovación, duplicado o cambio de datos). Verifica el monto vigente en el sitio oficial del SEGIP antes de acudir.",
-pasos:["Identificar el tipo de trámite que necesitas.","Verificar requisitos y costo vigente en el sitio oficial.","Preparar la documentación.","Acudir a la oficina del SEGIP o solicitar cita en línea.","Completar el registro biométrico y retirar tu cédula."],
-link:"https://www.segip.gob.bo/",linkTexto:"Ir al sitio oficial del SEGIP",
-mapaLink:"https://www.segip.gob.bo/lista-direcciones-page/",mapaTexto:"Buscar oficina SEGIP más cercana"},
+// === CONEXIÓN CON GOOGLE APPS SCRIPT ===
+async function cargarDatos() {
+  const URL_API = "https://script.google.com/macros/s/AKfycbzZ6FkVu1YmhjXGqhBIUedmqjRC8WX6NOWb15aeQWq6WElrC85QroB6cUE0gKDL1asa/exec";
+  try {
+    const res = await fetch(URL_API);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    datos = await res.json();
+    console.log("Trámites cargados:", datos);
+    render();
+  } catch (e) {
+    console.error("Error cargando datos:", e);
+    document.getElementById("cards").innerHTML =
+      '<div class="resultado">⚠️ No se pudieron cargar los trámites. Verifica tu conexión o intenta más tarde.</div>';
+  }
+}
 
-nacimiento:{cat:"documentos",icon:"📄",titulo:"Certificado de nacimiento",desc:"Orientación para solicitar un certificado de nacimiento en Santa Cruz.",
-req:["Conocer los datos exactos de la partida (nombre completo, fecha y lugar de nacimiento).","Cédula de identidad vigente del solicitante."],
-docs:["Cédula de identidad vigente.","Datos de la partida original (folio, libro, si se conocen)."],
-lugar:"SERECI Santa Cruz - Oficinas: Av. Cuarto Anillo y Av. Radial 27; y Av. Cañada Pailita, ingreso Plan Tres Mil. También puede tramitarse en oficialías de Registro Civil.",
-costo:"En oficinas del SERECI: Bs 33 (certificado) + Bs 82 (formulario valorado). En oficialías de Registro Civil el costo es mayor, alrededor de Bs 51.",
-pasos:["Verificar en qué libro/oficina está registrada la partida.","Reunir tus datos y cédula de identidad.","Acudir a la oficina del SERECI o agendar cita en línea.","Pagar el valorado y el certificado.","Recibir el certificado de nacimiento."],
-link:"https://web.oep.org.bo/registro-civico/servicios-registro-civil/",linkTexto:"Ver información oficial del SERECI",
-mapaLink:"https://www.google.com/maps/search/SERECI+Santa+Cruz+de+la+Sierra",mapaTexto:"Ver oficinas SERECI en el mapa"},
-
-nit:{cat:"impuestos",icon:"💰",titulo:"NIT",desc:"Orientación general sobre el Número de Identificación Tributaria.",
-req:["Contar con cédula de identidad vigente.","Tener una actividad económica que declarar (para personas naturales con negocio).","Factura de luz y croquis del domicilio del negocio (si aplica)."],
-docs:["Cédula de identidad vigente.","Factura de servicio básico del domicilio o negocio.","Croquis de ubicación del negocio (si corresponde)."],
-lugar:"Servicio de Impuestos Nacionales (SIN) - oficina distrital de Santa Cruz, o de forma 100% en línea a través de la Oficina Virtual y ciudadanía digital.",
-costo:"Gratuito para personas naturales. Para personas jurídicas puede existir una tasa administrativa aproximada de Bs 30 a Bs 50, según el tipo de empresa. Verifica el monto vigente en el sitio oficial del SIN.",
-pasos:["Registrarte en ciudadanía digital (ciudadaniadigital.gob.bo) si aún no tienes acceso.","Descargar y llenar el formulario correspondiente en impuestos.gob.bo.","Acudir a la oficina distrital del SIN o completar el trámite en línea.","Activar la tarjeta MASI para acceder a la Oficina Virtual.","Completar el registro y obtener tu NIT."],
-link:"https://www.impuestos.gob.bo/",linkTexto:"Ir al sitio oficial del SIN",
-mapaLink:"https://www.google.com/maps/search/Servicio+de+Impuestos+Nacionales+Santa+Cruz",mapaTexto:"Ver oficinas del SIN en el mapa"},
-
-matricula:{cat:"educacion",icon:"🎓",titulo:"Matrícula universitaria",desc:"Guía general para organizar información sobre procesos de matrícula (ejemplo: UAGRM).",
-req:["Ser bachiller (título original y copia).","Cumplir el proceso de preinscripción de la facultad elegida.","Presentar libreta o certificado de notas del último año de secundaria."],
-docs:["Cédula de identidad vigente (original y copia).","Título de bachiller (original y copia).","Formulario de preinscripción.","Comprobante de pago de matrícula."],
-lugar:"Universidad correspondiente. Ejemplo: UAGRM, Campus Universitario, Pabellón 145, Santa Cruz de la Sierra.",
-costo:"Varía según universidad y facultad. Referencia: en la UAGRM el costo de cursos preuniversitarios/matrícula ronda los Bs 700 por facultad. Verifica el arancel vigente de tu facultad específica.",
-pasos:["Consultar la convocatoria de tu facultad.","Llenar el formulario de preinscripción en línea.","Pagar la matrícula en la caja facultativa indicada.","Presentar la documentación completa en un folder.","Confirmar tu inscripción."],
-link:"https://admisionweb.uagrm.edu.bo/",linkTexto:"Ir al portal de admisiones UAGRM",
-mapaLink:"https://www.google.com/maps/search/UAGRM+Campus+Universitario+Santa+Cruz",mapaTexto:"Ver ubicación del campus"}
-};
-function render(filtro=null){let c=document.getElementById("cards");c.innerHTML="";Object.entries(datos).forEach(([id,t])=>{if(!filtro||t.cat===filtro||filtro==="otros")c.innerHTML+=`<div class="card" data-cat="${t.cat}"><div class="icon">${t.icon}</div><h3>${t.titulo}</h3><p>${t.desc}</p><button class="btn" onclick="ver('${id}')">Ver información</button></div>`})}
-function ver(id){let t=datos[id];document.getElementById("modalContenido").innerHTML=`<h2>${t.icon} ${t.titulo}</h2><p>${t.desc}</p><div class="info"><h3>📋 Requisitos</h3><ul>${t.req.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="info"><h3>📄 Documentos</h3><ul>${t.docs.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="info"><h3>📍 Lugar</h3><p>${t.lugar}</p><a class="linkbtn" style="background:#0284c7" href="${t.mapaLink}" target="_blank" rel="noopener">📍 ${t.mapaTexto}</a></div><div class="info"><h3>💰 Costo</h3><div class="costo-box">${t.costo}</div></div><div class="info"><h3>🪜 Pasos</h3><ol>${t.pasos.map(x=>`<li>${x}</li>`).join("")}</ol></div><div class="check"><h3>✅ Mi checklist</h3>${t.docs.map(x=>`<label><input type="checkbox"> ${x}</label>`).join("")}</div><a class="linkbtn" href="${t.link}" target="_blank" rel="noopener">🔗 ${t.linkTexto}</a><p style="margin-top:18px;font-size:13px;color:#64748b">⚠️ Verifica siempre la información vigente en la institución oficial.</p>`;document.getElementById("modal").style.display="block"}
+// === RESTO DE FUNCIONES (sin cambios) ===
+function render(filtro=null){
+  let c=document.getElementById("cards");c.innerHTML="";
+  Object.entries(datos).forEach(([id,t])=>{
+    if(!filtro||t.cat===filtro||filtro==="otros")
+      c.innerHTML+=`<div class="card" data-cat="${t.cat}"><div class="icon">${t.icon}</div><h3>${t.titulo}</h3><p>${t.desc}</p><button class="btn" onclick="ver('${id}')">Ver información</button></div>`
+  })
+}
+function ver(id){
+  let t=datos[id];
+  document.getElementById("modalContenido").innerHTML=`<h2>${t.icon} ${t.titulo}</h2><p>${t.desc}</p>
+  <div class="info"><h3>📋 Requisitos</h3><ul>${t.req.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+  <div class="info"><h3>📄 Documentos</h3><ul>${t.docs.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+  <div class="info"><h3>📍 Lugar</h3><p>${t.lugar}</p><a class="linkbtn" style="background:#0284c7" href="${t.mapaLink}" target="_blank" rel="noopener">📍 ${t.mapaTexto}</a></div>
+  <div class="info"><h3>💰 Costo</h3><div class="costo-box">${t.costo}</div></div>
+  <div class="info"><h3>🪜 Pasos</h3><ol>${t.pasos.map(x=>`<li>${x}</li>`).join("")}</ol></div>
+  <div class="check"><h3>✅ Mi checklist</h3>${t.docs.map(x=>`<label><input type="checkbox"> ${x}</label>`).join("")}</div>
+  <a class="linkbtn" href="${t.link}" target="_blank" rel="noopener">🔗 ${t.linkTexto}</a>
+  <p style="margin-top:18px;font-size:13px;color:#64748b">⚠️ Verifica siempre la información vigente en la institución oficial.</p>`;
+  document.getElementById("modal").style.display="block"
+}
 function cerrar(){document.getElementById("modal").style.display="none"}
 function filtrar(cat){render(cat);document.getElementById("tramites").scrollIntoView({behavior:"smooth"})}
-function buscar(){let q=document.getElementById("buscador").value.toLowerCase().trim(),r=document.getElementById("resultados");r.innerHTML="";if(!q){r.innerHTML='<div class="resultado">Escribe el trámite que necesitas buscar.</div>';return}let ok=false;Object.entries(datos).forEach(([id,t])=>{if((t.titulo+" "+t.desc).toLowerCase().includes(q)){ok=true;r.innerHTML+=`<div class="resultado"><h3>${t.icon} ${t.titulo}</h3><p>${t.desc}</p><button onclick="ver('${id}')">Ver información</button></div>`}});if(!ok)r.innerHTML='<div class="resultado"><h3>🔎 No encontramos ese trámite</h3><p>Prueba con palabras como licencia, cédula, nacimiento, NIT o matrícula.</p></div>'}
-function ia(){let q=document.getElementById("pregunta").value.toLowerCase(),r=document.getElementById("respuesta");r.style.display="block";let id=q.includes("licencia")||q.includes("conducir")?"licencia":q.includes("cedula")||q.includes("cédula")||q.includes("identidad")?"cedula":q.includes("nacimiento")||q.includes("certificado")?"nacimiento":q.includes("nit")||q.includes("impuesto")||q.includes("tribut")?"nit":q.includes("matricula")||q.includes("universidad")||q.includes("matrícula")?"matricula":null;if(id)r.innerHTML=`<strong>${datos[id].icon} Creo que necesitas información sobre: ${datos[id].titulo}.</strong><br><br>Te recomiendo revisar los requisitos, documentos, costo y pasos de la guía.<br><br><button class="btn" onclick="ver('${id}')">Abrir guía</button>`;else r.innerHTML='🤖 No pude identificar el trámite. Prueba con: “quiero sacar mi licencia”, “necesito mi cédula”, “certificado de nacimiento”, “quiero sacar mi NIT” o “matrícula universitaria”.'}
+function buscar(){
+  let q=document.getElementById("buscador").value.toLowerCase().trim(),r=document.getElementById("resultados");
+  r.innerHTML="";
+  if(!q){r.innerHTML='<div class="resultado">Escribe el trámite que necesitas buscar.</div>';return}
+  let ok=false;
+  Object.entries(datos).forEach(([id,t])=>{
+    if((t.titulo+" "+t.desc).toLowerCase().includes(q)){
+      ok=true;
+      r.innerHTML+=`<div class="resultado"><h3>${t.icon} ${t.titulo}</h3><p>${t.desc}</p><button onclick="ver('${id}')">Ver información</button></div>`
+    }
+  });
+  if(!ok)r.innerHTML='<div class="resultado"><h3>🔎 No encontramos ese trámite</h3><p>Prueba con palabras como licencia, cédula, nacimiento, NIT o matrícula.</p></div>'
+}
+function ia(){
+  let q=document.getElementById("pregunta").value.toLowerCase(),r=document.getElementById("respuesta");
+  r.style.display="block";
+  let id=q.includes("licencia")||q.includes("conducir")?"licencia"
+    :q.includes("cedula")||q.includes("cédula")||q.includes("identidad")?"cedula"
+    :q.includes("nacimiento")||q.includes("certificado")?"nacimiento"
+    :q.includes("nit")||q.includes("impuesto")||q.includes("tribut")?"nit"
+    :q.includes("matricula")||q.includes("universidad")||q.includes("matrícula")?"matricula"
+    :null;
+  if(id)r.innerHTML=`<strong>${datos[id].icon} Creo que necesitas información sobre: ${datos[id].titulo}.</strong><br><br>Te recomiendo revisar los requisitos, documentos, costo y pasos de la guía.<br><br><button class="btn" onclick="ver('${id}')">Abrir guía</button>`;
+  else r.innerHTML='🤖 No pude identificar el trámite. Prueba con: "quiero sacar mi licencia", "necesito mi cédula", "certificado de nacimiento", "quiero sacar mi NIT" o "matrícula universitaria".'
+}
 window.onclick=e=>{if(e.target===document.getElementById("modal"))cerrar()}
-render();
+
+// === INICIO: cargar desde Google Sheets ===
+cargarDatos();
 </script>
 </body>
 </html>
