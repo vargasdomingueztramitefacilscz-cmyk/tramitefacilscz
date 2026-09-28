@@ -6,53 +6,47 @@
 <title>Trámite Fácil SCZ</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#f4f7fb;color:#1f2937}
-header{background:linear-gradient(135deg,#075985,#0ea5e9);color:white;padding:20px 7%;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:25px;font-weight:bold}.logo span{color:#fde047}
+body{background:#eef1f5;color:#1f2937}
+header{background:linear-gradient(135deg,#0f2942,#1e4976);color:white;padding:20px 7%;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:25px;font-weight:bold}.logo span{color:#e2c05a}
 nav a{color:white;text-decoration:none;margin-left:22px}
-.hero{background:linear-gradient(135deg,#075985,#0284c7);color:white;text-align:center;padding:65px 20px 80px}
+.hero{background:linear-gradient(135deg,#0f2942,#1e4976);color:white;text-align:center;padding:65px 20px 80px}
 .hero h1{font-size:42px;margin-bottom:15px}.hero p{font-size:18px;max-width:700px;margin:auto}
 .search{max-width:700px;margin:30px auto 0;background:white;padding:7px;border-radius:12px;display:flex}
-.search input{flex:1;border:0;outline:0;padding:15px;font-size:16px}.search button{border:0;background:#facc15;padding:0 24px;border-radius:9px;font-weight:bold;cursor:pointer}
+.search input{flex:1;border:0;outline:0;padding:15px;font-size:16px}.search button{border:0;background:#c9a227;padding:0 24px;border-radius:9px;font-weight:bold;cursor:pointer}
 .container{width:86%;max-width:1200px;margin:45px auto}.title{text-align:center;margin-bottom:28px}.title h2{font-size:30px;margin-bottom:8px}.title p{color:#64748b}
 .categories,.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px}
 .category,.card{background:white;border-radius:15px;padding:24px;box-shadow:0 5px 18px #00000010}
 .category{text-align:center;cursor:pointer;transition:.2s}.category:hover{transform:translateY(-4px)}
-.icon{font-size:35px;margin-bottom:10px}.card p{color:#64748b;font-size:14px;line-height:1.6;margin:10px 0}
-.btn{width:100%;padding:12px;border:0;background:#0284c7;color:white;border-radius:8px;cursor:pointer;font-weight:bold}.btn:hover{background:#0369a1}
+.icon{width:54px;height:54px;border-radius:12px;background:#e6ecf4;color:#0f2942;display:flex;align-items:center;justify-content:center;margin:0 0 14px}.category .icon{margin:0 auto 12px}.i{width:1.1em;height:1.1em;vertical-align:-0.2em;margin-right:8px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.icon svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.card p{color:#64748b;font-size:14px;line-height:1.6;margin:10px 0}
+.btn{width:100%;padding:12px;border:0;background:#1e4976;color:white;border-radius:8px;cursor:pointer;font-weight:bold}.btn:hover{background:#163a5f}
 .linkbtn{display:inline-block;width:100%;text-align:center;padding:12px;border:0;background:#16a34a;color:white;border-radius:8px;cursor:pointer;font-weight:bold;text-decoration:none;margin-top:8px}.linkbtn:hover{background:#15803d}
-#resultados{margin-top:30px}.resultado{background:white;padding:20px;border-radius:12px;margin-bottom:14px;border-left:5px solid #0284c7}
-.resultado button{margin-top:12px;padding:9px 15px;border:0;background:#0284c7;color:white;border-radius:7px;cursor:pointer}
+#resultados{margin-top:30px}.resultado{background:white;padding:20px;border-radius:12px;margin-bottom:14px;border-left:5px solid #1e4976}
+.resultado button{margin-top:12px;padding:9px 15px;border:0;background:#1e4976;color:white;border-radius:7px;cursor:pointer}
 .ia{background:#0f172a;color:white;padding:32px;border-radius:16px;margin-top:50px}.ia h2{margin-bottom:10px}
-.iaform{display:flex;margin-top:20px}.iaform input{flex:1;padding:13px;border:0;border-radius:8px 0 0 8px;outline:0}.iaform button{padding:13px 20px;border:0;background:#facc15;border-radius:0 8px 8px 0;cursor:pointer;font-weight:bold}
+.iaform{display:flex;margin-top:20px}.iaform input{flex:1;padding:13px;border:0;border-radius:8px 0 0 8px;outline:0}.iaform button{padding:13px 20px;border:0;background:#c9a227;border-radius:0 8px 8px 0;cursor:pointer;font-weight:bold}
 #respuesta{display:none;background:#334155;padding:18px;border-radius:8px;margin-top:18px;line-height:1.6}
 .modal{display:none;position:fixed;inset:0;background:#000a;z-index:10;overflow:auto}.modalbox{background:white;width:90%;max-width:750px;margin:50px auto;padding:30px;border-radius:15px;position:relative}
-.close{position:absolute;right:20px;top:12px;font-size:28px;cursor:pointer}.info{margin:18px 0}.info h3{color:#075985;margin-bottom:7px}.info ul,.info ol{margin-left:22px;line-height:1.8}
-.check{background:#eff6ff;padding:18px;border-radius:10px}.check label{display:block;margin:10px 0}
+.close{position:absolute;right:20px;top:12px;font-size:28px;cursor:pointer}.info{margin:18px 0}.info h3{color:#0f2942;margin-bottom:7px}.info ul,.info ol{margin-left:22px;line-height:1.8}
+.check{background:#eef3f9;padding:18px;border-radius:10px}.check label{display:block;margin:10px 0}
 .costo-box{background:#fef9c3;border-left:4px solid #eab308;padding:14px;border-radius:8px;margin:10px 0}
 footer{background:#0f172a;color:white;text-align:center;padding:32px;margin-top:60px}footer p{color:#cbd5e1;margin-top:7px}
-/* === ACTIVIDAD === */
-.actividad{background:white;padding:28px;border-radius:16px;margin-top:50px;box-shadow:0 5px 18px #00000010}
-.actividad h2{color:#075985;margin-bottom:8px}
-.actividad .subt{color:#64748b;font-size:14px;margin-bottom:18px}
-.tabla-act{width:100%;border-collapse:collapse;font-size:14px}
-.tabla-act th{background:#0ea5e9;color:white;padding:10px;text-align:left}
-.tabla-act td{padding:10px;border-bottom:1px solid #e2e8f0}
-.tabla-act tr:hover{background:#f0f9ff}
-.accion{display:inline-block;padding:3px 9px;border-radius:20px;font-size:12px;font-weight:bold}
-.accion.ver{background:#dbeafe;color:#1e40af}
-.accion.buscar{background:#fef3c7;color:#92400e}
-.accion.filtrar{background:#e0e7ff;color:#3730a3}
-.accion.ia{background:#dcfce7;color:#166534}
-.accion.checklist{background:#fce7f3;color:#9d174d}
-.vacio{color:#94a3b8;font-style:italic;text-align:center;padding:20px}
-@media(max-width:700px){header{flex-direction:column;gap:15px}nav a{margin:0 7px}.hero h1{font-size:32px}.search,.iaform{flex-direction:column;gap:7px}.search button,.iaform button{padding:13px;border-radius:8px}.tabla-act{font-size:12px}.tabla-act th,.tabla-act td{padding:6px}}
+.proyecto-card{border-top:4px solid #1e4976}
+.proyecto-card h3{color:#0f2942;margin-bottom:10px;font-size:19px}
+.proyecto-card p{color:#475569;font-size:14.5px;line-height:1.7;margin:0}
+.form-box{background:white;border-radius:15px;padding:30px;box-shadow:0 5px 18px #00000010;max-width:640px;margin:0 auto}
+.form-box label{display:block;font-weight:bold;margin:14px 0 6px;font-size:14px}
+.form-box input[type=text],.form-box input[type=tel],.form-box input[type=email]{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:8px;font-size:15px}
+.form-box input:focus{outline:2px solid #1e4976;border-color:transparent}
+.form-box .consent{display:flex;gap:8px;font-weight:normal;color:#475569;line-height:1.5}
+#formMsg{display:none;margin-top:14px;padding:12px;border-radius:8px;font-size:14px}
+@media(max-width:700px){header{flex-direction:column;gap:15px}nav a{margin:0 7px}.hero h1{font-size:32px}.search,.iaform{flex-direction:column;gap:7px}.search button,.iaform button{padding:13px;border-radius:8px}}
 </style>
 </head>
 <body>
 <header>
 <div class="logo">Trámite Fácil <span>SCZ</span></div>
-<nav><a href="#inicio">Inicio</a><a href="#tramites">Trámites</a><a href="#asistente">Asistente IA</a><a href="#actividad">Actividad</a></nav>
+<nav><a href="#inicio">Inicio</a><a href="#tramites">Trámites</a><a href="#asistente">Asistente IA</a><a href="#registro">Registro</a><a href="#proyecto">Sobre el proyecto</a></nav>
 </header>
 
 <section class="hero" id="inicio">
@@ -60,19 +54,19 @@ footer{background:#0f172a;color:white;text-align:center;padding:32px;margin-top:
 <p>Encuentra requisitos, documentos, pasos, costos y el enlace oficial para realizar tus trámites en Santa Cruz.</p>
 <div class="search">
 <input id="buscador" placeholder="Ejemplo: licencia de conducir">
-<button onclick="buscar()">🔎 Buscar</button>
+<button onclick="buscar()"><span data-ii="buscar"></span>Buscar</button>
 </div>
 </section>
 
 <div class="container">
 <div class="title"><h2>¿Qué trámite necesitas?</h2><p>Selecciona una categoría o utiliza el buscador.</p></div>
 <div class="categories">
-<div class="category" onclick="filtrar('vehiculos')"><div class="icon">🚗</div><h3>Vehículos</h3></div>
-<div class="category" onclick="filtrar('identificacion')"><div class="icon">🪪</div><h3>Identificación</h3></div>
-<div class="category" onclick="filtrar('impuestos')"><div class="icon">💰</div><h3>Impuestos</h3></div>
-<div class="category" onclick="filtrar('educacion')"><div class="icon">🎓</div><h3>Educación</h3></div>
-<div class="category" onclick="filtrar('documentos')"><div class="icon">📄</div><h3>Documentos</h3></div>
-<div class="category" onclick="filtrar('otros')"><div class="icon">🏛️</div><h3>Otros</h3></div>
+<div class="category" onclick="filtrar('vehiculos')"><div class="icon" data-ic="vehiculos"></div><h3>Vehículos</h3></div>
+<div class="category" onclick="filtrar('identificacion')"><div class="icon" data-ic="identificacion"></div><h3>Identificación</h3></div>
+<div class="category" onclick="filtrar('impuestos')"><div class="icon" data-ic="impuestos"></div><h3>Impuestos</h3></div>
+<div class="category" onclick="filtrar('educacion')"><div class="icon" data-ic="educacion"></div><h3>Educación</h3></div>
+<div class="category" onclick="filtrar('documentos')"><div class="icon" data-ic="documentos"></div><h3>Documentos</h3></div>
+<div class="category" onclick="filtrar('otros')"><div class="icon" data-ic="otros"></div><h3>Otros</h3></div>
 </div>
 
 <div class="title" id="tramites"><h2>Trámites disponibles</h2><p>Selecciona uno para consultar su guía.</p></div>
@@ -80,18 +74,28 @@ footer{background:#0f172a;color:white;text-align:center;padding:32px;margin-top:
 <div id="resultados"></div>
 
 <div class="ia" id="asistente">
-<h2>🤖 Asistente Trámite Fácil</h2>
+<h2><span data-ii="bot"></span>Asistente Trámite Fácil</h2>
 <p>Escribe qué trámite necesitas y recibe una orientación inicial.</p>
 <div class="iaform"><input id="pregunta" placeholder="Ejemplo: necesito sacar mi licencia"><button onclick="ia()">Consultar</button></div>
 <div id="respuesta"></div>
 </div>
 
-<!-- ==== SECCIÓN ACTIVIDAD ==== -->
-<div class="actividad" id="actividad">
-  <h2>📊 Actividad reciente</h2>
-  <p class="subt">Últimas interacciones registradas en el sistema.</p>
-  <div id="tablaActividad"><div class="vacio">Cargando actividad...</div></div>
-  <button class="btn" style="margin-top:14px;background:#0f172a" onclick="cargarActividad()">🔄 Actualizar</button>
+<div class="title" id="registro" style="margin-top:55px"><h2>Regístrate</h2><p>Déjanos tus datos para mantenerte informado sobre tus trámites.</p></div>
+<div class="form-box">
+<form id="registroForm" onsubmit="enviarForm(event)">
+<label for="nombre">Nombre completo</label><input type="text" id="nombre" required maxlength="80" autocomplete="name">
+<label for="telefono">Número de teléfono</label><input type="tel" id="telefono" required pattern="[0-9+ ]{7,15}" maxlength="15" autocomplete="tel" placeholder="Ejemplo: 71234567">
+<label for="correo">Correo electrónico</label><input type="email" id="correo" required maxlength="100" autocomplete="email">
+<label class="consent"><input type="checkbox" id="acepto" required> Acepto que mis datos se guarden para recibir orientación sobre trámites.</label>
+<button class="btn" type="submit" style="margin-top:18px"><span data-ii="enviar"></span>Enviar</button>
+<div id="formMsg"></div>
+</form></div>
+
+<div class="title" id="proyecto" style="margin-top:55px"><h2>Sobre este proyecto</h2><p>Pensado desde la perspectiva de quien entra a esta página.</p></div>
+<div class="cards">
+<div class="card proyecto-card"><div class="icon" data-ic="tarea"></div><h3>Tarea</h3><p>Ayudar al usuario a encontrar de forma rápida y confiable la información que necesita para realizar un trámite en Santa Cruz: qué requisitos pide, qué documentos debe llevar, cuáles son los pasos, cuánto cuesta y dónde debe ir a realizarlo.</p></div>
+<div class="card proyecto-card"><div class="icon" data-ic="accion"></div><h3>Acción</h3><p>El usuario busca o selecciona una categoría de trámite (Vehículos, Identificación, Impuestos, Educación, Documentos, Otros), elige el trámite específico dentro de la lista de trámites disponibles para consultar su guía, y opcionalmente escribe su consulta en el Asistente Trámite Fácil para recibir una orientación inicial.</p></div>
+<div class="card proyecto-card"><div class="icon" data-ic="resultado"></div><h3>Resultado</h3><p>El usuario obtiene una guía clara del trámite elegido: requisitos, documentos necesarios, pasos a seguir, costos aproximados y el enlace o dirección de la institución oficial donde debe realizarlo, ahorrando tiempo e incertidumbre.</p></div>
 </div>
 </div>
 
@@ -100,149 +104,77 @@ footer{background:#0f172a;color:white;text-align:center;padding:32px;margin-top:
 <footer><h3>Trámite Fácil SCZ</h3><p>Proyecto académico · Santa Cruz de la Sierra</p><p>Los costos y direcciones se actualizan periódicamente, pero pueden variar. Verifica siempre la información vigente en la institución oficial correspondiente.</p></footer>
 
 <script>
-// === CONFIGURACIÓN ===
-const URL_API = "https://script.google.com/macros/s/AKfycbzZ6FkVu1YmhjXGqhBIUedmqjRC8WX6NOWb15aeQWq6WElrC85QroB6cUE0gKDL1asa/exec";
+const datos={
+licencia:{cat:"vehiculos",icon:"🚗",titulo:"Licencia de conducir",desc:"Guía de orientación para el trámite de licencia de conducir.",
+req:["Tener la edad mínima según categoría (16 años categoría P con autorización de padres/tutor; 26 años categoría B; 31 años categoría C).","Cédula de identidad física o digital vigente.","Certificado de evaluación médica emitido por un centro de salud acreditado por el SEGIP.","Para licencia nueva: certificado de aprobación de habilidades de conducción emitido por una autoescuela autorizada por el Ministerio de Educación."],
+docs:["Cédula de identidad vigente (original y copia).","Certificado médico (Bs 50, se paga en el centro de salud elegido).","Certificado de autoescuela (solo licencia nueva).","Comprobante de pago del trámite en el Banco Unión."],
+lugar:"SEGIP - Oficina Distrito 5: Av. 2 de Agosto esq. St. Exupery, zona norte, entre 6to y 7mo anillo, Santa Cruz de la Sierra. Atención de lunes a viernes, 07:00 a 15:00. Consulta la oficina más cercana a ti en el localizador oficial.",
+costo:"Bs 225 para categorías P, A, B y C. Bs 80 para categorías M y T (motorizados/tricimotos), pago en Banco Unión indicando SEGIP-SEGELIC. El certificado médico se paga aparte: Bs 50.",
+pasos:["Sacar turno o verificar requisitos vigentes en el sitio oficial del SEGIP.","Realizar el certificado médico en un centro autorizado.","Pagar el trámite en Banco Unión (SEGIP-SEGELIC).","Acudir a la oficina del SEGIP con toda la documentación.","Retirar la licencia (física o digital vía app SEGIP)."],
+link:"https://www.segip.gob.bo/licencia-para-conducir/",linkTexto:"Ver requisitos y costos en SEGIP",
+mapaLink:"https://www.segip.gob.bo/lista-direcciones-page/",mapaTexto:"Buscar oficina SEGIP más cercana"},
 
-// === DATOS ===
-let datos = {};
+cedula:{cat:"identificacion",icon:"🪪",titulo:"Cédula de identidad",desc:"Orientación general para obtención, renovación o actualización de la cédula de identidad.",
+req:["Presentar cédula anterior si es renovación (o partida de nacimiento si es primera vez).","Realizar el registro biométrico correspondiente.","No tener observaciones pendientes en el sistema del SEGIP."],
+docs:["Certificado de nacimiento (para primera cédula).","Cédula de identidad anterior (para renovación o duplicado).","Comprobante de pago del trámite."],
+lugar:"SEGIP - mismas oficinas que licencia de conducir, por ejemplo la de Distrito 5: Av. 2 de Agosto esq. St. Exupery, zona norte, Santa Cruz de la Sierra.",
+costo:"El costo varía según el tipo de trámite (primera vez, renovación, duplicado o cambio de datos). Verifica el monto vigente en el sitio oficial del SEGIP antes de acudir.",
+pasos:["Identificar el tipo de trámite que necesitas.","Verificar requisitos y costo vigente en el sitio oficial.","Preparar la documentación.","Acudir a la oficina del SEGIP o solicitar cita en línea.","Completar el registro biométrico y retirar tu cédula."],
+link:"https://www.segip.gob.bo/",linkTexto:"Ir al sitio oficial del SEGIP",
+mapaLink:"https://www.segip.gob.bo/lista-direcciones-page/",mapaTexto:"Buscar oficina SEGIP más cercana"},
 
-// === REGISTRO DE ACTIVIDAD ===
-async function registrar(tipo, tramite, detalle = "") {
-  try {
-    await fetch(URL_API, {
-      method: "POST",
-      mode: "no-cors", // evita problemas de CORS
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ tipo, tramite, detalle })
-    });
-  } catch (e) {
-    console.warn("No se pudo registrar la actividad:", e);
-  }
-}
+nacimiento:{cat:"documentos",icon:"📄",titulo:"Certificado de nacimiento",desc:"Orientación para solicitar un certificado de nacimiento en Santa Cruz.",
+req:["Conocer los datos exactos de la partida (nombre completo, fecha y lugar de nacimiento).","Cédula de identidad vigente del solicitante."],
+docs:["Cédula de identidad vigente.","Datos de la partida original (folio, libro, si se conocen)."],
+lugar:"SERECI Santa Cruz - Oficinas: Av. Cuarto Anillo y Av. Radial 27; y Av. Cañada Pailita, ingreso Plan Tres Mil. También puede tramitarse en oficialías de Registro Civil.",
+costo:"En oficinas del SERECI: Bs 33 (certificado) + Bs 82 (formulario valorado). En oficialías de Registro Civil el costo es mayor, alrededor de Bs 51.",
+pasos:["Verificar en qué libro/oficina está registrada la partida.","Reunir tus datos y cédula de identidad.","Acudir a la oficina del SERECI o agendar cita en línea.","Pagar el valorado y el certificado.","Recibir el certificado de nacimiento."],
+link:"https://web.oep.org.bo/registro-civico/servicios-registro-civil/",linkTexto:"Ver información oficial del SERECI",
+mapaLink:"https://www.google.com/maps/search/SERECI+Santa+Cruz+de+la+Sierra",mapaTexto:"Ver oficinas SERECI en el mapa"},
 
-// === CARGAR TRÁMITES ===
-async function cargarDatos() {
-  try {
-    const res = await fetch(URL_API);
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    datos = await res.json();
-    console.log("Trámites cargados:", datos);
-    render();
-  } catch (e) {
-    console.error("Error cargando datos:", e);
-    document.getElementById("cards").innerHTML =
-      '<div class="resultado">⚠️ No se pudieron cargar los trámites.</div>';
-  }
-}
+nit:{cat:"impuestos",icon:"💰",titulo:"NIT",desc:"Orientación general sobre el Número de Identificación Tributaria.",
+req:["Contar con cédula de identidad vigente.","Tener una actividad económica que declarar (para personas naturales con negocio).","Factura de luz y croquis del domicilio del negocio (si aplica)."],
+docs:["Cédula de identidad vigente.","Factura de servicio básico del domicilio o negocio.","Croquis de ubicación del negocio (si corresponde)."],
+lugar:"Servicio de Impuestos Nacionales (SIN) - oficina distrital de Santa Cruz, o de forma 100% en línea a través de la Oficina Virtual y ciudadanía digital.",
+costo:"Gratuito para personas naturales. Para personas jurídicas puede existir una tasa administrativa aproximada de Bs 30 a Bs 50, según el tipo de empresa. Verifica el monto vigente en el sitio oficial del SIN.",
+pasos:["Registrarte en ciudadanía digital (ciudadaniadigital.gob.bo) si aún no tienes acceso.","Descargar y llenar el formulario correspondiente en impuestos.gob.bo.","Acudir a la oficina distrital del SIN o completar el trámite en línea.","Activar la tarjeta MASI para acceder a la Oficina Virtual.","Completar el registro y obtener tu NIT."],
+link:"https://www.impuestos.gob.bo/",linkTexto:"Ir al sitio oficial del SIN",
+mapaLink:"https://www.google.com/maps/search/Servicio+de+Impuestos+Nacionales+Santa+Cruz",mapaTexto:"Ver oficinas del SIN en el mapa"},
 
-// === CARGAR ACTIVIDAD ===
-async function cargarActividad() {
-  const cont = document.getElementById("tablaActividad");
-  cont.innerHTML = '<div class="vacio">Cargando actividad...</div>';
-  try {
-    const res = await fetch(URL_API + "?accion=registros");
-    const data = await res.json();
-    if (!data.registros || data.registros.length === 0) {
-      cont.innerHTML = '<div class="vacio">Aún no hay interacciones registradas. ¡Prueba a consultar un trámite!</div>';
-      return;
-    }
-    let html = '<table class="tabla-act"><thead><tr><th>Fecha</th><th>Hora</th><th>Acción</th><th>Trámite / Término</th><th>Detalle</th></tr></thead><tbody>';
-    data.registros.forEach(r => {
-      const clase = (r.tipo || "").toLowerCase().includes("ver") ? "ver"
-                  : (r.tipo || "").toLowerCase().includes("busc") ? "buscar"
-                  : (r.tipo || "").toLowerCase().includes("filtr") ? "filtrar"
-                  : (r.tipo || "").toLowerCase().includes("ia") ? "ia"
-                  : "checklist";
-      html += `<tr>
-        <td>${r.fecha || "-"}</td>
-        <td>${r.hora || "-"}</td>
-        <td><span class="accion ${clase}">${r.tipo || "-"}</span></td>
-        <td>${r.tramite || "-"}</td>
-        <td>${r.detalle || ""}</td>
-      </tr>`;
-    });
-    html += "</tbody></table>";
-    cont.innerHTML = html;
-  } catch (e) {
-    console.error("Error cargando actividad:", e);
-    cont.innerHTML = '<div class="vacio">No se pudo cargar la actividad.</div>';
-  }
-}
-
-// === RENDER DE TRÁMITES ===
-function render(filtro=null){
-  let c=document.getElementById("cards");c.innerHTML="";
-  Object.entries(datos).forEach(([id,t])=>{
-    if(!filtro||t.cat===filtro||filtro==="otros")
-      c.innerHTML+=`<div class="card" data-cat="${t.cat}"><div class="icon">${t.icon}</div><h3>${t.titulo}</h3><p>${t.desc}</p><button class="btn" onclick="ver('${id}')">Ver información</button></div>`
-  })
-}
-
-// === VER GUÍA ===
-function ver(id){
-  let t=datos[id];
-  // Registrar la acción
-  registrar("ver", t.titulo, `Categoría: ${t.cat}`);
-  document.getElementById("modalContenido").innerHTML=`<h2>${t.icon} ${t.titulo}</h2><p>${t.desc}</p>
-  <div class="info"><h3>📋 Requisitos</h3><ul>${t.req.map(x=>`<li>${x}</li>`).join("")}</ul></div>
-  <div class="info"><h3>📄 Documentos</h3><ul>${t.docs.map(x=>`<li>${x}</li>`).join("")}</ul></div>
-  <div class="info"><h3>📍 Lugar</h3><p>${t.lugar}</p><a class="linkbtn" style="background:#0284c7" href="${t.mapaLink}" target="_blank" rel="noopener">📍 ${t.mapaTexto}</a></div>
-  <div class="info"><h3>💰 Costo</h3><div class="costo-box">${t.costo}</div></div>
-  <div class="info"><h3>🪜 Pasos</h3><ol>${t.pasos.map(x=>`<li>${x}</li>`).join("")}</ol></div>
-  <div class="check"><h3>✅ Mi checklist</h3>${t.docs.map((x,i)=>`<label><input type="checkbox" onchange="registrar('checklist','${t.titulo}','${x.replace(/'/g,"\\'")}')"> ${x}</label>`).join("")}</div>
-  <a class="linkbtn" href="${t.link}" target="_blank" rel="noopener">🔗 ${t.linkTexto}</a>
-  <p style="margin-top:18px;font-size:13px;color:#64748b">⚠️ Verifica siempre la información vigente en la institución oficial.</p>`;
-  document.getElementById("modal").style.display="block"
-}
+matricula:{cat:"educacion",icon:"🎓",titulo:"Matrícula universitaria",desc:"Guía general para organizar información sobre procesos de matrícula (ejemplo: UAGRM).",
+req:["Ser bachiller (título original y copia).","Cumplir el proceso de preinscripción de la facultad elegida.","Presentar libreta o certificado de notas del último año de secundaria."],
+docs:["Cédula de identidad vigente (original y copia).","Título de bachiller (original y copia).","Formulario de preinscripción.","Comprobante de pago de matrícula."],
+lugar:"Universidad correspondiente. Ejemplo: UAGRM, Campus Universitario, Pabellón 145, Santa Cruz de la Sierra.",
+costo:"Varía según universidad y facultad. Referencia: en la UAGRM el costo de cursos preuniversitarios/matrícula ronda los Bs 700 por facultad. Verifica el arancel vigente de tu facultad específica.",
+pasos:["Consultar la convocatoria de tu facultad.","Llenar el formulario de preinscripción en línea.","Pagar la matrícula en la caja facultativa indicada.","Presentar la documentación completa en un folder.","Confirmar tu inscripción."],
+link:"https://admisionweb.uagrm.edu.bo/",linkTexto:"Ir al portal de admisiones UAGRM",
+mapaLink:"https://www.google.com/maps/search/UAGRM+Campus+Universitario+Santa+Cruz",mapaTexto:"Ver ubicación del campus"}
+};
+function render(filtro=null){let c=document.getElementById("cards");c.innerHTML="";Object.entries(datos).forEach(([id,t])=>{if(!filtro||t.cat===filtro||filtro==="otros")c.innerHTML+=`<div class="card" data-cat="${t.cat}"><div class="icon">${ic(t.cat)}</div><h3>${t.titulo}</h3><p>${t.desc}</p><button class="btn" onclick="ver('${id}')">Ver información</button></div>`})}
+function ver(id){let t=datos[id];document.getElementById("modalContenido").innerHTML=`<h2>${ii(t.cat)}${t.titulo}</h2><p>${t.desc}</p><div class="info"><h3>${ii("clip")}Requisitos</h3><ul>${t.req.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="info"><h3>${ii("documentos")}Documentos</h3><ul>${t.docs.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="info"><h3>${ii("lugar")}Lugar</h3><p>${t.lugar}</p><a class="linkbtn" style="background:#1e4976" href="${t.mapaLink}" target="_blank" rel="noopener">${ii("lugar")}${t.mapaTexto}</a></div><div class="info"><h3>${ii("costo")}Costo</h3><div class="costo-box">${t.costo}</div></div><div class="info"><h3>${ii("pasos")}Pasos</h3><ol>${t.pasos.map(x=>`<li>${x}</li>`).join("")}</ol></div><div class="check"><h3>${ii("check")}Mi checklist</h3>${t.docs.map(x=>`<label><input type="checkbox"> ${x}</label>`).join("")}</div><a class="linkbtn" href="${t.link}" target="_blank" rel="noopener">${ii("link")}${t.linkTexto}</a><p style="margin-top:18px;font-size:13px;color:#64748b">${ii("alerta")}Verifica siempre la información vigente en la institución oficial.</p>`;document.getElementById("modal").style.display="block"}
 function cerrar(){document.getElementById("modal").style.display="none"}
-
-// === FILTRAR ===
-function filtrar(cat){
-  registrar("filtrar", cat, "Filtro por categoría");
-  render(cat);
-  document.getElementById("tramites").scrollIntoView({behavior:"smooth"})
-}
-
-// === BUSCAR ===
-function buscar(){
-  let q=document.getElementById("buscador").value.toLowerCase().trim(),r=document.getElementById("resultados");
-  r.innerHTML="";
-  if(!q){r.innerHTML='<div class="resultado">Escribe el trámite que necesitas buscar.</div>';return}
-  registrar("buscar", q, "Búsqueda en el buscador");
-  let ok=false;
-  Object.entries(datos).forEach(([id,t])=>{
-    if((t.titulo+" "+t.desc).toLowerCase().includes(q)){
-      ok=true;
-      r.innerHTML+=`<div class="resultado"><h3>${t.icon} ${t.titulo}</h3><p>${t.desc}</p><button onclick="ver('${id}')">Ver información</button></div>`
-    }
-  });
-  if(!ok)r.innerHTML='<div class="resultado"><h3>🔎 No encontramos ese trámite</h3><p>Prueba con palabras como licencia, cédula, nacimiento, NIT o matrícula.</p></div>'
-}
-
-// === ASISTENTE IA ===
-function ia(){
-  let q=document.getElementById("pregunta").value.toLowerCase(),r=document.getElementById("respuesta");
-  r.style.display="block";
-  let id=q.includes("licencia")||q.includes("conducir")?"licencia"
-    :q.includes("cedula")||q.includes("cédula")||q.includes("identidad")?"cedula"
-    :q.includes("nacimiento")||q.includes("certificado")?"nacimiento"
-    :q.includes("nit")||q.includes("impuesto")||q.includes("tribut")?"nit"
-    :q.includes("matricula")||q.includes("universidad")||q.includes("matrícula")?"matricula"
-    :null;
-  if(id){
-    registrar("ia", datos[id].titulo, "Consulta IA: " + q);
-    r.innerHTML=`<strong>${datos[id].icon} Creo que necesitas información sobre: ${datos[id].titulo}.</strong><br><br>Te recomiendo revisar los requisitos, documentos, costo y pasos de la guía.<br><br><button class="btn" onclick="ver('${id}')">Abrir guía</button>`;
-  } else {
-    registrar("ia", "no identificado", "Consulta IA: " + q);
-    r.innerHTML='🤖 No pude identificar el trámite. Prueba con: "quiero sacar mi licencia", "necesito mi cédula", "certificado de nacimiento", "quiero sacar mi NIT" o "matrícula universitaria".'
-  }
-}
-
+function filtrar(cat){render(cat);document.getElementById("tramites").scrollIntoView({behavior:"smooth"})}
+function buscar(){let q=document.getElementById("buscador").value.toLowerCase().trim(),r=document.getElementById("resultados");r.innerHTML="";if(!q){r.innerHTML='<div class="resultado">Escribe el trámite que necesitas buscar.</div>';return}let ok=false;Object.entries(datos).forEach(([id,t])=>{if((t.titulo+" "+t.desc).toLowerCase().includes(q)){ok=true;r.innerHTML+=`<div class="resultado"><h3>${ii(t.cat)}${t.titulo}</h3><p>${t.desc}</p><button onclick="ver('${id}')">Ver información</button></div>`}});if(!ok)r.innerHTML='<div class="resultado"><h3>'+ii("buscar")+'No encontramos ese trámite</h3><p>Prueba con palabras como licencia, cédula, nacimiento, NIT o matrícula.</p></div>'}
+function ia(){let q=document.getElementById("pregunta").value.toLowerCase(),r=document.getElementById("respuesta");r.style.display="block";let id=q.includes("licencia")||q.includes("conducir")?"licencia":q.includes("cedula")||q.includes("cédula")||q.includes("identidad")?"cedula":q.includes("nacimiento")||q.includes("certificado")?"nacimiento":q.includes("nit")||q.includes("impuesto")||q.includes("tribut")?"nit":q.includes("matricula")||q.includes("universidad")||q.includes("matrícula")?"matricula":null;if(id)r.innerHTML=`<strong>${ii(datos[id].cat)}Creo que necesitas información sobre: ${datos[id].titulo}.</strong><br><br>Te recomiendo revisar los requisitos, documentos, costo y pasos de la guía.<br><br><button class="btn" onclick="ver('${id}')">Abrir guía</button>`;else r.innerHTML=ii("bot")+'No pude identificar el trámite. Prueba con: “quiero sacar mi licencia”, “necesito mi cédula”, “certificado de nacimiento”, “quiero sacar mi NIT” o “matrícula universitaria”.'}
 window.onclick=e=>{if(e.target===document.getElementById("modal"))cerrar()}
-
-// === INICIO ===
-cargarDatos();
-cargarActividad();
+const ICONS={"vehiculos": "<svg viewBox=\"0 0 24 24\"><path d=\"M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2\"/><circle cx=\"7\" cy=\"17\" r=\"2\"/><path d=\"M9 17h6\"/><circle cx=\"17\" cy=\"17\" r=\"2\"/></svg>", "identificacion": "<svg viewBox=\"0 0 24 24\"><rect x=\"2\" y=\"5\" width=\"20\" height=\"14\" rx=\"2\"/><circle cx=\"8.5\" cy=\"11\" r=\"2\"/><path d=\"M5.5 16c.5-1.2 1.6-2 3-2s2.5.8 3 2M14 10h4M14 14h4\"/></svg>", "impuestos": "<svg viewBox=\"0 0 24 24\"><rect x=\"2\" y=\"6\" width=\"20\" height=\"12\" rx=\"2\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/><path d=\"M6 12h.01M18 12h.01\"/></svg>", "educacion": "<svg viewBox=\"0 0 24 24\"><path d=\"M22 10 12 5 2 10l10 5 10-5z\"/><path d=\"M6 12v5c3 2 9 2 12 0v-5\"/></svg>", "documentos": "<svg viewBox=\"0 0 24 24\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><path d=\"M14 2v6h6M8 13h8M8 17h8\"/></svg>", "otros": "<svg viewBox=\"0 0 24 24\"><path d=\"M3 21h18M5 21V10M9 21V10M15 21V10M19 21V10M2 10l10-6 10 6z\"/></svg>", "tarea": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><circle cx=\"12\" cy=\"12\" r=\"6\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></svg>", "accion": "<svg viewBox=\"0 0 24 24\"><path d=\"m3 3 7.1 17.6 2.5-7.5 7.5-2.5z\"/></svg>", "resultado": "<svg viewBox=\"0 0 24 24\"><path d=\"M22 11.1V12a10 10 0 1 1-5.9-9.1\"/><path d=\"m9 11 3 3L22 4\"/></svg>"};
+function ic(k){return ICONS[k]||ICONS.otros}
+Object.assign(ICONS,{"clip": "<svg viewBox=\"0 0 24 24\"><rect x=\"8\" y=\"2\" width=\"8\" height=\"4\" rx=\"1\"/><path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M12 11h4M12 16h4M8 11h.01M8 16h.01\"/></svg>", "lugar": "<svg viewBox=\"0 0 24 24\"><path d=\"M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/></svg>", "costo": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"/></svg>", "pasos": "<svg viewBox=\"0 0 24 24\"><path d=\"M10 6h11M10 12h11M10 18h11M4 6h1v4M4 10h2M6 18H4c0-1 2-2 2-3s-1-1.5-2-1\"/></svg>", "check": "<svg viewBox=\"0 0 24 24\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"m9 12 2 2 4-4\"/></svg>", "link": "<svg viewBox=\"0 0 24 24\"><path d=\"M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\"/></svg>", "alerta": "<svg viewBox=\"0 0 24 24\"><path d=\"m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3zM12 9v4M12 17h.01\"/></svg>", "buscar": "<svg viewBox=\"0 0 24 24\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/></svg>", "bot": "<svg viewBox=\"0 0 24 24\"><path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\"/></svg>", "enviar": "<svg viewBox=\"0 0 24 24\"><path d=\"M22 2 11 13M22 2l-7 20-4-9-9-4z\"/></svg>"});
+function ii(k){return (ICONS[k]||ICONS.otros).replace("<svg",'<svg class="i"')}
+// Pega aquí la URL de tu Google Apps Script (Implementar > Aplicación web)
+const SHEETS_URL="PEGA_AQUI_LA_URL_DE_TU_APPS_SCRIPT";
+function enviarForm(e){e.preventDefault();const m=document.getElementById("formMsg"),b=e.target.querySelector("button");
+const mostrar=(t,ok)=>{m.style.display="block";m.textContent=t;m.style.background=ok?"#dcfce7":"#fee2e2";m.style.color=ok?"#166534":"#991b1b"};
+if(SHEETS_URL.startsWith("PEGA_AQUI")){mostrar("El formulario aún no está conectado a Google Sheets.",false);return}
+const datosForm={nombre:nombre.value.trim(),telefono:telefono.value.trim(),correo:correo.value.trim()};
+b.disabled=true;b.textContent="Enviando...";
+fetch(SHEETS_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(datosForm)})
+.then(()=>{mostrar("¡Gracias! Tus datos fueron enviados correctamente.",true);e.target.reset()})
+.catch(()=>mostrar("No se pudo enviar. Intenta nuevamente más tarde.",false))
+.finally(()=>{b.disabled=false;b.innerHTML=ii("enviar")+"Enviar"})}
+document.querySelectorAll("[data-ii]").forEach(el=>el.innerHTML=ii(el.dataset.ii));
+document.querySelectorAll("[data-ic]").forEach(el=>el.innerHTML=ic(el.dataset.ic));
+render();
 </script>
 </body>
 </html>
