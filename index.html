@@ -162,11 +162,18 @@ function ic(k){return ICONS[k]||ICONS.otros}
 Object.assign(ICONS,{"clip": "<svg viewBox=\"0 0 24 24\"><rect x=\"8\" y=\"2\" width=\"8\" height=\"4\" rx=\"1\"/><path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M12 11h4M12 16h4M8 11h.01M8 16h.01\"/></svg>", "lugar": "<svg viewBox=\"0 0 24 24\"><path d=\"M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/></svg>", "costo": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"/></svg>", "pasos": "<svg viewBox=\"0 0 24 24\"><path d=\"M10 6h11M10 12h11M10 18h11M4 6h1v4M4 10h2M6 18H4c0-1 2-2 2-3s-1-1.5-2-1\"/></svg>", "check": "<svg viewBox=\"0 0 24 24\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"m9 12 2 2 4-4\"/></svg>", "link": "<svg viewBox=\"0 0 24 24\"><path d=\"M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\"/></svg>", "alerta": "<svg viewBox=\"0 0 24 24\"><path d=\"m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3zM12 9v4M12 17h.01\"/></svg>", "buscar": "<svg viewBox=\"0 0 24 24\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/></svg>", "bot": "<svg viewBox=\"0 0 24 24\"><path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\"/></svg>", "enviar": "<svg viewBox=\"0 0 24 24\"><path d=\"M22 2 11 13M22 2l-7 20-4-9-9-4z\"/></svg>"});
 function ii(k){return (ICONS[k]||ICONS.otros).replace("<svg",'<svg class="i"')}
 // Pega aquí la URL de tu Google Apps Script (Implementar > Aplicación web)
-const SHEETS_URL="PEGA_AQUI_LA_URL_DE_TU_APPS_SCRIPT";
+const SHEETS_URL="https://script.google.com/macros/s/AKfycbyeF8EBOx3cj1iwJ9SNlxBxE8Z6UP9NTAPp-ybHlqvBbMD3zMZXYxq1OkOuidjQwNdo/exec";
 function enviarForm(e){e.preventDefault();const m=document.getElementById("formMsg"),b=e.target.querySelector("button");
 const mostrar=(t,ok)=>{m.style.display="block";m.textContent=t;m.style.background=ok?"#dcfce7":"#fee2e2";m.style.color=ok?"#166534":"#991b1b"};
 if(SHEETS_URL.startsWith("PEGA_AQUI")){mostrar("El formulario aún no está conectado a Google Sheets.",false);return}
-const datosForm={nombre:nombre.value.trim(),telefono:telefono.value.trim(),correo:correo.value.trim()};
+
+const datosForm = {
+  nombre: document.getElementById("nombre").value.trim(),
+  telefono: document.getElementById("telefono").value.trim(),
+  correo: document.getElementById("correo").value.trim(),
+  acepto: document.getElementById("acepto").checked
+};
+
 b.disabled=true;b.textContent="Enviando...";
 fetch(SHEETS_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(datosForm)})
 .then(()=>{mostrar("¡Gracias! Tus datos fueron enviados correctamente.",true);e.target.reset()})
