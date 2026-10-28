@@ -163,9 +163,12 @@ Object.assign(ICONS,{"clip": "<svg viewBox=\"0 0 24 24\"><rect x=\"8\" y=\"2\" w
 function ii(k){return (ICONS[k]||ICONS.otros).replace("<svg",'<svg class="i"')}
 // Pega aquí la URL de tu Google Apps Script (Implementar > Aplicación web)
 const SHEETS_URL="https://script.google.com/macros/s/AKfycbyeF8EBOx3cj1iwJ9SNlxBxE8Z6UP9NTAPp-ybHlqvBbMD3zMZXYxq1OkOuidjQwNdo/exec";
-function enviarForm(e){e.preventDefault();const m=document.getElementById("formMsg"),b=e.target.querySelector("button");
-const mostrar=(t,ok)=>{m.style.display="block";m.textContent=t;m.style.background=ok?"#dcfce7":"#fee2e2";m.style.color=ok?"#166534":"#991b1b"};
-if(SHEETS_URL.startsWith("PEGA_AQUI")){mostrar("El formulario aún no está conectado a Google Sheets.",false);return}
+function enviarForm(e){
+e.preventDefault();
+const m=document.getElementById("formMsg"),b=e.target.querySelector("button");
+const mostrar=(t,tipo)=>{const c={ok:["#dcfce7","#166534"],error:["#fee2e2","#991b1b"],info:["#fff7ed","#9a3412"]}[tipo];m.style.display="block";m.textContent=t;m.style.background=c[0];m.style.color=c[1]};
+m.style.display="none";
+if(SHEETS_URL.startsWith("PEGA_AQUI")){mostrar("El formulario aún no está conectado a Google Sheets.","error");return}
 
 const datosForm = {
   nombre: document.getElementById("nombre").value.trim(),
@@ -175,10 +178,21 @@ const datosForm = {
 };
 
 b.disabled=true;b.textContent="Enviando...";
-fetch(SHEETS_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(datosForm)})
-.then(()=>{mostrar("¡Gracias! Tus datos fueron enviados correctamente.",true);e.target.reset()})
-.catch(()=>mostrar("No se pudo enviar. Intenta nuevamente más tarde.",false))
+mostrar("Enviando tus datos, un momento...","info");
+fetch(SHEETS_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(datosForm)})
+.then(r=>r.json())
+.then(res=>{
+  if(res&&res.ok){
+    mostrar(res.correoEnviado?"¡Gracias! Tu registro se guardó y te enviamos un correo de bienvenida. Revisa también tu carpeta de spam.":"¡Gracias! Tu registro se guardó correctamente.","ok");
+    e.target.reset();
+  }else{
+    mostrar("No se pudo guardar: "+((res&&res.error)||"intenta nuevamente."),"error");
+  }
+})
+.catch(()=>mostrar("No pudimos confirmar el envío. Revisa tu conexión e intenta de nuevo.","error"))
 .finally(()=>{b.disabled=false;b.innerHTML=ii("enviar")+"Enviar"})}
+// Oculta el mensaje anterior en cuanto la persona empieza a escribir otra vez
+document.getElementById("registroForm").addEventListener("input",()=>{if(!document.querySelector("#registroForm button").disabled)document.getElementById("formMsg").style.display="none"});
 document.querySelectorAll("[data-ii]").forEach(el=>el.innerHTML=ii(el.dataset.ii));
 document.querySelectorAll("[data-ic]").forEach(el=>el.innerHTML=ic(el.dataset.ic));
 render();
