@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trámite Fácil SCZ</title>
+<link rel="icon" type="image/png" href="https://vargasdomingueztramitefacilscz-cmyk.github.io/tramitefacilscz/logo.tramite.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,6 +20,7 @@ button,input{font-family:inherit}
 header{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#12355b,#1e4976);border-bottom:4px solid var(--gold);padding:13px 7%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 6px 20px rgba(18,53,91,.25)}
 .logo{display:flex;align-items:center;gap:12px;font-size:22px;font-weight:800;color:#fff;letter-spacing:-.4px}
 .logo span{color:#e2c05a}
+.logo-oficial{display:block;width:min(370px,100%);height:auto;max-height:74px;object-fit:contain;object-position:left center}
 .mark{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,#2f74d6,#1f5fbf);border:1.5px solid rgba(255,255,255,.28);color:#fff;display:flex;align-items:center;justify-content:center}
 .mark .i{margin:0}.mark svg{width:22px;height:22px}
 nav a{color:#cfe0f7;text-decoration:none;margin-left:4px;padding:8px 12px;border-radius:8px;font-size:14.5px;font-weight:500;transition:.2s;white-space:nowrap}
@@ -144,6 +146,7 @@ footer p{color:var(--muted);margin:7px auto 0;font-size:14px;max-width:720px}
 
 @media(max-width:700px){
 header{flex-direction:column;gap:10px;padding:12px 5%}
+.logo-oficial{width:min(310px,85vw);max-height:64px}
 nav{display:flex;overflow-x:auto;max-width:100%}
 nav a{margin:0 2px}
 .hero{padding:48px 18px 56px}
@@ -161,7 +164,7 @@ nav a{margin:0 2px}
 </head>
 <body>
 <header>
-<div class="logo"><div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="m9 15 2 2 4-4" stroke="#e2c05a" stroke-width="2.2"/></svg></div><div>Trámite Fácil <span>SCZ</span></div></div>
+<a class="logo" href="#inicio" aria-label="Trámite Fácil SCZ - Inicio"><img class="logo-oficial" src="https://vargasdomingueztramitefacilscz-cmyk.github.io/tramitefacilscz/logo.tramite.png" alt="Trámite Fácil SCZ - Guía de trámites de Santa Cruz de la Sierra"></a>
 <nav><a href="#inicio">Inicio</a><a href="#tramites">Trámites</a><a href="#asistente">Asistente IA</a><a href="#proyecto">Sobre el proyecto</a></nav>
 </header>
 
@@ -291,13 +294,15 @@ fetch(SHEETS_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-
 .then(r=>r.json())
 .then(res=>{
   if(res&&res.ok){
-    mostrar(res.correoEnviado?"¡Casi listo! Te enviamos un correo de confirmación. Ábrelo y presiona el botón para continuar con tu trámite. Revisa también tu carpeta de spam.":"Tu registro se guardó, pero no pudimos enviar el correo. Intenta de nuevo.","ok");
+    mostrar(res.correoEnviado?"¡Registro exitoso! Te enviamos un correo de bienvenida.":"¡Registro exitoso! Puedes continuar, aunque no se pudo enviar el correo de bienvenida.","ok");
     e.target.reset();
+    registroListo();
+    aviso(res.correoEnviado?"¡Registro exitoso! Revisa tu correo de bienvenida.":"¡Registro exitoso! Ya puedes consultar tu trámite.",true);
   }else{
-    mostrar("No se pudo guardar: "+((res&&res.error)||"intenta nuevamente."),"error");
+    mostrar("No se pudo guardar: "+((res&&(res.mensaje||res.error))||"intenta nuevamente."),"error");
   }
 })
-.catch(()=>mostrar("No pudimos confirmar el envío. Revisa tu conexión e intenta de nuevo.","error"))
+.catch(()=>mostrar("No pudimos verificar el registro. Revisa tu conexión y confirma si tus datos llegaron antes de intentarlo otra vez.","error"))
 .finally(()=>{b.disabled=false;b.innerHTML=ii("enviar")+"Enviar"})}
 // Oculta el mensaje anterior en cuanto la persona empieza a escribir otra vez
 document.getElementById("registroForm").addEventListener("input",()=>{if(!document.querySelector("#registroForm button").disabled)document.getElementById("formMsg").style.display="none"});
@@ -309,7 +314,7 @@ try{regOk=localStorage.getItem("tf_registrado")==="1"}catch(_){}
 function requerirRegistro(fn,nombre){
 if(regOk){fn();return}
 pendiente=fn;
-document.getElementById("regTema").textContent=nombre?"Para ver la guía de «"+nombre+"» necesitas registrarte primero. Te enviaremos un correo para confirmar tu registro.":"Para continuar necesitas registrarte primero. Te enviaremos un correo para confirmar tu registro.";
+document.getElementById("regTema").textContent=nombre?"Para ver la guía de «"+nombre+"» necesitas registrarte primero. Recibirás un correo de bienvenida después de registrarte.":"Para continuar necesitas registrarte primero. Recibirás un correo de bienvenida después de registrarte.";
 document.getElementById("formMsg").style.display="none";
 document.getElementById("regModal").style.display="block"}
 function registroListo(){
@@ -319,15 +324,6 @@ if(pendiente){const f=pendiente;pendiente=null;f()}}
 function cerrarReg(){document.getElementById("regModal").style.display="none"}
 let tramitePend=null;
 function aviso(t,ok){const d=document.createElement("div");d.className="toast "+(ok?"ok":"err");d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),7000)}
-// Al abrir el enlace del correo (?confirmar=...&tramite=...) se confirma el registro y se abre la guía pedida
-(function(){const p=new URLSearchParams(location.search),tk=p.get("confirmar");if(!tk)return;
-const tr=p.get("tramite");history.replaceState(null,"",location.pathname);
-fetch(SHEETS_URL+"?confirmar="+encodeURIComponent(tk)).then(r=>r.json()).then(res=>{
-if(res&&res.ok){regOk=true;try{localStorage.setItem("tf_registrado","1")}catch(_){}
-aviso("¡Registro confirmado"+(res.nombre?", "+res.nombre:"")+"! Ya puedes consultar tu trámite.",true);
-if(datos[tr])verGuia(tr);else document.getElementById("tramites").scrollIntoView({behavior:"smooth"})
-}else aviso("El enlace de confirmación no es válido. Regístrate de nuevo.",false)})
-.catch(()=>aviso("No pudimos confirmar tu registro. Revisa tu conexión e intenta de nuevo.",false))})();
 render();
 </script>
 </body>
