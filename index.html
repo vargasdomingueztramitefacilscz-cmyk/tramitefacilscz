@@ -1586,18 +1586,21 @@ let tokenSesion="";
 let pendiente=null;
 let tramitePend=null;
 
-try {
-  tokenSesion=localStorage.getItem("tf_sesion") || "";
-  regOk=Boolean(tokenSesion);
-} catch(error) {
-  console.warn("No se pudo leer el registro local.");
-}
+function requerirRegistro(fn, nombre) {
+  // Pedir registro en cada consulta.
+  regOk = false;
+  tokenSesion = "";
+  pendiente = fn;
 
-function requerirRegistro(fn,nombre) {
-  if(regOk) {
-    fn();
-    return;
-  }
+  document.getElementById("regTema").textContent =
+    nombre
+      ? "Para consultar «" + nombre +
+        "» debes registrarte. Recibirás un correo de confirmación."
+      : "Para realizar esta consulta debes registrarte. Recibirás un correo de confirmación.";
+
+  document.getElementById("formMsg").style.display = "none";
+  document.getElementById("regModal").style.display = "block";
+}
 
   pendiente=fn;
 
@@ -1687,23 +1690,32 @@ async function enviarForm(e) {
   }
 }
 
-function registroListo() {
-  regOk=true;
 
+/* =========================================================
+   REGISTRO COMPLETADO
+   ========================================================= */
+
+function registroListo() {
+  regOk = true;
+
+  // Eliminar el registro guardado anteriormente.
+  // Así deberá registrarse en cada nueva consulta.
   try {
-    localStorage.setItem("tf_sesion",tokenSesion);
+    localStorage.removeItem("tf_sesion");
     localStorage.removeItem("tf_registrado");
   } catch(error) {
-    console.warn("No se pudo guardar el registro local.");
+    console.warn("No se pudo limpiar el registro local.");
   }
 
   cerrarReg();
 
   if(pendiente) {
-    const f=pendiente;
-    pendiente=null;
+    const f = pendiente;
+    pendiente = null;
     f();
   }
+}
+
 }
 
 function cerrarReg() {
