@@ -1586,8 +1586,9 @@ let tokenSesion="";
 let pendiente=null;
 let tramitePend=null;
 
+
 function requerirRegistro(fn, nombre) {
-  // Pedir registro en cada consulta.
+  // Solicitar registro en cada consulta.
   regOk = false;
   tokenSesion = "";
   pendiente = fn;
@@ -1600,18 +1601,6 @@ function requerirRegistro(fn, nombre) {
 
   document.getElementById("formMsg").style.display = "none";
   document.getElementById("regModal").style.display = "block";
-}
-
-  pendiente=fn;
-
-  document.getElementById("regTema").textContent=
-    nombre
-      ? "Para ver la guía de «"+nombre+
-        "» necesitas registrarte primero. Recibirás un correo de bienvenida después de registrarte."
-      : "Para continuar necesitas registrarte primero. Recibirás un correo de bienvenida después de registrarte.";
-
-  document.getElementById("formMsg").style.display="none";
-  document.getElementById("regModal").style.display="block";
 }
 
 /* =========================================================
