@@ -1,8 +1,213 @@
-uired> Acepto que mis datos se guarden para recibir orientación sobre trámites.</label>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trámite Fácil SCZ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#12355b;--blue:#1f5fbf;--blue-d:#174a96;--sky:#eaf1fb;--gold:#c9a227;--gold-d:#a8851a;--bg:#f5f8fc;--text:#1e293b;--muted:#64748b;--line:#e2e8f0}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+[id]{scroll-margin-top:84px}
+body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;background:radial-gradient(800px 520px at 100% 22%,#cfe1fb 0,transparent 62%),radial-gradient(700px 520px at 0% 52%,#fbe8b4 0,transparent 62%),radial-gradient(800px 520px at 100% 85%,#cdeee5 0,transparent 62%),radial-gradient(700px 500px at 0% 100%,#d6e4fb 0,transparent 62%),#eef4fc;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased}
+button,input{font-family:inherit}
+
+/* ENCABEZADO */
+header{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#12355b,#1e4976);border-bottom:4px solid var(--gold);padding:13px 7%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 6px 20px rgba(18,53,91,.25)}
+.logo{display:flex;align-items:center;gap:12px;font-size:22px;font-weight:800;color:#fff;letter-spacing:-.4px}
+.logo span{color:#e2c05a}
+.mark{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,#2f74d6,#1f5fbf);border:1.5px solid rgba(255,255,255,.28);color:#fff;display:flex;align-items:center;justify-content:center}
+.mark .i{margin:0}.mark svg{width:22px;height:22px}
+nav a{color:#cfe0f7;text-decoration:none;margin-left:4px;padding:8px 12px;border-radius:8px;font-size:14.5px;font-weight:500;transition:.2s;white-space:nowrap}
+nav a:hover{background:rgba(255,255,255,.14);color:#fff}
+
+/* HERO */
+.hero{text-align:center;padding:68px 20px 78px;background:radial-gradient(900px 400px at 10% -10%,#b9d3f7 0,transparent 62%),radial-gradient(750px 380px at 94% 0,#f8df97 0,transparent 58%),linear-gradient(180deg,#e2edfc,#d6e5fa);border-bottom:1px solid var(--line)}
+.badge{display:inline-block;background:#fff;border:1px solid #cfdcf0;color:var(--blue);font-size:13px;font-weight:600;padding:6px 15px;border-radius:999px;margin-bottom:20px}
+.hero h1{font-size:46px;font-weight:800;color:var(--navy);letter-spacing:-1px;margin-bottom:16px;line-height:1.15}
+.hero h1 span{color:var(--blue)}
+.hero p{font-size:18px;color:#475569;max-width:680px;margin:auto}
+.search{max-width:680px;margin:32px auto 0;background:#fff;padding:7px;border-radius:14px;display:flex;border:1px solid var(--line);box-shadow:0 12px 32px rgba(18,53,91,.12)}
+.search input{flex:1;border:0;outline:0;padding:14px 16px;font-size:16px;background:transparent;min-width:0}
+.search button{border:0;background:var(--gold);color:#2b2205;padding:0 26px;border-radius:10px;font-weight:700;cursor:pointer;transition:.2s;display:flex;align-items:center;font-size:15px}
+.search button:hover{background:var(--gold-d);color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px}
+.chip{display:inline-flex;align-items:center;background:#fff;border:1px solid var(--line);color:#334155;font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:999px}
+.chip .i{color:var(--blue);margin-right:7px}
+
+/* CONTENIDO */
+.container{width:88%;max-width:1200px;margin:50px auto}
+.title{text-align:center;margin-bottom:30px}
+.title h2{font-size:28px;font-weight:800;color:var(--navy);letter-spacing:-.5px}
+.title h2::after{content:"";display:block;width:44px;height:4px;border-radius:4px;background:var(--gold);margin:11px auto 12px}
+.title p{color:var(--muted)}
+.categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.category,.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 2px 10px rgba(15,41,66,.05)}
+.category{text-align:center;cursor:pointer;transition:.2s}
+.category:hover,.card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(18,53,91,.12);border-color:#bcd0ee}
+.card{transition:.2s}
+.category h3{font-size:15.5px;font-weight:600;color:var(--navy)}
+.card h3{font-size:18px;font-weight:700;color:var(--navy)}
+.card p{color:var(--muted);font-size:14px;line-height:1.65;margin:10px 0 16px}
+
+/* ICONOS */
+.icon{width:54px;height:54px;border-radius:14px;background:var(--sky);color:var(--blue);display:flex;align-items:center;justify-content:center;margin:0 0 14px}
+.category .icon{margin:0 auto 12px}
+.i{width:1.1em;height:1.1em;vertical-align:-0.2em;margin-right:8px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.icon svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.category:nth-child(1) .icon,.card[data-cat=vehiculos] .icon{background:#e5eefc;color:#1f5fbf}
+.category:nth-child(2) .icon,.card[data-cat=identificacion] .icon{background:#dff3ef;color:#0f766e}
+.category:nth-child(3) .icon,.card[data-cat=impuestos] .icon{background:#fcf1d2;color:#a16207}
+.category:nth-child(4) .icon,.card[data-cat=educacion] .icon{background:#ebe7fa;color:#5b45c2}
+.category:nth-child(5) .icon,.card[data-cat=documentos] .icon{background:#e0f0fa;color:#0369a1}
+.category:nth-child(6) .icon,.card[data-cat=otros] .icon{background:#eceff4;color:#475569}
+
+/* BOTONES */
+.btn{width:100%;padding:12px;border:0;background:var(--blue);color:#fff;border-radius:10px;cursor:pointer;font-weight:600;font-size:15px;transition:.2s}
+.btn:hover{background:var(--blue-d)}
+.linkbtn{display:inline-block;width:100%;text-align:center;padding:12px;border:0;background:var(--navy);color:#fff;border-radius:10px;cursor:pointer;font-weight:600;text-decoration:none;margin-top:8px;transition:.2s}
+.linkbtn:hover{background:#0d2a49}
+.linkbtn.sec{background:#fff;color:var(--blue);border:1.5px solid #bcd0ee}
+.linkbtn.sec:hover{background:var(--sky)}
+
+/* RESULTADOS DE BÚSQUEDA */
+#resultados{margin-top:30px}
+.resultado{background:#fff;border:1px solid var(--line);padding:20px;border-radius:14px;margin-bottom:14px;border-left:5px solid var(--blue);box-shadow:0 2px 10px rgba(15,41,66,.05)}
+.resultado h3{color:var(--navy)}
+.resultado p{color:var(--muted);margin-top:4px}
+.resultado button{margin-top:12px;padding:10px 18px;border:0;background:var(--blue);color:#fff;border-radius:9px;cursor:pointer;font-weight:600;transition:.2s}
+.resultado button:hover{background:var(--blue-d)}
+
+/* ASISTENTE */
+.ia{background:linear-gradient(135deg,#eaf1fb,#ffffff 70%);border:1px solid #cfdcf0;border-left:5px solid var(--gold);color:var(--text);padding:32px;border-radius:18px;margin-top:54px}
+.ia h2{margin-bottom:8px;color:var(--navy);font-size:24px;font-weight:800;letter-spacing:-.3px}
+.ia p{color:#475569}
+.iaform{display:flex;margin-top:20px}
+.iaform input{flex:1;min-width:0;padding:14px;border:1px solid #cbd5e1;border-right:0;border-radius:10px 0 0 10px;outline:0;font-size:15px;background:#fff}
+.iaform input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(31,95,191,.15)}
+.iaform button{padding:14px 24px;border:0;background:var(--blue);color:#fff;border-radius:0 10px 10px 0;cursor:pointer;font-weight:600;transition:.2s}
+.iaform button:hover{background:var(--blue-d)}
+#respuesta{display:none;background:#fff;border:1px solid var(--line);color:var(--text);padding:18px;border-radius:12px;margin-top:18px;line-height:1.65}
+#respuesta .btn{width:auto;padding:11px 22px}
+  /* VENTANA DE GUÍA */
+.modal{display:none;position:fixed;inset:0;background:rgba(15,41,66,.55);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:30;overflow:auto}
+.modalbox{background:#fff;width:90%;max-width:760px;margin:50px auto;padding:34px;border-radius:18px;position:relative;box-shadow:0 24px 60px rgba(15,41,66,.3);animation:pop .25s ease}
+@keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.modalbox h2{color:var(--navy);font-size:26px;font-weight:800;letter-spacing:-.4px;padding-right:40px;margin-bottom:6px}
+.modalbox h2 .i{color:var(--blue)}
+.modalbox>div>p{color:var(--muted)}
+.close{position:absolute;right:18px;top:16px;width:36px;height:36px;border-radius:50%;background:var(--sky);color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;transition:.2s}
+.close:hover{background:#d5e3f8}
+.info{margin:22px 0}
+.info h3{color:var(--navy);margin-bottom:8px;font-size:17px;font-weight:700}
+.info h3 .i{color:var(--blue)}
+.info ul,.info ol{margin-left:22px;line-height:1.8;color:#334155}
+.info li::marker{color:var(--blue);font-weight:700}
+.info p{color:#334155;line-height:1.65}
+.check{background:var(--sky);border:1px solid #d3e1f6;padding:18px;border-radius:12px}
+.check h3{color:var(--navy);margin-bottom:6px}
+.check h3 .i{color:var(--blue)}
+.check label{display:block;margin:10px 0;color:#334155}
+.check input{accent-color:var(--blue);margin-right:6px}
+.costo-box{background:#fffbeb;border:1px solid #f3e3a6;border-left:4px solid var(--gold);color:#5b4a0a;padding:14px;border-radius:10px;margin:10px 0;line-height:1.65}
+
+/* PROYECTO */
+.proyecto-card{border-top:4px solid var(--blue)}
+.proyecto-card h3{color:var(--navy);margin-bottom:10px;font-size:19px}
+.proyecto-card p{color:#475569;font-size:14.5px;line-height:1.7;margin:0}
+
+/* FORMULARIO */
+.form-box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px;box-shadow:0 8px 28px rgba(18,53,91,.08);max-width:640px;margin:0 auto}
+.form-box label{display:block;font-weight:600;margin:16px 0 6px;font-size:14px;color:#334155}
+.form-box input[type=text],.form-box input[type=tel],.form-box input[type=email]{width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:10px;font-size:15px;background:#f8fafc;transition:.2s}
+.form-box input[type=text]:focus,.form-box input[type=tel]:focus,.form-box input[type=email]:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(31,95,191,.15)}
+.form-box .consent{display:flex;gap:9px;font-weight:400;color:#475569;line-height:1.5;font-size:14px}
+.form-box .consent input{accent-color:var(--blue);margin-top:3px;flex-shrink:0}
+#formMsg{display:none;margin-top:14px;padding:12px;border-radius:10px;font-size:14px}
+
+.card[data-cat]{cursor:pointer}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;z-index:50;max-width:90%;padding:14px 22px;border-radius:12px;font-weight:600;box-shadow:0 12px 32px rgba(15,41,66,.25)}
+.toast.ok{background:#dcfce7;color:#166534}
+.toast.err{background:#fee2e2;color:#991b1b}
+.regbox{max-width:480px}
+.regbox .form-box{box-shadow:none;border:0;padding:0;margin-top:4px}
+.hero{padding-bottom:56px}
+  /* PIE */
+footer{background:linear-gradient(180deg,#e6effc,#d9e6f8);border-top:1px solid var(--line);color:var(--text);text-align:center;padding:38px 7%;margin-top:64px}
+footer h3{color:var(--navy);font-weight:800}
+footer h3::after{content:"";display:block;width:36px;height:3px;border-radius:3px;background:var(--gold);margin:10px auto 6px}
+footer p{color:var(--muted);margin:7px auto 0;font-size:14px;max-width:720px}
+
+@media(max-width:700px){
+header{flex-direction:column;gap:10px;padding:12px 5%}
+nav{display:flex;overflow-x:auto;max-width:100%}
+nav a{margin:0 2px}
+.hero{padding:48px 18px 56px}
+.hero h1{font-size:32px}
+.hero p{font-size:16px}
+.search,.iaform{flex-direction:column;gap:8px}
+.search button{padding:13px;border-radius:10px;justify-content:center}
+.iaform input{border-right:1px solid #cbd5e1;border-radius:10px}
+.iaform button{border-radius:10px}
+.ia{padding:24px}
+.modalbox{padding:24px;margin:24px auto}
+.form-box{padding:24px}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="logo"><div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="m9 15 2 2 4-4" stroke="#e2c05a" stroke-width="2.2"/></svg></div><div>Trámite Fácil <span>SCZ</span></div></div>
+<nav><a href="#inicio">Inicio</a><a href="#tramites">Trámites</a><a href="#asistente">Asistente IA</a><a href="#proyecto">Sobre el proyecto</a></nav>
+</header>
+
+<section class="hero" id="inicio">
+<div class="badge">Guía de trámites · Santa Cruz de la Sierra</div>
+<h1>¿Qué trámite <span>necesitas</span>?</h1>
+<p>Elige una opción y consulta requisitos, documentos, pasos, costos y el enlace oficial. Solo te pediremos registrarte una vez.</p>
+<div class="chips">
+<span class="chip"><span data-ii="clip"></span>Requisitos claros</span>
+<span class="chip"><span data-ii="costo"></span>Costos referenciales</span>
+<span class="chip"><span data-ii="link"></span>Enlaces oficiales</span>
+</div>
+</section>
+<div class="container">
+<div class="title" id="tramites"><h2>Elige tu trámite</h2><p>Toca la opción que necesitas para ver su guía completa.</p></div>
+<div class="cards" id="cards"></div>
+
+<div class="ia" id="asistente">
+<h2><span data-ii="bot"></span>Asistente Trámite Fácil</h2>
+<p>Escribe qué trámite necesitas y recibe una orientación inicial.</p>
+<div class="iaform"><input id="pregunta" placeholder="Ejemplo: necesito sacar mi licencia"><button onclick="ia()">Consultar</button></div>
+<div id="respuesta"></div>
+</div>
+
+<div class="title" id="proyecto" style="margin-top:60px"><h2>Sobre este proyecto</h2><p>Pensado desde la perspectiva de quien entra a esta página.</p></div>
+<div class="cards">
+<div class="card proyecto-card"><div class="icon" data-ic="tarea"></div><h3>Tarea</h3><p>Ayudar al usuario a encontrar de forma rápida y confiable la información que necesita para realizar un trámite en Santa Cruz: qué requisitos pide, qué documentos debe llevar, cuáles son los pasos, cuánto cuesta y dónde debe ir a realizarlo.</p></div>
+<div class="card proyecto-card"><div class="icon" data-ic="accion"></div><h3>Acción</h3><p>El usuario busca o selecciona una categoría de trámite (Vehículos, Identificación, Impuestos, Educación, Documentos, Otros), elige el trámite específico dentro de la lista de trámites disponibles para consultar su guía, y opcionalmente escribe su consulta en el Asistente Trámite Fácil para recibir una orientación inicial.</p></div>
+<div class="card proyecto-card"><div class="icon" data-ic="resultado"></div><h3>Resultado</h3><p>El usuario obtiene una guía clara del trámite elegido: requisitos, documentos necesarios, pasos a seguir, costos aproximados y el enlace o dirección de la institución oficial donde debe realizarlo, ahorrando tiempo e incertidumbre.</p></div>
+</div>
+</div>
+
+<div class="modal" id="modal"><div class="modalbox"><span class="close" onclick="cerrar()">×</span><div id="modalContenido"></div></div></div>
+
+<div class="modal" id="regModal"><div class="modalbox regbox"><span class="close" onclick="cerrarReg()">×</span>
+<h2>Regístrate para continuar</h2>
+<p id="regTema" style="color:#64748b"></p>
+<div class="form-box">
+<form id="registroForm" onsubmit="enviarForm(event)">
+<label for="nombre">Nombre completo</label><input type="text" id="nombre" required maxlength="80" autocomplete="name">
+<label for="telefono">Número de teléfono</label><input type="tel" id="telefono" required pattern="[0-9+ ]{7,15}" maxlength="15" autocomplete="tel" placeholder="Ejemplo: 71234567">
+<label for="correo">Correo electrónico</label><input type="email" id="correo" required maxlength="100" autocomplete="email">
+<label class="consent"><input type="checkbox" id="acepto" required> Acepto que mis datos se guarden para recibir orientación sobre trámites.</label>
 <button class="btn" type="submit" style="margin-top:20px"><span data-ii="enviar"></span>Enviar</button>
 <div id="formMsg"></div>
 </form></div></div></div>
-
 <footer><h3>Trámite Fácil SCZ</h3><p>Proyecto académico · Santa Cruz de la Sierra</p><p>Los costos y direcciones se actualizan periódicamente, pero pueden variar. Verifica siempre la información vigente en la institución oficial correspondiente.</p></footer>
 
 <script>
@@ -42,8 +247,7 @@ costo:"Gratuito para personas naturales. Para personas jurídicas puede existir 
 pasos:["Registrarte en ciudadanía digital (ciudadaniadigital.gob.bo) si aún no tienes acceso.","Descargar y llenar el formulario correspondiente en impuestos.gob.bo.","Acudir a la oficina distrital del SIN o completar el trámite en línea.","Activar la tarjeta MASI para acceder a la Oficina Virtual.","Completar el registro y obtener tu NIT."],
 link:"https://www.impuestos.gob.bo/",linkTexto:"Ir al sitio oficial del SIN",
 mapaLink:"https://www.google.com/maps/search/Servicio+de+Impuestos+Nacionales+Santa+Cruz",mapaTexto:"Ver oficinas del SIN en el mapa"},
-
-matricula:{cat:"educacion",icon:"🎓",titulo:"Matrícula universitaria",desc:"Guía general para organizar información sobre procesos de matrícula (ejemplo: UAGRM).",
+  matricula:{cat:"educacion",icon:"🎓",titulo:"Matrícula universitaria",desc:"Guía general para organizar información sobre procesos de matrícula (ejemplo: UAGRM).",
 req:["Ser bachiller (título original y copia).","Cumplir el proceso de preinscripción de la facultad elegida.","Presentar libreta o certificado de notas del último año de secundaria."],
 docs:["Cédula de identidad vigente (original y copia).","Título de bachiller (original y copia).","Formulario de preinscripción.","Comprobante de pago de matrícula."],
 lugar:"Universidad correspondiente. Ejemplo: UAGRM, Campus Universitario, Pabellón 145, Santa Cruz de la Sierra.",
@@ -73,8 +277,7 @@ const m=document.getElementById("formMsg"),b=e.target.querySelector("button");
 const mostrar=(t,tipo)=>{const c={ok:["#dcfce7","#166534"],error:["#fee2e2","#991b1b"],info:["#fff7ed","#9a3412"]}[tipo];m.style.display="block";m.textContent=t;m.style.background=c[0];m.style.color=c[1]};
 m.style.display="none";
 if(SHEETS_URL.startsWith("PEGA_AQUI")){mostrar("El formulario aún no está conectado a Google Sheets.","error");return}
-
-const datosForm = {
+  const datosForm = {
   nombre: document.getElementById("nombre").value.trim(),
   telefono: document.getElementById("telefono").value.trim(),
   correo: document.getElementById("correo").value.trim(),
