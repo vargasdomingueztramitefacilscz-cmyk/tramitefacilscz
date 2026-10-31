@@ -848,7 +848,7 @@ footer p {
   <p>
     Elige una opción y consulta requisitos, documentos,
     pasos, costos y el enlace oficial.
-    Solo te pediremos registrarte una vez.
+    Te solicitaremos registrarte en cada consulta.
   </p>
 
   <div class="chips">
@@ -1586,9 +1586,8 @@ let tokenSesion="";
 let pendiente=null;
 let tramitePend=null;
 
-
 function requerirRegistro(fn, nombre) {
-  // Solicitar registro en cada consulta.
+  // Pedir registro en cada consulta.
   regOk = false;
   tokenSesion = "";
   pendiente = fn;
@@ -1602,6 +1601,7 @@ function requerirRegistro(fn, nombre) {
   document.getElementById("formMsg").style.display = "none";
   document.getElementById("regModal").style.display = "block";
 }
+
 
 /* =========================================================
    REGISTRO CON CONFIRMACIÓN REAL (POST + JSONP)
@@ -1703,8 +1703,6 @@ function registroListo() {
     pendiente = null;
     f();
   }
-}
-
 }
 
 function cerrarReg() {
