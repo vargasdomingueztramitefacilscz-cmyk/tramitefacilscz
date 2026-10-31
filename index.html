@@ -1611,92 +1611,80 @@ function requerirRegistro(fn,nombre) {
   document.getElementById("regModal").style.display="block";
 }
 
-function enviarForm(e) {
-  e.preventDefault();
-
-  const m=document.getElementById("formMsg");
-  const b=e.target.querySelector('button[type="submit"]');
-
-  const mostrar=(t,tipo)=>{
-    const c={
-      ok:["#dcfce7","#166534"],
-      error:["#fee2e2","#991b1b"],
-      info:["#fff7ed","#9a3412"]
-    }[tipo];
-
-    m.style.display="block";
-    m.textContent=t;
-    m.style.background=c[0];
-    m.style.color=c[1];
-  };
-
-  m.style.display="none";
-
-  const datosForm={
-    nombre:document.getElementById("nombre").value.trim(),
-    telefono:document.getElementById("telefono").value.trim(),
-    correo:document.getElementById("correo").value.trim(),
-    acepto:document.getElementById("acepto").checked,
-    tramite:tramitePend || "",
-    website:document.getElementById("website").value
-  };
-
-  b.disabled=true;
-  b.textContent="Enviando...";
-
-  mostrar(
-    "Enviando tus datos, un momento...",
-    "info"
-  );
-
-  fetch(SHEETS_URL,{
-    method:"POST",
-    headers:{
-      "Content-Type":"text/plain;charset=utf-8"
-    },
-    body:JSON.stringify(datosForm)
-  })
-  .then(r=>r.json())
-  .then(res=>{
-    if(res && (res.ok || res.success) && res.token) {
-      tokenSesion=res.token;
-      mostrar(
-        res.correoEnviado
-          ? "¡Registro exitoso! Te enviamos un correo de bienvenida."
-          : "¡Registro exitoso! Puedes continuar, aunque no se pudo enviar el correo de bienvenida.",
-        "ok"
-      );
-
-      e.target.reset();
-      registroListo();
-
-      aviso(
-        res.correoEnviado
-          ? "¡Registro exitoso! Revisa tu correo de bienvenida."
-          : "¡Registro exitoso! Ya puedes consultar tu trámite.",
-        true
-      );
-    } else {
-      mostrar(
-        "No se pudo guardar: "+
-        ((res && (res.mensaje || res.error)) ||
-        "intenta nuevamente."),
-        "error"
-      );
-    }
-  })
-  .catch(error=>{
-    console.error(error);
-
-    mostrar(
-      "No se pudo conectar con Apps Script o leer su respuesta. Revisa la consola (F12) y la pestaña Ejecuciones de Apps Script. No reintentes hasta confirmar que no se guardó.",
-      "error"
-    );
-  })
-  .finally(()=>{
-    b.disabled=false;
-    b.innerHTML=ii("enviar")+"Enviar";
+/* =========================================================
+   REGISTRO CON CONFIRMACIÓN REAL (POST + JSONP)
+   ========================================================= */
+function consultarEstadoRegistro(id) {
+  return new Promise((resolve, reject) => {
+    const callback = 'tfConfirmacion_' + Math.random().toString(36).slice(2);
+    const script = document.createElement('script');
+    let finalizado = false;
+    const limpiar = () => { delete window[callback]; script.remove(); };
+    const timeout = setTimeout(() => {
+      if (finalizado) return;
+      finalizado = true; limpiar(); reject(new Error('Sin respuesta de confirmación'));
+    }, 8000);
+    window[callback] = (resultado) => {
+      if (finalizado) return;
+      finalizado = true; clearTimeout(timeout); limpiar(); resolve(resultado);
+    };
+    script.onerror = () => {
+      if (finalizado) return;
+      finalizado = true; clearTimeout(timeout); limpiar(); reject(new Error('No se pudo consultar Apps Script'));
+    };
+    script.src = SHEETS_URL + '?accion=estadoRegistro&id=' + encodeURIComponent(id)
+      + '&callback=' + encodeURIComponent(callback) + '&t=' + Date.now();
+    document.head.appendChild(script);
   });
+}
+
+async function enviarForm(e) {
+  e.preventDefault();
+  const m = document.getElementById('formMsg');
+  const b = e.target.querySelector('button[type="submit"]');
+  const mostrar = (mensaje, error) => {
+    m.style.display = 'block'; m.textContent = mensaje;
+    m.style.background = error ? '#fee2e2' : '#fff7ed';
+    m.style.color = error ? '#991b1b' : '#9a3412';
+  };
+  const idSolicitud = 'reg_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+  const datosForm = {
+    nombre:document.getElementById('nombre').value.trim(),
+    telefono:document.getElementById('telefono').value.trim(),
+    correo:document.getElementById('correo').value.trim(),
+    acepto:document.getElementById('acepto').checked,
+    tramite:tramitePend || '',
+    website:document.getElementById('website').value,
+    idSolicitud
+  };
+  b.disabled = true; b.textContent = 'Enviando...';
+  mostrar('Enviando y comprobando el registro...', false);
+  try {
+    // No se intenta leer la respuesta POST, que Google puede bloquear por CORS.
+    await fetch(SHEETS_URL, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify(datosForm)
+    });
+    let res = null;
+    for (let intento = 0; intento < 10; intento++) {
+      await new Promise(r => setTimeout(r, 1400));
+      try { res = await consultarEstadoRegistro(idSolicitud); }
+      catch (error) { console.warn('Confirmación:', error); continue; }
+      if (res && !res.pendiente) break;
+    }
+    if (!res || res.pendiente) throw new Error('Google Apps Script no confirmó que haya recibido el registro. Revisa Implementaciones y Ejecuciones.');
+    if (!res.ok || !res.token) throw new Error(res.mensaje || 'El servidor rechazó el registro.');
+    tokenSesion = res.token;
+    e.target.reset();
+    registroListo();
+    aviso(res.correoEnviado ? 'Registro guardado y correo de bienvenida enviado.' : 'Registro guardado. No se pudo enviar el correo de bienvenida.', true);
+  } catch (error) {
+    console.error('Error de registro:', error);
+    mostrar('No se completó el registro: ' + error.message, true);
+  } finally {
+    b.disabled = false; b.innerHTML = ii('enviar') + 'Enviar';
+  }
 }
 
 function registroListo() {
@@ -1728,25 +1716,14 @@ function cerrarReg() {
 async function registrarActividad(tipoActividad, tramite) {
   if (!regOk || !tokenSesion) return;
   try {
-    const respuesta=await fetch(SHEETS_URL,{
-      method:"POST",
-      headers:{"Content-Type":"text/plain;charset=utf-8"},
-      body:JSON.stringify({accion:"actividad",token:tokenSesion,tipoActividad,tramite:tramite||""})
+    await fetch(SHEETS_URL, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify({accion:'actividad',token:tokenSesion,tipoActividad,tramite:tramite||''})
     });
-    const resultado=await respuesta.json();
-    if(resultado.sesionExpirada){
-      regOk=false;
-      tokenSesion="";
-      localStorage.removeItem("tf_sesion");
-      aviso("Tu registro ha caducado. Regístrate nuevamente para continuar.",false);
-    } else if(!resultado.ok){
-      aviso("No se pudo guardar la consulta. Intenta nuevamente.",false);
-    } else if(!resultado.correoEnviado){
-      aviso("Consulta guardada, pero el correo no pudo enviarse.",false);
-    }
-  } catch(error){
-    console.error("Error al guardar actividad:",error);
-    aviso("No se pudo confirmar el registro de la consulta.",false);
+  } catch(error) {
+    console.error('No se pudo enviar la actividad:',error);
+    aviso('No se pudo enviar la consulta al servidor.',false);
   }
 }
 
