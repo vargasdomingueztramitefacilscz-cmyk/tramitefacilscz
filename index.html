@@ -1,330 +1,1776 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trámite Fácil SCZ</title>
-<link rel="icon" type="image/png" href="https://vargasdomingueztramitefacilscz-cmyk.github.io/tramitefacilscz/logo.tramite.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--navy:#12355b;--blue:#1f5fbf;--blue-d:#174a96;--sky:#eaf1fb;--gold:#c9a227;--gold-d:#a8851a;--bg:#f5f8fc;--text:#1e293b;--muted:#64748b;--line:#e2e8f0}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-[id]{scroll-margin-top:84px}
-body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;background:radial-gradient(800px 520px at 100% 22%,#cfe1fb 0,transparent 62%),radial-gradient(700px 520px at 0% 52%,#fbe8b4 0,transparent 62%),radial-gradient(800px 520px at 100% 85%,#cdeee5 0,transparent 62%),radial-gradient(700px 500px at 0% 100%,#d6e4fb 0,transparent 62%),#eef4fc;color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased}
-button,input{font-family:inherit}
 
-/* ENCABEZADO */
-header{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#12355b,#1e4976);border-bottom:4px solid var(--gold);padding:13px 7%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 6px 20px rgba(18,53,91,.25)}
-.logo{display:flex;align-items:center;gap:12px;font-size:22px;font-weight:800;color:#fff;letter-spacing:-.4px}
-.logo span{color:#e2c05a}
-.logo-oficial{display:block;width:min(370px,100%);height:auto;max-height:74px;object-fit:contain;object-position:left center}
-.mark{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,#2f74d6,#1f5fbf);border:1.5px solid rgba(255,255,255,.28);color:#fff;display:flex;align-items:center;justify-content:center}
-.mark .i{margin:0}.mark svg{width:22px;height:22px}
-nav a{color:#cfe0f7;text-decoration:none;margin-left:4px;padding:8px 12px;border-radius:8px;font-size:14.5px;font-weight:500;transition:.2s;white-space:nowrap}
-nav a:hover{background:rgba(255,255,255,.14);color:#fff}
+<style>
+:root {
+  --navy:#12355b;
+  --blue:#1f5fbf;
+  --blue-d:#174a96;
+  --sky:#eaf1fb;
+  --gold:#c9a227;
+  --gold-d:#a8851a;
+  --bg:#f5f8fc;
+  --text:#1e293b;
+  --muted:#64748b;
+  --line:#e2e8f0;
+}
+
+* {box-sizing:border-box;margin:0;padding:0}
+html {scroll-behavior:smooth}
+[id] {scroll-margin-top:84px}
+
+body {
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+  background:
+    radial-gradient(800px 520px at 100% 22%,#cfe1fb 0,transparent 62%),
+    radial-gradient(700px 520px at 0% 52%,#fbe8b4 0,transparent 62%),
+    radial-gradient(800px 520px at 100% 85%,#cdeee5 0,transparent 62%),
+    radial-gradient(700px 500px at 0% 100%,#d6e4fb 0,transparent 62%),
+    #eef4fc;
+  color:var(--text);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+button,input {font-family:inherit}
+
+/* ENCABEZADO ORIGINAL */
+header {
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:linear-gradient(135deg,#12355b,#1e4976);
+  border-bottom:4px solid var(--gold);
+  padding:13px 7%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 6px 20px rgba(18,53,91,.25);
+}
+
+.logo {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:22px;
+  font-weight:800;
+  color:#fff;
+  letter-spacing:-.4px;
+}
+
+.logo span {color:#e2c05a}
+
+.mark {
+  width:40px;
+  height:40px;
+  border-radius:11px;
+  background:linear-gradient(135deg,#2f74d6,#1f5fbf);
+  border:1.5px solid rgba(255,255,255,.28);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.mark svg {
+  width:22px;
+  height:22px;
+}
+
+nav a {
+  color:#cfe0f7;
+  text-decoration:none;
+  margin-left:4px;
+  padding:8px 12px;
+  border-radius:8px;
+  font-size:14.5px;
+  font-weight:500;
+  transition:.2s;
+  white-space:nowrap;
+}
+
+nav a:hover {
+  background:rgba(255,255,255,.14);
+  color:#fff;
+}
 
 /* HERO */
-.hero{text-align:center;padding:68px 20px 78px;background:radial-gradient(900px 400px at 10% -10%,#b9d3f7 0,transparent 62%),radial-gradient(750px 380px at 94% 0,#f8df97 0,transparent 58%),linear-gradient(180deg,#e2edfc,#d6e5fa);border-bottom:1px solid var(--line)}
-.badge{display:inline-block;background:#fff;border:1px solid #cfdcf0;color:var(--blue);font-size:13px;font-weight:600;padding:6px 15px;border-radius:999px;margin-bottom:20px}
-.hero h1{font-size:46px;font-weight:800;color:var(--navy);letter-spacing:-1px;margin-bottom:16px;line-height:1.15}
-.hero h1 span{color:var(--blue)}
-.hero p{font-size:18px;color:#475569;max-width:680px;margin:auto}
-.search{max-width:680px;margin:32px auto 0;background:#fff;padding:7px;border-radius:14px;display:flex;border:1px solid var(--line);box-shadow:0 12px 32px rgba(18,53,91,.12)}
-.search input{flex:1;border:0;outline:0;padding:14px 16px;font-size:16px;background:transparent;min-width:0}
-.search button{border:0;background:var(--gold);color:#2b2205;padding:0 26px;border-radius:10px;font-weight:700;cursor:pointer;transition:.2s;display:flex;align-items:center;font-size:15px}
-.search button:hover{background:var(--gold-d);color:#fff}
-.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px}
-.chip{display:inline-flex;align-items:center;background:#fff;border:1px solid var(--line);color:#334155;font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:999px}
-.chip .i{color:var(--blue);margin-right:7px}
+.hero {
+  text-align:center;
+  padding:68px 20px 56px;
+  background:
+    radial-gradient(900px 400px at 10% -10%,#b9d3f7 0,transparent 62%),
+    radial-gradient(750px 380px at 94% 0,#f8df97 0,transparent 58%),
+    linear-gradient(180deg,#e2edfc,#d6e5fa);
+  border-bottom:1px solid var(--line);
+}
+
+.badge {
+  display:inline-block;
+  background:#fff;
+  border:1px solid #cfdcf0;
+  color:var(--blue);
+  font-size:13px;
+  font-weight:600;
+  padding:6px 15px;
+  border-radius:999px;
+  margin-bottom:20px;
+}
+
+.hero h1 {
+  font-size:46px;
+  font-weight:800;
+  color:var(--navy);
+  letter-spacing:-1px;
+  margin-bottom:16px;
+  line-height:1.15;
+}
+
+.hero h1 span {color:var(--blue)}
+
+.hero p {
+  font-size:18px;
+  color:#475569;
+  max-width:680px;
+  margin:auto;
+}
+
+.search {
+  max-width:680px;
+  margin:32px auto 0;
+  background:#fff;
+  padding:7px;
+  border-radius:14px;
+  display:flex;
+  border:1px solid var(--line);
+  box-shadow:0 12px 32px rgba(18,53,91,.12);
+}
+
+.search input {
+  flex:1;
+  border:0;
+  outline:0;
+  padding:14px 16px;
+  font-size:16px;
+  background:transparent;
+  min-width:0;
+}
+
+.search button {
+  border:0;
+  background:var(--gold);
+  color:#2b2205;
+  padding:0 26px;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s;
+  display:flex;
+  align-items:center;
+  font-size:15px;
+}
+
+.search button:hover {
+  background:var(--gold-d);
+  color:#fff;
+}
+
+.chips {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  margin-top:26px;
+}
+
+.chip {
+  display:inline-flex;
+  align-items:center;
+  background:#fff;
+  border:1px solid var(--line);
+  color:#334155;
+  font-size:13.5px;
+  font-weight:500;
+  padding:8px 14px;
+  border-radius:999px;
+}
+
+.chip .i {
+  color:var(--blue);
+  margin-right:7px;
+}
 
 /* CONTENIDO */
-.container{width:88%;max-width:1200px;margin:50px auto}
-.title{text-align:center;margin-bottom:30px}
-.title h2{font-size:28px;font-weight:800;color:var(--navy);letter-spacing:-.5px}
-.title h2::after{content:"";display:block;width:44px;height:4px;border-radius:4px;background:var(--gold);margin:11px auto 12px}
-.title p{color:var(--muted)}
-.categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.category,.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 2px 10px rgba(15,41,66,.05)}
-.category{text-align:center;cursor:pointer;transition:.2s}
-.category:hover,.card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(18,53,91,.12);border-color:#bcd0ee}
-.card{transition:.2s}
-.category h3{font-size:15.5px;font-weight:600;color:var(--navy)}
-.card h3{font-size:18px;font-weight:700;color:var(--navy)}
-.card p{color:var(--muted);font-size:14px;line-height:1.65;margin:10px 0 16px}
+.container {
+  width:88%;
+  max-width:1200px;
+  margin:50px auto;
+}
+
+.title {
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.title h2 {
+  font-size:28px;
+  font-weight:800;
+  color:var(--navy);
+  letter-spacing:-.5px;
+}
+
+.title h2::after {
+  content:"";
+  display:block;
+  width:44px;
+  height:4px;
+  border-radius:4px;
+  background:var(--gold);
+  margin:11px auto 12px;
+}
+
+.title p {color:var(--muted)}
+
+.categories {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:16px;
+}
+
+.cards {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.category,.card {
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:24px;
+  box-shadow:0 2px 10px rgba(15,41,66,.05);
+}
+
+.category {
+  text-align:center;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.category:hover,.card:hover {
+  transform:translateY(-4px);
+  box-shadow:0 14px 30px rgba(18,53,91,.12);
+  border-color:#bcd0ee;
+}
+
+.card {transition:.2s}
+
+.category h3 {
+  font-size:15.5px;
+  font-weight:600;
+  color:var(--navy);
+}
+
+.card h3 {
+  font-size:18px;
+  font-weight:700;
+  color:var(--navy);
+}
+
+.card p {
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.65;
+  margin:10px 0 16px;
+}
 
 /* ICONOS */
-.icon{width:54px;height:54px;border-radius:14px;background:var(--sky);color:var(--blue);display:flex;align-items:center;justify-content:center;margin:0 0 14px}
-.category .icon{margin:0 auto 12px}
-.i{width:1.1em;height:1.1em;vertical-align:-0.2em;margin-right:8px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.icon svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.category:nth-child(1) .icon,.card[data-cat=vehiculos] .icon{background:#e5eefc;color:#1f5fbf}
-.category:nth-child(2) .icon,.card[data-cat=identificacion] .icon{background:#dff3ef;color:#0f766e}
-.category:nth-child(3) .icon,.card[data-cat=impuestos] .icon{background:#fcf1d2;color:#a16207}
-.category:nth-child(4) .icon,.card[data-cat=educacion] .icon{background:#ebe7fa;color:#5b45c2}
-.category:nth-child(5) .icon,.card[data-cat=documentos] .icon{background:#e0f0fa;color:#0369a1}
-.category:nth-child(6) .icon,.card[data-cat=otros] .icon{background:#eceff4;color:#475569}
+.icon {
+  width:54px;
+  height:54px;
+  border-radius:14px;
+  background:var(--sky);
+  color:var(--blue);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 0 14px;
+}
+
+.category .icon {margin:0 auto 12px}
+
+.i {
+  width:1.1em;
+  height:1.1em;
+  vertical-align:-0.2em;
+  margin-right:8px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.icon svg {
+  width:27px;
+  height:27px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.card[data-cat=vehiculos] .icon {
+  background:#e5eefc;
+  color:#1f5fbf;
+}
+
+.card[data-cat=identificacion] .icon {
+  background:#dff3ef;
+  color:#0f766e;
+}
+
+.card[data-cat=impuestos] .icon {
+  background:#fcf1d2;
+  color:#a16207;
+}
+
+.card[data-cat=educacion] .icon {
+  background:#ebe7fa;
+  color:#5b45c2;
+}
+
+.card[data-cat=documentos] .icon {
+  background:#e0f0fa;
+  color:#0369a1;
+}
+
+.card[data-cat=otros] .icon {
+  background:#eceff4;
+  color:#475569;
+}
 
 /* BOTONES */
-.btn{width:100%;padding:12px;border:0;background:var(--blue);color:#fff;border-radius:10px;cursor:pointer;font-weight:600;font-size:15px;transition:.2s}
-.btn:hover{background:var(--blue-d)}
-.linkbtn{display:inline-block;width:100%;text-align:center;padding:12px;border:0;background:var(--navy);color:#fff;border-radius:10px;cursor:pointer;font-weight:600;text-decoration:none;margin-top:8px;transition:.2s}
-.linkbtn:hover{background:#0d2a49}
-.linkbtn.sec{background:#fff;color:var(--blue);border:1.5px solid #bcd0ee}
-.linkbtn.sec:hover{background:var(--sky)}
+.btn {
+  width:100%;
+  padding:12px;
+  border:0;
+  background:var(--blue);
+  color:#fff;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+  font-size:15px;
+  transition:.2s;
+}
 
-/* RESULTADOS DE BÚSQUEDA */
-#resultados{margin-top:30px}
-.resultado{background:#fff;border:1px solid var(--line);padding:20px;border-radius:14px;margin-bottom:14px;border-left:5px solid var(--blue);box-shadow:0 2px 10px rgba(15,41,66,.05)}
-.resultado h3{color:var(--navy)}
-.resultado p{color:var(--muted);margin-top:4px}
-.resultado button{margin-top:12px;padding:10px 18px;border:0;background:var(--blue);color:#fff;border-radius:9px;cursor:pointer;font-weight:600;transition:.2s}
-.resultado button:hover{background:var(--blue-d)}
+.btn:hover {background:var(--blue-d)}
+
+.linkbtn {
+  display:inline-block;
+  width:100%;
+  text-align:center;
+  padding:12px;
+  border:0;
+  background:var(--navy);
+  color:#fff;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+  text-decoration:none;
+  margin-top:8px;
+  transition:.2s;
+}
+
+.linkbtn:hover {background:#0d2a49}
+
+.linkbtn.sec {
+  background:#fff;
+  color:var(--blue);
+  border:1.5px solid #bcd0ee;
+}
+
+.linkbtn.sec:hover {background:var(--sky)}
+
+/* RESULTADOS */
+#resultados {margin-top:30px}
+
+.resultado {
+  background:#fff;
+  border:1px solid var(--line);
+  padding:20px;
+  border-radius:14px;
+  margin-bottom:14px;
+  border-left:5px solid var(--blue);
+  box-shadow:0 2px 10px rgba(15,41,66,.05);
+}
+
+.resultado h3 {color:var(--navy)}
+
+.resultado p {
+  color:var(--muted);
+  margin-top:4px;
+}
+
+.resultado button {
+  margin-top:12px;
+  padding:10px 18px;
+  border:0;
+  background:var(--blue);
+  color:#fff;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.resultado button:hover {background:var(--blue-d)}
 
 /* ASISTENTE */
-.ia{background:linear-gradient(135deg,#eaf1fb,#ffffff 70%);border:1px solid #cfdcf0;border-left:5px solid var(--gold);color:var(--text);padding:32px;border-radius:18px;margin-top:54px}
-.ia h2{margin-bottom:8px;color:var(--navy);font-size:24px;font-weight:800;letter-spacing:-.3px}
-.ia p{color:#475569}
-.iaform{display:flex;margin-top:20px}
-.iaform input{flex:1;min-width:0;padding:14px;border:1px solid #cbd5e1;border-right:0;border-radius:10px 0 0 10px;outline:0;font-size:15px;background:#fff}
-.iaform input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(31,95,191,.15)}
-.iaform button{padding:14px 24px;border:0;background:var(--blue);color:#fff;border-radius:0 10px 10px 0;cursor:pointer;font-weight:600;transition:.2s}
-.iaform button:hover{background:var(--blue-d)}
-#respuesta{display:none;background:#fff;border:1px solid var(--line);color:var(--text);padding:18px;border-radius:12px;margin-top:18px;line-height:1.65}
-#respuesta .btn{width:auto;padding:11px 22px}
-  /* VENTANA DE GUÍA */
-.modal{display:none;position:fixed;inset:0;background:rgba(15,41,66,.55);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:30;overflow:auto}
-.modalbox{background:#fff;width:90%;max-width:760px;margin:50px auto;padding:34px;border-radius:18px;position:relative;box-shadow:0 24px 60px rgba(15,41,66,.3);animation:pop .25s ease}
-@keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.modalbox h2{color:var(--navy);font-size:26px;font-weight:800;letter-spacing:-.4px;padding-right:40px;margin-bottom:6px}
-.modalbox h2 .i{color:var(--blue)}
-.modalbox>div>p{color:var(--muted)}
-.close{position:absolute;right:18px;top:16px;width:36px;height:36px;border-radius:50%;background:var(--sky);color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;transition:.2s}
-.close:hover{background:#d5e3f8}
-.info{margin:22px 0}
-.info h3{color:var(--navy);margin-bottom:8px;font-size:17px;font-weight:700}
-.info h3 .i{color:var(--blue)}
-.info ul,.info ol{margin-left:22px;line-height:1.8;color:#334155}
-.info li::marker{color:var(--blue);font-weight:700}
-.info p{color:#334155;line-height:1.65}
-.check{background:var(--sky);border:1px solid #d3e1f6;padding:18px;border-radius:12px}
-.check h3{color:var(--navy);margin-bottom:6px}
-.check h3 .i{color:var(--blue)}
-.check label{display:block;margin:10px 0;color:#334155}
-.check input{accent-color:var(--blue);margin-right:6px}
-.costo-box{background:#fffbeb;border:1px solid #f3e3a6;border-left:4px solid var(--gold);color:#5b4a0a;padding:14px;border-radius:10px;margin:10px 0;line-height:1.65}
+.ia {
+  background:linear-gradient(135deg,#eaf1fb,#ffffff 70%);
+  border:1px solid #cfdcf0;
+  border-left:5px solid var(--gold);
+  color:var(--text);
+  padding:32px;
+  border-radius:18px;
+  margin-top:54px;
+}
+
+.ia h2 {
+  margin-bottom:8px;
+  color:var(--navy);
+  font-size:24px;
+  font-weight:800;
+}
+
+.ia p {color:#475569}
+
+.iaform {
+  display:flex;
+  margin-top:20px;
+}
+
+.iaform input {
+  flex:1;
+  min-width:0;
+  padding:14px;
+  border:1px solid #cbd5e1;
+  border-right:0;
+  border-radius:10px 0 0 10px;
+  outline:0;
+  font-size:15px;
+  background:#fff;
+}
+
+.iaform input:focus {
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(31,95,191,.15);
+}
+
+.iaform button {
+  padding:14px 24px;
+  border:0;
+  background:var(--blue);
+  color:#fff;
+  border-radius:0 10px 10px 0;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.iaform button:hover {background:var(--blue-d)}
+
+#respuesta {
+  display:none;
+  background:#fff;
+  border:1px solid var(--line);
+  color:var(--text);
+  padding:18px;
+  border-radius:12px;
+  margin-top:18px;
+  line-height:1.65;
+}
+
+#respuesta .btn {
+  width:auto;
+  padding:11px 22px;
+}
+
+/* VENTANAS */
+.modal {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(15,41,66,.55);
+  backdrop-filter:blur(3px);
+  -webkit-backdrop-filter:blur(3px);
+  z-index:30;
+  overflow:auto;
+}
+
+.modalbox {
+  background:#fff;
+  width:90%;
+  max-width:760px;
+  margin:50px auto;
+  padding:34px;
+  border-radius:18px;
+  position:relative;
+  box-shadow:0 24px 60px rgba(15,41,66,.3);
+  animation:pop .25s ease;
+}
+
+@keyframes pop {
+  from {opacity:0;transform:translateY(14px)}
+  to {opacity:1;transform:none}
+}
+
+.modalbox h2 {
+  color:var(--navy);
+  font-size:26px;
+  font-weight:800;
+  padding-right:40px;
+  margin-bottom:6px;
+}
+
+.modalbox h2 .i {color:var(--blue)}
+
+.close {
+  position:absolute;
+  right:18px;
+  top:16px;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:var(--sky);
+  color:var(--navy);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  cursor:pointer;
+}
+
+.close:hover {background:#d5e3f8}
+
+.info {margin:22px 0}
+
+.info h3 {
+  color:var(--navy);
+  margin-bottom:8px;
+  font-size:17px;
+  font-weight:700;
+}
+
+.info h3 .i {color:var(--blue)}
+
+.info ul,.info ol {
+  margin-left:22px;
+  line-height:1.8;
+  color:#334155;
+}
+
+.info li::marker {
+  color:var(--blue);
+  font-weight:700;
+}
+
+.info p {
+  color:#334155;
+  line-height:1.65;
+}
+
+.check {
+  background:var(--sky);
+  border:1px solid #d3e1f6;
+  padding:18px;
+  border-radius:12px;
+}
+
+.check h3 {
+  color:var(--navy);
+  margin-bottom:6px;
+}
+
+.check label {
+  display:block;
+  margin:10px 0;
+  color:#334155;
+}
+
+.check input {
+  accent-color:var(--blue);
+  margin-right:6px;
+}
+
+.costo-box {
+  background:#fffbeb;
+  border:1px solid #f3e3a6;
+  border-left:4px solid var(--gold);
+  color:#5b4a0a;
+  padding:14px;
+  border-radius:10px;
+  margin:10px 0;
+  line-height:1.65;
+}
 
 /* PROYECTO */
-.proyecto-card{border-top:4px solid var(--blue)}
-.proyecto-card h3{color:var(--navy);margin-bottom:10px;font-size:19px}
-.proyecto-card p{color:#475569;font-size:14.5px;line-height:1.7;margin:0}
+.proyecto-card {
+  border-top:4px solid var(--blue);
+}
+
+.proyecto-card h3 {
+  color:var(--navy);
+  margin-bottom:10px;
+  font-size:19px;
+}
+
+.proyecto-card p {
+  color:#475569;
+  font-size:14.5px;
+  line-height:1.7;
+  margin:0;
+}
 
 /* FORMULARIO */
-.form-box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px;box-shadow:0 8px 28px rgba(18,53,91,.08);max-width:640px;margin:0 auto}
-.form-box label{display:block;font-weight:600;margin:16px 0 6px;font-size:14px;color:#334155}
-.form-box input[type=text],.form-box input[type=tel],.form-box input[type=email]{width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:10px;font-size:15px;background:#f8fafc;transition:.2s}
-.form-box input[type=text]:focus,.form-box input[type=tel]:focus,.form-box input[type=email]:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(31,95,191,.15)}
-.form-box .consent{display:flex;gap:9px;font-weight:400;color:#475569;line-height:1.5;font-size:14px}
-.form-box .consent input{accent-color:var(--blue);margin-top:3px;flex-shrink:0}
-#formMsg{display:none;margin-top:14px;padding:12px;border-radius:10px;font-size:14px}
+.form-box {
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:32px;
+  box-shadow:0 8px 28px rgba(18,53,91,.08);
+  max-width:640px;
+  margin:0 auto;
+}
 
-.card[data-cat]{cursor:pointer}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;z-index:50;max-width:90%;padding:14px 22px;border-radius:12px;font-weight:600;box-shadow:0 12px 32px rgba(15,41,66,.25)}
-.toast.ok{background:#dcfce7;color:#166534}
-.toast.err{background:#fee2e2;color:#991b1b}
-.regbox{max-width:480px}
-.regbox .form-box{box-shadow:none;border:0;padding:0;margin-top:4px}
-.hero{padding-bottom:56px}
-  /* PIE */
-footer{background:linear-gradient(180deg,#e6effc,#d9e6f8);border-top:1px solid var(--line);color:var(--text);text-align:center;padding:38px 7%;margin-top:64px}
-footer h3{color:var(--navy);font-weight:800}
-footer h3::after{content:"";display:block;width:36px;height:3px;border-radius:3px;background:var(--gold);margin:10px auto 6px}
-footer p{color:var(--muted);margin:7px auto 0;font-size:14px;max-width:720px}
+.form-box label {
+  display:block;
+  font-weight:600;
+  margin:16px 0 6px;
+  font-size:14px;
+  color:#334155;
+}
 
-@media(max-width:700px){
-header{flex-direction:column;gap:10px;padding:12px 5%}
-.logo-oficial{width:min(310px,85vw);max-height:64px}
-nav{display:flex;overflow-x:auto;max-width:100%}
-nav a{margin:0 2px}
-.hero{padding:48px 18px 56px}
-.hero h1{font-size:32px}
-.hero p{font-size:16px}
-.search,.iaform{flex-direction:column;gap:8px}
-.search button{padding:13px;border-radius:10px;justify-content:center}
-.iaform input{border-right:1px solid #cbd5e1;border-radius:10px}
-.iaform button{border-radius:10px}
-.ia{padding:24px}
-.modalbox{padding:24px;margin:24px auto}
-.form-box{padding:24px}
+.form-box input[type=text],
+.form-box input[type=tel],
+.form-box input[type=email] {
+  width:100%;
+  padding:13px;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  font-size:15px;
+  background:#f8fafc;
+}
+
+.form-box input:focus {
+  outline:none;
+  border-color:var(--blue);
+  background:#fff;
+  box-shadow:0 0 0 3px rgba(31,95,191,.15);
+}
+
+.form-box .consent {
+  display:flex;
+  gap:9px;
+  font-weight:400;
+  color:#475569;
+  line-height:1.5;
+  font-size:14px;
+}
+
+.form-box .consent input {
+  accent-color:var(--blue);
+  margin-top:3px;
+  flex-shrink:0;
+}
+
+#formMsg {
+  display:none;
+  margin-top:14px;
+  padding:12px;
+  border-radius:10px;
+  font-size:14px;
+}
+
+.card[data-cat] {cursor:pointer}
+
+.toast {
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:24px;
+  z-index:50;
+  max-width:90%;
+  padding:14px 22px;
+  border-radius:12px;
+  font-weight:600;
+  box-shadow:0 12px 32px rgba(15,41,66,.25);
+}
+
+.toast.ok {
+  background:#dcfce7;
+  color:#166534;
+}
+
+.toast.err {
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.regbox {max-width:480px}
+
+.regbox .form-box {
+  box-shadow:none;
+  border:0;
+  padding:0;
+  margin-top:4px;
+}
+
+/* PIE DE PÁGINA */
+footer {
+  background:linear-gradient(180deg,#e6effc,#d9e6f8);
+  border-top:1px solid var(--line);
+  color:var(--text);
+  text-align:center;
+  padding:38px 7%;
+  margin-top:64px;
+}
+
+footer h3 {
+  color:var(--navy);
+  font-weight:800;
+}
+
+footer h3::after {
+  content:"";
+  display:block;
+  width:36px;
+  height:3px;
+  border-radius:3px;
+  background:var(--gold);
+  margin:10px auto 6px;
+}
+
+footer p {
+  color:var(--muted);
+  margin:7px auto 0;
+  font-size:14px;
+  max-width:720px;
+}
+
+/* CELULARES */
+@media(max-width:700px) {
+  header {
+    flex-direction:column;
+    gap:10px;
+    padding:12px 5%;
+  }
+
+  nav {
+    display:flex;
+    overflow-x:auto;
+    max-width:100%;
+  }
+
+  nav a {margin:0 2px}
+
+  .hero {padding:48px 18px 56px}
+  .hero h1 {font-size:32px}
+  .hero p {font-size:16px}
+
+  .search,.iaform {
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .search button {
+    padding:13px;
+    border-radius:10px;
+    justify-content:center;
+  }
+
+  .iaform input {
+    border-right:1px solid #cbd5e1;
+    border-radius:10px;
+  }
+
+  .iaform button {border-radius:10px}
+  .ia {padding:24px}
+  .modalbox {padding:24px;margin:24px auto}
+  .form-box {padding:24px}
 }
 </style>
 </head>
+
 <body>
+
+<!-- ENCABEZADO ORIGINAL SIN IMAGEN -->
 <header>
-<a class="logo" href="#inicio" aria-label="Trámite Fácil SCZ - Inicio"><img class="logo-oficial" src="https://vargasdomingueztramitefacilscz-cmyk.github.io/tramitefacilscz/logo.tramite.png" alt="Trámite Fácil SCZ - Guía de trámites de Santa Cruz de la Sierra"></a>
-<nav><a href="#inicio">Inicio</a><a href="#tramites">Trámites</a><a href="#asistente">Asistente IA</a><a href="#proyecto">Sobre el proyecto</a></nav>
+  <div class="logo">
+    <div class="mark">
+      <svg viewBox="0 0 24 24"
+           fill="none"
+           stroke="currentColor"
+           stroke-width="2"
+           stroke-linecap="round"
+           stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <path d="M14 2v6h6M8 13h8M8 17h8"/>
+      </svg>
+    </div>
+    Trámite Fácil <span>SCZ</span>
+  </div>
+
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#tramites">Trámites</a>
+    <a href="#asistente">Asistente IA</a>
+    <a href="#proyecto">Sobre el proyecto</a>
+  </nav>
 </header>
 
+<!-- PRESENTACIÓN -->
 <section class="hero" id="inicio">
-<div class="badge">Guía de trámites · Santa Cruz de la Sierra</div>
-<h1>¿Qué trámite <span>necesitas</span>?</h1>
-<p>Elige una opción y consulta requisitos, documentos, pasos, costos y el enlace oficial. Solo te pediremos registrarte una vez.</p>
-<div class="chips">
-<span class="chip"><span data-ii="clip"></span>Requisitos claros</span>
-<span class="chip"><span data-ii="costo"></span>Costos referenciales</span>
-<span class="chip"><span data-ii="link"></span>Enlaces oficiales</span>
-</div>
+  <div class="badge">
+    Guía de trámites · Santa Cruz de la Sierra
+  </div>
+
+  <h1>¿Qué trámite <span>necesitas</span>?</h1>
+
+  <p>
+    Elige una opción y consulta requisitos, documentos,
+    pasos, costos y el enlace oficial.
+    Solo te pediremos registrarte una vez.
+  </p>
+
+  <div class="chips">
+    <span class="chip">
+      <span data-ii="clip"></span>Requisitos claros
+    </span>
+    <span class="chip">
+      <span data-ii="costo"></span>Costos referenciales
+    </span>
+    <span class="chip">
+      <span data-ii="link"></span>Enlaces oficiales
+    </span>
+  </div>
 </section>
+
+<!-- TRÁMITES -->
 <div class="container">
-<div class="title" id="tramites"><h2>Elige tu trámite</h2><p>Toca la opción que necesitas para ver su guía completa.</p></div>
-<div class="cards" id="cards"></div>
 
-<div class="ia" id="asistente">
-<h2><span data-ii="bot"></span>Asistente Trámite Fácil</h2>
-<p>Escribe qué trámite necesitas y recibe una orientación inicial.</p>
-<div class="iaform"><input id="pregunta" placeholder="Ejemplo: necesito sacar mi licencia"><button onclick="ia()">Consultar</button></div>
-<div id="respuesta"></div>
+  <div class="title" id="tramites">
+    <h2>Elige tu trámite</h2>
+    <p>
+      Toca la opción que necesitas para ver su guía completa.
+    </p>
+  </div>
+
+  <div class="cards" id="cards"></div>
+
+  <!-- ASISTENTE -->
+  <div class="ia" id="asistente">
+    <h2>
+      <span data-ii="bot"></span>
+      Asistente Trámite Fácil
+    </h2>
+
+    <p>
+      Escribe qué trámite necesitas y recibe una orientación inicial.
+    </p>
+
+    <div class="iaform">
+      <input
+        id="pregunta"
+        placeholder="Ejemplo: necesito sacar mi licencia"
+      >
+      <button onclick="ia()">Consultar</button>
+    </div>
+
+    <div id="respuesta"></div>
+  </div>
+
+  <!-- SOBRE EL PROYECTO -->
+  <div class="title" id="proyecto" style="margin-top:60px">
+    <h2>Sobre este proyecto</h2>
+    <p>
+      Pensado desde la perspectiva de quien entra a esta página.
+    </p>
+  </div>
+
+  <div class="cards">
+
+    <div class="card proyecto-card">
+      <div class="icon" data-ic="tarea"></div>
+      <h3>Tarea</h3>
+      <p>
+        Ayudar al usuario a encontrar de forma rápida y
+        confiable la información que necesita para realizar
+        un trámite en Santa Cruz: qué requisitos pide,
+        qué documentos debe llevar, cuáles son los pasos,
+        cuánto cuesta y dónde debe ir a realizarlo.
+      </p>
+    </div>
+
+    <div class="card proyecto-card">
+      <div class="icon" data-ic="accion"></div>
+      <h3>Acción</h3>
+      <p>
+        El usuario busca o selecciona una categoría de trámite
+        (Vehículos, Identificación, Impuestos, Educación,
+        Documentos, Otros), elige el trámite específico dentro
+        de la lista de trámites disponibles para consultar
+        su guía, y opcionalmente escribe su consulta en el
+        Asistente Trámite Fácil para recibir una orientación inicial.
+      </p>
+    </div>
+
+    <div class="card proyecto-card">
+      <div class="icon" data-ic="resultado"></div>
+      <h3>Resultado</h3>
+      <p>
+        El usuario obtiene una guía clara del trámite elegido:
+        requisitos, documentos necesarios, pasos a seguir,
+        costos aproximados y el enlace o dirección de la
+        institución oficial donde debe realizarlo,
+        ahorrando tiempo e incertidumbre.
+      </p>
+    </div>
+
+  </div>
 </div>
 
-<div class="title" id="proyecto" style="margin-top:60px"><h2>Sobre este proyecto</h2><p>Pensado desde la perspectiva de quien entra a esta página.</p></div>
-<div class="cards">
-<div class="card proyecto-card"><div class="icon" data-ic="tarea"></div><h3>Tarea</h3><p>Ayudar al usuario a encontrar de forma rápida y confiable la información que necesita para realizar un trámite en Santa Cruz: qué requisitos pide, qué documentos debe llevar, cuáles son los pasos, cuánto cuesta y dónde debe ir a realizarlo.</p></div>
-<div class="card proyecto-card"><div class="icon" data-ic="accion"></div><h3>Acción</h3><p>El usuario busca o selecciona una categoría de trámite (Vehículos, Identificación, Impuestos, Educación, Documentos, Otros), elige el trámite específico dentro de la lista de trámites disponibles para consultar su guía, y opcionalmente escribe su consulta en el Asistente Trámite Fácil para recibir una orientación inicial.</p></div>
-<div class="card proyecto-card"><div class="icon" data-ic="resultado"></div><h3>Resultado</h3><p>El usuario obtiene una guía clara del trámite elegido: requisitos, documentos necesarios, pasos a seguir, costos aproximados y el enlace o dirección de la institución oficial donde debe realizarlo, ahorrando tiempo e incertidumbre.</p></div>
-</div>
+<!-- VENTANA DE INFORMACIÓN -->
+<div class="modal" id="modal">
+  <div class="modalbox">
+    <span class="close" onclick="cerrar()">×</span>
+    <div id="modalContenido"></div>
+  </div>
 </div>
 
-<div class="modal" id="modal"><div class="modalbox"><span class="close" onclick="cerrar()">×</span><div id="modalContenido"></div></div></div>
+<!-- REGISTRO -->
+<div class="modal" id="regModal">
+  <div class="modalbox regbox">
 
-<div class="modal" id="regModal"><div class="modalbox regbox"><span class="close" onclick="cerrarReg()">×</span>
-<h2>Regístrate para continuar</h2>
-<p id="regTema" style="color:#64748b"></p>
-<div class="form-box">
-<form id="registroForm" onsubmit="enviarForm(event)">
-<label for="nombre">Nombre completo</label><input type="text" id="nombre" required maxlength="80" autocomplete="name">
-<label for="telefono">Número de teléfono</label><input type="tel" id="telefono" required pattern="[0-9+ ]{7,15}" maxlength="15" autocomplete="tel" placeholder="Ejemplo: 71234567">
-<label for="correo">Correo electrónico</label><input type="email" id="correo" required maxlength="100" autocomplete="email">
-<label class="consent"><input type="checkbox" id="acepto" required> Acepto que mis datos se guarden para recibir orientación sobre trámites.</label>
-<button class="btn" type="submit" style="margin-top:20px"><span data-ii="enviar"></span>Enviar</button>
-<div id="formMsg"></div>
-</form></div></div></div>
-<footer><h3>Trámite Fácil SCZ</h3><p>Proyecto académico · Santa Cruz de la Sierra</p><p>Los costos y direcciones se actualizan periódicamente, pero pueden variar. Verifica siempre la información vigente en la institución oficial correspondiente.</p></footer>
+    <span class="close" onclick="cerrarReg()">×</span>
+
+    <h2>Regístrate para continuar</h2>
+
+    <p id="regTema" style="color:#64748b"></p>
+
+    <div class="form-box">
+
+      <form id="registroForm" onsubmit="enviarForm(event)">
+
+        <label for="nombre">Nombre completo</label>
+        <input
+          type="text"
+          id="nombre"
+          required
+          maxlength="80"
+          autocomplete="name"
+        >
+
+        <label for="telefono">Número de teléfono</label>
+        <input
+          type="tel"
+          id="telefono"
+          required
+          pattern="[0-9+ ]{7,15}"
+          maxlength="15"
+          autocomplete="tel"
+          placeholder="Ejemplo: 71234567"
+        >
+
+        <label for="correo">Correo electrónico</label>
+        <input
+          type="email"
+          id="correo"
+          required
+          maxlength="100"
+          autocomplete="email"
+        >
+
+        <label class="consent">
+          <input type="checkbox" id="acepto" required>
+          Acepto que mis datos se guarden para recibir
+          orientación sobre trámites.
+        </label>
+
+        <button
+          class="btn"
+          type="submit"
+          style="margin-top:20px"
+        >
+          <span data-ii="enviar"></span>Enviar
+        </button>
+
+        <div id="formMsg"></div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- PIE -->
+<footer>
+  <h3>Trámite Fácil SCZ</h3>
+  <p>Proyecto académico · Santa Cruz de la Sierra</p>
+  <p>
+    Los costos y direcciones se actualizan periódicamente,
+    pero pueden variar. Verifica siempre la información
+    vigente en la institución oficial correspondiente.
+  </p>
+</footer>
 
 <script>
-const datos={
-licencia:{cat:"vehiculos",icon:"🚗",titulo:"Licencia de conducir",desc:"Guía de orientación para el trámite de licencia de conducir.",
-req:["Tener la edad mínima según categoría (16 años categoría P con autorización de padres/tutor; 26 años categoría B; 31 años categoría C).","Cédula de identidad física o digital vigente.","Certificado de evaluación médica emitido por un centro de salud acreditado por el SEGIP.","Para licencia nueva: certificado de aprobación de habilidades de conducción emitido por una autoescuela autorizada por el Ministerio de Educación."],
-docs:["Cédula de identidad vigente (original y copia).","Certificado médico (Bs 50, se paga en el centro de salud elegido).","Certificado de autoescuela (solo licencia nueva).","Comprobante de pago del trámite en el Banco Unión."],
-lugar:"SEGIP - Oficina Distrito 5: Av. 2 de Agosto esq. St. Exupery, zona norte, entre 6to y 7mo anillo, Santa Cruz de la Sierra. Atención de lunes a viernes, 07:00 a 15:00. Consulta la oficina más cercana a ti en el localizador oficial.",
-costo:"Bs 225 para categorías P, A, B y C. Bs 80 para categorías M y T (motorizados/tricimotos), pago en Banco Unión indicando SEGIP-SEGELIC. El certificado médico se paga aparte: Bs 50.",
-pasos:["Sacar turno o verificar requisitos vigentes en el sitio oficial del SEGIP.","Realizar el certificado médico en un centro autorizado.","Pagar el trámite en Banco Unión (SEGIP-SEGELIC).","Acudir a la oficina del SEGIP con toda la documentación.","Retirar la licencia (física o digital vía app SEGIP)."],
-link:"https://www.segip.gob.bo/licencia-para-conducir/",linkTexto:"Ver requisitos y costos en SEGIP",
-mapaLink:"https://www.segip.gob.bo/lista-direcciones-page/",mapaTexto:"Buscar oficina SEGIP más cercana"},
 
-cedula:{cat:"identificacion",icon:"🪪",titulo:"Cédula de identidad",desc:"Orientación general para obtención, renovación o actualización de la cédula de identidad.",
-req:["Presentar cédula anterior si es renovación (o partida de nacimiento si es primera vez).","Realizar el registro biométrico correspondiente.","No tener observaciones pendientes en el sistema del SEGIP."],
-docs:["Certificado de nacimiento (para primera cédula).","Cédula de identidad anterior (para renovación o duplicado).","Comprobante de pago del trámite."],
-lugar:"SEGIP - mismas oficinas que licencia de conducir, por ejemplo la de Distrito 5: Av. 2 de Agosto esq. St. Exupery, zona norte, Santa Cruz de la Sierra.",
-costo:"El costo varía según el tipo de trámite (primera vez, renovación, duplicado o cambio de datos). Verifica el monto vigente en el sitio oficial del SEGIP antes de acudir.",
-pasos:["Identificar el tipo de trámite que necesitas.","Verificar requisitos y costo vigente en el sitio oficial.","Preparar la documentación.","Acudir a la oficina del SEGIP o solicitar cita en línea.","Completar el registro biométrico y retirar tu cédula."],
-link:"https://www.segip.gob.bo/",linkTexto:"Ir al sitio oficial del SEGIP",
-mapaLink:"https://www.segip.gob.bo/lista-direcciones-page/",mapaTexto:"Buscar oficina SEGIP más cercana"},
+/* ============================================
+   INFORMACIÓN DE LOS TRÁMITES
+============================================ */
 
-nacimiento:{cat:"documentos",icon:"📄",titulo:"Certificado de nacimiento",desc:"Orientación para solicitar un certificado de nacimiento en Santa Cruz.",
-req:["Conocer los datos exactos de la partida (nombre completo, fecha y lugar de nacimiento).","Cédula de identidad vigente del solicitante."],
-docs:["Cédula de identidad vigente.","Datos de la partida original (folio, libro, si se conocen)."],
-lugar:"SERECI Santa Cruz - Oficinas: Av. Cuarto Anillo y Av. Radial 27; y Av. Cañada Pailita, ingreso Plan Tres Mil. También puede tramitarse en oficialías de Registro Civil.",
-costo:"En oficinas del SERECI: Bs 33 (certificado) + Bs 82 (formulario valorado). En oficialías de Registro Civil el costo es mayor, alrededor de Bs 51.",
-pasos:["Verificar en qué libro/oficina está registrada la partida.","Reunir tus datos y cédula de identidad.","Acudir a la oficina del SERECI o agendar cita en línea.","Pagar el valorado y el certificado.","Recibir el certificado de nacimiento."],
-link:"https://web.oep.org.bo/registro-civico/servicios-registro-civil/",linkTexto:"Ver información oficial del SERECI",
-mapaLink:"https://www.google.com/maps/search/SERECI+Santa+Cruz+de+la+Sierra",mapaTexto:"Ver oficinas SERECI en el mapa"},
+const datos = {
 
-nit:{cat:"impuestos",icon:"💰",titulo:"NIT",desc:"Orientación general sobre el Número de Identificación Tributaria.",
-req:["Contar con cédula de identidad vigente.","Tener una actividad económica que declarar (para personas naturales con negocio).","Factura de luz y croquis del domicilio del negocio (si aplica)."],
-docs:["Cédula de identidad vigente.","Factura de servicio básico del domicilio o negocio.","Croquis de ubicación del negocio (si corresponde)."],
-lugar:"Servicio de Impuestos Nacionales (SIN) - oficina distrital de Santa Cruz, o de forma 100% en línea a través de la Oficina Virtual y ciudadanía digital.",
-costo:"Gratuito para personas naturales. Para personas jurídicas puede existir una tasa administrativa aproximada de Bs 30 a Bs 50, según el tipo de empresa. Verifica el monto vigente en el sitio oficial del SIN.",
-pasos:["Registrarte en ciudadanía digital (ciudadaniadigital.gob.bo) si aún no tienes acceso.","Descargar y llenar el formulario correspondiente en impuestos.gob.bo.","Acudir a la oficina distrital del SIN o completar el trámite en línea.","Activar la tarjeta MASI para acceder a la Oficina Virtual.","Completar el registro y obtener tu NIT."],
-link:"https://www.impuestos.gob.bo/",linkTexto:"Ir al sitio oficial del SIN",
-mapaLink:"https://www.google.com/maps/search/Servicio+de+Impuestos+Nacionales+Santa+Cruz",mapaTexto:"Ver oficinas del SIN en el mapa"},
-  matricula:{cat:"educacion",icon:"🎓",titulo:"Matrícula universitaria",desc:"Guía general para organizar información sobre procesos de matrícula (ejemplo: UAGRM).",
-req:["Ser bachiller (título original y copia).","Cumplir el proceso de preinscripción de la facultad elegida.","Presentar libreta o certificado de notas del último año de secundaria."],
-docs:["Cédula de identidad vigente (original y copia).","Título de bachiller (original y copia).","Formulario de preinscripción.","Comprobante de pago de matrícula."],
-lugar:"Universidad correspondiente. Ejemplo: UAGRM, Campus Universitario, Pabellón 145, Santa Cruz de la Sierra.",
-costo:"Varía según universidad y facultad. Referencia: en la UAGRM el costo de cursos preuniversitarios/matrícula ronda los Bs 700 por facultad. Verifica el arancel vigente de tu facultad específica.",
-pasos:["Consultar la convocatoria de tu facultad.","Llenar el formulario de preinscripción en línea.","Pagar la matrícula en la caja facultativa indicada.","Presentar la documentación completa en un folder.","Confirmar tu inscripción."],
-link:"https://admisionweb.uagrm.edu.bo/",linkTexto:"Ir al portal de admisiones UAGRM",
-mapaLink:"https://www.google.com/maps/search/UAGRM+Campus+Universitario+Santa+Cruz",mapaTexto:"Ver ubicación del campus"}
-};
-function render(filtro=null){let c=document.getElementById("cards");c.innerHTML="";Object.entries(datos).forEach(([id,t])=>{if(!filtro||t.cat===filtro||filtro==="otros")c.innerHTML+=`<div class="card" data-cat="${t.cat}" onclick="ver('${id}')"><div class="icon">${ic(t.cat)}</div><h3>${t.titulo}</h3><p>${t.desc}</p><button class="btn" type="button">Ver información</button></div>`})}
-function ver(id){tramitePend=id;requerirRegistro(()=>verGuia(id),datos[id].titulo)}
-function verGuia(id){let t=datos[id];document.getElementById("modalContenido").innerHTML=`<h2>${ii(t.cat)}${t.titulo}</h2><p>${t.desc}</p><div class="info"><h3>${ii("clip")}Requisitos</h3><ul>${t.req.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="info"><h3>${ii("documentos")}Documentos</h3><ul>${t.docs.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="info"><h3>${ii("lugar")}Lugar</h3><p>${t.lugar}</p><a class="linkbtn sec" href="${t.mapaLink}" target="_blank" rel="noopener">${ii("lugar")}${t.mapaTexto}</a></div><div class="info"><h3>${ii("costo")}Costo</h3><div class="costo-box">${t.costo}</div></div><div class="info"><h3>${ii("pasos")}Pasos</h3><ol>${t.pasos.map(x=>`<li>${x}</li>`).join("")}</ol></div><div class="check"><h3>${ii("check")}Mi checklist</h3>${t.docs.map(x=>`<label><input type="checkbox"> ${x}</label>`).join("")}</div><a class="linkbtn" href="${t.link}" target="_blank" rel="noopener">${ii("link")}${t.linkTexto}</a><p style="margin-top:18px;font-size:13px;color:#64748b">${ii("alerta")}Verifica siempre la información vigente en la institución oficial.</p>`;document.getElementById("modal").style.display="block"}
-function cerrar(){document.getElementById("modal").style.display="none"}
-function filtrar(cat){render(cat);document.getElementById("tramites").scrollIntoView({behavior:"smooth"})}
-function buscar(){let q=document.getElementById("buscador").value.toLowerCase().trim(),r=document.getElementById("resultados");r.innerHTML="";if(!q){r.innerHTML='<div class="resultado">Escribe el trámite que necesitas buscar.</div>';return}let ok=false;Object.entries(datos).forEach(([id,t])=>{if((t.titulo+" "+t.desc).toLowerCase().includes(q)){ok=true;r.innerHTML+=`<div class="resultado"><h3>${ii(t.cat)}${t.titulo}</h3><p>${t.desc}</p><button onclick="ver('${id}')">Ver información</button></div>`}});if(!ok)r.innerHTML='<div class="resultado"><h3>'+ii("buscar")+'No encontramos ese trámite</h3><p>Prueba con palabras como licencia, cédula, nacimiento, NIT o matrícula.</p></div>'}
-function ia(){tramitePend=null;requerirRegistro(iaRun)}
-function iaRun(){let q=document.getElementById("pregunta").value.toLowerCase(),r=document.getElementById("respuesta");r.style.display="block";let id=q.includes("licencia")||q.includes("conducir")?"licencia":q.includes("cedula")||q.includes("cédula")||q.includes("identidad")?"cedula":q.includes("nacimiento")||q.includes("certificado")?"nacimiento":q.includes("nit")||q.includes("impuesto")||q.includes("tribut")?"nit":q.includes("matricula")||q.includes("universidad")||q.includes("matrícula")?"matricula":null;if(id)r.innerHTML=`<strong>${ii(datos[id].cat)}Creo que necesitas información sobre: ${datos[id].titulo}.</strong><br><br>Te recomiendo revisar los requisitos, documentos, costo y pasos de la guía.<br><br><button class="btn" onclick="ver('${id}')">Abrir guía</button>`;else r.innerHTML=ii("bot")+'No pude identificar el trámite. Prueba con: “quiero sacar mi licencia”, “necesito mi cédula”, “certificado de nacimiento”, “quiero sacar mi NIT” o “matrícula universitaria”.'}
-window.onclick=e=>{if(e.target===document.getElementById("modal"))cerrar();if(e.target===document.getElementById("regModal"))cerrarReg()}
-const ICONS={"vehiculos": "<svg viewBox=\"0 0 24 24\"><path d=\"M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2\"/><circle cx=\"7\" cy=\"17\" r=\"2\"/><path d=\"M9 17h6\"/><circle cx=\"17\" cy=\"17\" r=\"2\"/></svg>", "identificacion": "<svg viewBox=\"0 0 24 24\"><rect x=\"2\" y=\"5\" width=\"20\" height=\"14\" rx=\"2\"/><circle cx=\"8.5\" cy=\"11\" r=\"2\"/><path d=\"M5.5 16c.5-1.2 1.6-2 3-2s2.5.8 3 2M14 10h4M14 14h4\"/></svg>", "impuestos": "<svg viewBox=\"0 0 24 24\"><rect x=\"2\" y=\"6\" width=\"20\" height=\"12\" rx=\"2\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/><path d=\"M6 12h.01M18 12h.01\"/></svg>", "educacion": "<svg viewBox=\"0 0 24 24\"><path d=\"M22 10 12 5 2 10l10 5 10-5z\"/><path d=\"M6 12v5c3 2 9 2 12 0v-5\"/></svg>", "documentos": "<svg viewBox=\"0 0 24 24\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><path d=\"M14 2v6h6M8 13h8M8 17h8\"/></svg>", "otros": "<svg viewBox=\"0 0 24 24\"><path d=\"M3 21h18M5 21V10M9 21V10M15 21V10M19 21V10M2 10l10-6 10 6z\"/></svg>", "tarea": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><circle cx=\"12\" cy=\"12\" r=\"6\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></svg>", "accion": "<svg viewBox=\"0 0 24 24\"><path d=\"m3 3 7.1 17.6 2.5-7.5 7.5-2.5z\"/></svg>", "resultado": "<svg viewBox=\"0 0 24 24\"><path d=\"M22 11.1V12a10 10 0 1 1-5.9-9.1\"/><path d=\"m9 11 3 3L22 4\"/></svg>"};
-function ic(k){return ICONS[k]||ICONS.otros}
-Object.assign(ICONS,{"clip": "<svg viewBox=\"0 0 24 24\"><rect x=\"8\" y=\"2\" width=\"8\" height=\"4\" rx=\"1\"/><path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M12 11h4M12 16h4M8 11h.01M8 16h.01\"/></svg>", "lugar": "<svg viewBox=\"0 0 24 24\"><path d=\"M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/></svg>", "costo": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"/></svg>", "pasos": "<svg viewBox=\"0 0 24 24\"><path d=\"M10 6h11M10 12h11M10 18h11M4 6h1v4M4 10h2M6 18H4c0-1 2-2 2-3s-1-1.5-2-1\"/></svg>", "check": "<svg viewBox=\"0 0 24 24\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"m9 12 2 2 4-4\"/></svg>", "link": "<svg viewBox=\"0 0 24 24\"><path d=\"M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\"/></svg>", "alerta": "<svg viewBox=\"0 0 24 24\"><path d=\"m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3zM12 9v4M12 17h.01\"/></svg>", "buscar": "<svg viewBox=\"0 0 24 24\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/></svg>", "bot": "<svg viewBox=\"0 0 24 24\"><path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\"/></svg>", "enviar": "<svg viewBox=\"0 0 24 24\"><path d=\"M22 2 11 13M22 2l-7 20-4-9-9-4z\"/></svg>"});
-function ii(k){return (ICONS[k]||ICONS.otros).replace("<svg",'<svg class="i"')}
-// Pega aquí la URL de tu Google Apps Script (Implementar > Aplicación web)
-const SHEETS_URL="https://script.google.com/macros/s/AKfycbzZ6FkVu1YmhjXGqhBIUedmqjRC8WX6NOWb15aeQWq6WElrC85QroB6cUE0gKDL1asa/exec";
-function enviarForm(e){
-e.preventDefault();
-const m=document.getElementById("formMsg"),b=e.target.querySelector("button");
-const mostrar=(t,tipo)=>{const c={ok:["#dcfce7","#166534"],error:["#fee2e2","#991b1b"],info:["#fff7ed","#9a3412"]}[tipo];m.style.display="block";m.textContent=t;m.style.background=c[0];m.style.color=c[1]};
-m.style.display="none";
-if(SHEETS_URL.startsWith("PEGA_AQUI")){mostrar("El formulario aún no está conectado a Google Sheets.","error");return}
-  const datosForm = {
-  nombre: document.getElementById("nombre").value.trim(),
-  telefono: document.getElementById("telefono").value.trim(),
-  correo: document.getElementById("correo").value.trim(),
-  acepto: document.getElementById("acepto").checked,
-  tramite: tramitePend||""
-};
+  licencia: {
+    cat:"vehiculos",
+    icon:"🚗",
+    titulo:"Licencia de conducir",
+    desc:"Guía de orientación para el trámite de licencia de conducir.",
 
-b.disabled=true;b.textContent="Enviando...";
-mostrar("Enviando tus datos, un momento...","info");
-fetch(SHEETS_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(datosForm)})
-.then(r=>r.json())
-.then(res=>{
-  if(res&&res.ok){
-    mostrar(res.correoEnviado?"¡Registro exitoso! Te enviamos un correo de bienvenida.":"¡Registro exitoso! Puedes continuar, aunque no se pudo enviar el correo de bienvenida.","ok");
-    e.target.reset();
-    registroListo();
-    aviso(res.correoEnviado?"¡Registro exitoso! Revisa tu correo de bienvenida.":"¡Registro exitoso! Ya puedes consultar tu trámite.",true);
-  }else{
-    mostrar("No se pudo guardar: "+((res&&(res.mensaje||res.error))||"intenta nuevamente."),"error");
+    req:[
+      "Tener la edad mínima según categoría (16 años categoría P con autorización de padres/tutor; 26 años categoría B; 31 años categoría C).",
+      "Cédula de identidad física o digital vigente.",
+      "Certificado de evaluación médica emitido por un centro de salud acreditado por el SEGIP.",
+      "Para licencia nueva: certificado de aprobación de habilidades de conducción emitido por una autoescuela autorizada por el Ministerio de Educación."
+    ],
+
+    docs:[
+      "Cédula de identidad vigente (original y copia).",
+      "Certificado médico (Bs 50, se paga en el centro de salud elegido).",
+      "Certificado de autoescuela (solo licencia nueva).",
+      "Comprobante de pago del trámite en el Banco Unión."
+    ],
+
+    lugar:"SEGIP - Oficina Distrito 5: Av. 2 de Agosto esq. St. Exupery, zona norte, entre 6to y 7mo anillo, Santa Cruz de la Sierra. Atención de lunes a viernes, 07:00 a 15:00. Consulta la oficina más cercana a ti en el localizador oficial.",
+
+    costo:"Bs 225 para categorías P, A, B y C. Bs 80 para categorías M y T (motorizados/tricimotos), pago en Banco Unión indicando SEGIP-SEGELIC. El certificado médico se paga aparte: Bs 50.",
+
+    pasos:[
+      "Sacar turno o verificar requisitos vigentes en el sitio oficial del SEGIP.",
+      "Realizar el certificado médico en un centro autorizado.",
+      "Pagar el trámite en Banco Unión (SEGIP-SEGELIC).",
+      "Acudir a la oficina del SEGIP con toda la documentación.",
+      "Retirar la licencia (física o digital vía app SEGIP)."
+    ],
+
+    link:"https://www.segip.gob.bo/licencia-para-conducir/",
+    linkTexto:"Ver requisitos y costos en SEGIP",
+
+    mapaLink:"https://www.segip.gob.bo/lista-direcciones-page/",
+    mapaTexto:"Buscar oficina SEGIP más cercana"
+  },
+
+  cedula: {
+    cat:"identificacion",
+    icon:"🪪",
+    titulo:"Cédula de identidad",
+    desc:"Orientación general para obtención, renovación o actualización de la cédula de identidad.",
+
+    req:[
+      "Presentar cédula anterior si es renovación (o partida de nacimiento si es primera vez).",
+      "Realizar el registro biométrico correspondiente.",
+      "No tener observaciones pendientes en el sistema del SEGIP."
+    ],
+
+    docs:[
+      "Certificado de nacimiento (para primera cédula).",
+      "Cédula de identidad anterior (para renovación o duplicado).",
+      "Comprobante de pago del trámite."
+    ],
+
+    lugar:"SEGIP - mismas oficinas que licencia de conducir, por ejemplo la de Distrito 5: Av. 2 de Agosto esq. St. Exupery, zona norte, Santa Cruz de la Sierra.",
+
+    costo:"El costo varía según el tipo de trámite (primera vez, renovación, duplicado o cambio de datos). Verifica el monto vigente en el sitio oficial del SEGIP antes de acudir.",
+
+    pasos:[
+      "Identificar el tipo de trámite que necesitas.",
+      "Verificar requisitos y costo vigente en el sitio oficial.",
+      "Preparar la documentación.",
+      "Acudir a la oficina del SEGIP o solicitar cita en línea.",
+      "Completar el registro biométrico y retirar tu cédula."
+    ],
+
+    link:"https://www.segip.gob.bo/",
+    linkTexto:"Ir al sitio oficial del SEGIP",
+
+    mapaLink:"https://www.segip.gob.bo/lista-direcciones-page/",
+    mapaTexto:"Buscar oficina SEGIP más cercana"
+  },
+
+  nacimiento: {
+    cat:"documentos",
+    icon:"📄",
+    titulo:"Certificado de nacimiento",
+    desc:"Orientación para solicitar un certificado de nacimiento en Santa Cruz.",
+
+    req:[
+      "Conocer los datos exactos de la partida (nombre completo, fecha y lugar de nacimiento).",
+      "Cédula de identidad vigente del solicitante."
+    ],
+
+    docs:[
+      "Cédula de identidad vigente.",
+      "Datos de la partida original (folio, libro, si se conocen)."
+    ],
+
+    lugar:"SERECI Santa Cruz - Oficinas: Av. Cuarto Anillo y Av. Radial 27; y Av. Cañada Pailita, ingreso Plan Tres Mil. También puede tramitarse en oficialías de Registro Civil.",
+
+    costo:"En oficinas del SERECI: Bs 33 (certificado) + Bs 82 (formulario valorado). En oficialías de Registro Civil el costo es mayor, alrededor de Bs 51.",
+
+    pasos:[
+      "Verificar en qué libro/oficina está registrada la partida.",
+      "Reunir tus datos y cédula de identidad.",
+      "Acudir a la oficina del SERECI o agendar cita en línea.",
+      "Pagar el valorado y el certificado.",
+      "Recibir el certificado de nacimiento."
+    ],
+
+    link:"https://web.oep.org.bo/registro-civico/servicios-registro-civil/",
+    linkTexto:"Ver información oficial del SERECI",
+
+    mapaLink:"https://www.google.com/maps/search/SERECI+Santa+Cruz+de+la+Sierra",
+    mapaTexto:"Ver oficinas SERECI en el mapa"
+  },
+
+  nit: {
+    cat:"impuestos",
+    icon:"💰",
+    titulo:"NIT",
+    desc:"Orientación general sobre el Número de Identificación Tributaria.",
+
+    req:[
+      "Contar con cédula de identidad vigente.",
+      "Tener una actividad económica que declarar (para personas naturales con negocio).",
+      "Factura de luz y croquis del domicilio del negocio (si aplica)."
+    ],
+
+    docs:[
+      "Cédula de identidad vigente.",
+      "Factura de servicio básico del domicilio o negocio.",
+      "Croquis de ubicación del negocio (si corresponde)."
+    ],
+
+    lugar:"Servicio de Impuestos Nacionales (SIN) - oficina distrital de Santa Cruz, o de forma 100% en línea a través de la Oficina Virtual y ciudadanía digital.",
+
+    costo:"Gratuito para personas naturales. Para personas jurídicas puede existir una tasa administrativa aproximada de Bs 30 a Bs 50, según el tipo de empresa. Verifica el monto vigente en el sitio oficial del SIN.",
+
+    pasos:[
+      "Registrarte en ciudadanía digital (ciudadaniadigital.gob.bo) si aún no tienes acceso.",
+      "Descargar y llenar el formulario correspondiente en impuestos.gob.bo.",
+      "Acudir a la oficina distrital del SIN o completar el trámite en línea.",
+      "Activar la tarjeta MASI para acceder a la Oficina Virtual.",
+      "Completar el registro y obtener tu NIT."
+    ],
+
+    link:"https://www.impuestos.gob.bo/",
+    linkTexto:"Ir al sitio oficial del SIN",
+
+    mapaLink:"https://www.google.com/maps/search/Servicio+de+Impuestos+Nacionales+Santa+Cruz",
+    mapaTexto:"Ver oficinas del SIN en el mapa"
+  },
+
+  matricula: {
+    cat:"educacion",
+    icon:"🎓",
+    titulo:"Matrícula universitaria",
+    desc:"Guía general para organizar información sobre procesos de matrícula (ejemplo: UAGRM).",
+
+    req:[
+      "Ser bachiller (título original y copia).",
+      "Cumplir el proceso de preinscripción de la facultad elegida.",
+      "Presentar libreta o certificado de notas del último año de secundaria."
+    ],
+
+    docs:[
+      "Cédula de identidad vigente (original y copia).",
+      "Título de bachiller (original y copia).",
+      "Formulario de preinscripción.",
+      "Comprobante de pago de matrícula."
+    ],
+
+    lugar:"Universidad correspondiente. Ejemplo: UAGRM, Campus Universitario, Pabellón 145, Santa Cruz de la Sierra.",
+
+    costo:"Varía según universidad y facultad. Referencia: en la UAGRM el costo de cursos preuniversitarios/matrícula ronda los Bs 700 por facultad. Verifica el arancel vigente de tu facultad específica.",
+
+    pasos:[
+      "Consultar la convocatoria de tu facultad.",
+      "Llenar el formulario de preinscripción en línea.",
+      "Pagar la matrícula en la caja facultativa indicada.",
+      "Presentar la documentación completa en un folder.",
+      "Confirmar tu inscripción."
+    ],
+
+    link:"https://admisionweb.uagrm.edu.bo/",
+    linkTexto:"Ir al portal de admisiones UAGRM",
+
+    mapaLink:"https://www.google.com/maps/search/UAGRM+Campus+Universitario+Santa+Cruz",
+    mapaTexto:"Ver ubicación del campus"
   }
-})
-.catch(()=>mostrar("No pudimos verificar el registro. Revisa tu conexión y confirma si tus datos llegaron antes de intentarlo otra vez.","error"))
-.finally(()=>{b.disabled=false;b.innerHTML=ii("enviar")+"Enviar"})}
-// Oculta el mensaje anterior en cuanto la persona empieza a escribir otra vez
-document.getElementById("registroForm").addEventListener("input",()=>{if(!document.querySelector("#registroForm button").disabled)document.getElementById("formMsg").style.display="none"});
-document.querySelectorAll("[data-ii]").forEach(el=>el.innerHTML=ii(el.dataset.ii));
-document.querySelectorAll("[data-ic]").forEach(el=>el.innerHTML=ic(el.dataset.ic));
-// Registro obligatorio: no se muestra ninguna guía hasta que la persona se registre (una sola vez por navegador)
-let regOk=false,pendiente=null;
-try{regOk=localStorage.getItem("tf_registrado")==="1"}catch(_){}
-function requerirRegistro(fn,nombre){
-if(regOk){fn();return}
-pendiente=fn;
-document.getElementById("regTema").textContent=nombre?"Para ver la guía de «"+nombre+"» necesitas registrarte primero. Recibirás un correo de bienvenida después de registrarte.":"Para continuar necesitas registrarte primero. Recibirás un correo de bienvenida después de registrarte.";
-document.getElementById("formMsg").style.display="none";
-document.getElementById("regModal").style.display="block"}
-function registroListo(){
-regOk=true;try{localStorage.setItem("tf_registrado","1")}catch(_){}
-cerrarReg();
-if(pendiente){const f=pendiente;pendiente=null;f()}}
-function cerrarReg(){document.getElementById("regModal").style.display="none"}
+
+};
+
+/* ============================================
+   ICONOS SVG
+============================================ */
+
+const ICONS = {
+
+  vehiculos:`<svg viewBox="0 0 24 24">
+    <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/>
+    <circle cx="7" cy="17" r="2"/>
+    <path d="M9 17h6"/>
+    <circle cx="17" cy="17" r="2"/>
+  </svg>`,
+
+  identificacion:`<svg viewBox="0 0 24 24">
+    <rect x="2" y="5" width="20" height="14" rx="2"/>
+    <circle cx="8.5" cy="11" r="2"/>
+    <path d="M5.5 16c.5-1.2 1.6-2 3-2s2.5.8 3 2M14 10h4M14 14h4"/>
+  </svg>`,
+
+  impuestos:`<svg viewBox="0 0 24 24">
+    <rect x="2" y="6" width="20" height="12" rx="2"/>
+    <circle cx="12" cy="12" r="2"/>
+    <path d="M6 12h.01M18 12h.01"/>
+  </svg>`,
+
+  educacion:`<svg viewBox="0 0 24 24">
+    <path d="M22 10 12 5 2 10l10 5 10-5z"/>
+    <path d="M6 12v5c3 2 9 2 12 0v-5"/>
+  </svg>`,
+
+  documentos:`<svg viewBox="0 0 24 24">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+    <path d="M14 2v6h6M8 13h8M8 17h8"/>
+  </svg>`,
+
+  otros:`<svg viewBox="0 0 24 24">
+    <path d="M3 21h18M5 21V10M9 21V10M15 21V10M19 21V10M2 10l10-6 10 6z"/>
+  </svg>`,
+
+  tarea:`<svg viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10"/>
+    <circle cx="12" cy="12" r="6"/>
+    <circle cx="12" cy="12" r="2"/>
+  </svg>`,
+
+  accion:`<svg viewBox="0 0 24 24">
+    <path d="m3 3 7.1 17.6 2.5-7.5 7.5-2.5z"/>
+  </svg>`,
+
+  resultado:`<svg viewBox="0 0 24 24">
+    <path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/>
+    <path d="m9 11 3 3L22 4"/>
+  </svg>`,
+
+  clip:`<svg viewBox="0 0 24 24">
+    <rect x="8" y="2" width="8" height="4" rx="1"/>
+    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M12 11h4M12 16h4M8 11h.01M8 16h.01"/>
+  </svg>`,
+
+  lugar:`<svg viewBox="0 0 24 24">
+    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/>
+    <circle cx="12" cy="10" r="3"/>
+  </svg>`,
+
+  costo:`<svg viewBox="0 0 24 24">
+    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+  </svg>`,
+
+  pasos:`<svg viewBox="0 0 24 24">
+    <path d="M10 6h11M10 12h11M10 18h11M4 6h1v4M4 10h2M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"/>
+  </svg>`,
+
+  check:`<svg viewBox="0 0 24 24">
+    <rect x="3" y="3" width="18" height="18" rx="2"/>
+    <path d="m9 12 2 2 4-4"/>
+  </svg>`,
+
+  link:`<svg viewBox="0 0 24 24">
+    <path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  </svg>`,
+
+  alerta:`<svg viewBox="0 0 24 24">
+    <path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3zM12 9v4M12 17h.01"/>
+  </svg>`,
+
+  buscar:`<svg viewBox="0 0 24 24">
+    <circle cx="11" cy="11" r="8"/>
+    <path d="m21 21-4.3-4.3"/>
+  </svg>`,
+
+  bot:`<svg viewBox="0 0 24 24">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>`,
+
+  enviar:`<svg viewBox="0 0 24 24">
+    <path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/>
+  </svg>`
+
+};
+
+function ic(k) {
+  return ICONS[k] || ICONS.otros;
+}
+
+function ii(k) {
+  return (ICONS[k] || ICONS.otros)
+    .replace("<svg",'<svg class="i"');
+}
+
+/* ============================================
+   MOSTRAR TRÁMITES
+============================================ */
+
+function render(filtro=null) {
+  const contenedor=document.getElementById("cards");
+  contenedor.innerHTML="";
+
+  Object.entries(datos).forEach(([id,t])=>{
+    if(!filtro || t.cat===filtro || filtro==="otros") {
+      contenedor.innerHTML+=`
+        <div class="card" data-cat="${t.cat}" onclick="ver('${id}')">
+          <div class="icon">${ic(t.cat)}</div>
+          <h3>${t.titulo}</h3>
+          <p>${t.desc}</p>
+          <button class="btn" type="button">
+            Ver información
+          </button>
+        </div>
+      `;
+    }
+  });
+}
+
+/* ============================================
+   ABRIR GUÍA
+============================================ */
+
+function ver(id) {
+  tramitePend=id;
+  requerirRegistro(
+    ()=>verGuia(id),
+    datos[id].titulo
+  );
+}
+
+function verGuia(id) {
+  const t=datos[id];
+
+  document.getElementById("modalContenido").innerHTML=`
+    <h2>${ii(t.cat)}${t.titulo}</h2>
+    <p>${t.desc}</p>
+
+    <div class="info">
+      <h3>${ii("clip")}Requisitos</h3>
+      <ul>
+        ${t.req.map(x=>`<li>${x}</li>`).join("")}
+      </ul>
+    </div>
+
+    <div class="info">
+      <h3>${ii("documentos")}Documentos</h3>
+      <ul>
+        ${t.docs.map(x=>`<li>${x}</li>`).join("")}
+      </ul>
+    </div>
+
+    <div class="info">
+      <h3>${ii("lugar")}Lugar</h3>
+      <p>${t.lugar}</p>
+
+      <a class="linkbtn sec"
+         href="${t.mapaLink}"
+         target="_blank"
+         rel="noopener">
+        ${ii("lugar")}${t.mapaTexto}
+      </a>
+    </div>
+
+    <div class="info">
+      <h3>${ii("costo")}Costo</h3>
+      <div class="costo-box">${t.costo}</div>
+    </div>
+
+    <div class="info">
+      <h3>${ii("pasos")}Pasos</h3>
+      <ol>
+        ${t.pasos.map(x=>`<li>${x}</li>`).join("")}
+      </ol>
+    </div>
+
+    <div class="check">
+      <h3>${ii("check")}Mi checklist</h3>
+      ${t.docs.map(x=>`
+        <label>
+          <input type="checkbox"> ${x}
+        </label>
+      `).join("")}
+    </div>
+
+    <a class="linkbtn"
+       href="${t.link}"
+       target="_blank"
+       rel="noopener">
+      ${ii("link")}${t.linkTexto}
+    </a>
+
+    <p style="margin-top:18px;font-size:13px;color:#64748b">
+      ${ii("alerta")}
+      Verifica siempre la información vigente
+      en la institución oficial.
+    </p>
+  `;
+
+  document.getElementById("modal").style.display="block";
+}
+
+function cerrar() {
+  document.getElementById("modal").style.display="none";
+}
+
+function filtrar(cat) {
+  render(cat);
+  document.getElementById("tramites")
+    .scrollIntoView({behavior:"smooth"});
+}
+
+/* ============================================
+   BÚSQUEDA
+============================================ */
+
+function buscar() {
+  const q=document.getElementById("buscador")
+    .value.toLowerCase().trim();
+
+  const r=document.getElementById("resultados");
+  r.innerHTML="";
+
+  if(!q) {
+    r.innerHTML=`
+      <div class="resultado">
+        Escribe el trámite que necesitas buscar.
+      </div>
+    `;
+    return;
+  }
+
+  let ok=false;
+
+  Object.entries(datos).forEach(([id,t])=>{
+    if((t.titulo+" "+t.desc).toLowerCase().includes(q)) {
+      ok=true;
+
+      r.innerHTML+=`
+        <div class="resultado">
+          <h3>${ii(t.cat)}${t.titulo}</h3>
+          <p>${t.desc}</p>
+          <button onclick="ver('${id}')">
+            Ver información
+          </button>
+        </div>
+      `;
+    }
+  });
+
+  if(!ok) {
+    r.innerHTML=`
+      <div class="resultado">
+        <h3>${ii("buscar")}No encontramos ese trámite</h3>
+        <p>
+          Prueba con palabras como licencia, cédula,
+          nacimiento, NIT o matrícula.
+        </p>
+      </div>
+    `;
+  }
+}
+
+/* ============================================
+   ASISTENTE TRÁMITE FÁCIL
+============================================ */
+
+function ia() {
+  tramitePend=null;
+  requerirRegistro(iaRun);
+}
+
+function iaRun() {
+  const q=document.getElementById("pregunta")
+    .value.toLowerCase();
+
+  const r=document.getElementById("respuesta");
+  r.style.display="block";
+
+  const id=
+    q.includes("licencia") || q.includes("conducir")
+      ? "licencia"
+    : q.includes("cedula") || q.includes("cédula") ||
+      q.includes("identidad")
+      ? "cedula"
+    : q.includes("nacimiento") || q.includes("certificado")
+      ? "nacimiento"
+    : q.includes("nit") || q.includes("impuesto") ||
+      q.includes("tribut")
+      ? "nit"
+    : q.includes("matricula") || q.includes("universidad") ||
+      q.includes("matrícula")
+      ? "matricula"
+    : null;
+
+  if(id) {
+    r.innerHTML=`
+      <strong>
+        ${ii(datos[id].cat)}
+        Creo que necesitas información sobre:
+        ${datos[id].titulo}.
+      </strong>
+
+      <br><br>
+
+      Te recomiendo revisar los requisitos, documentos,
+      costo y pasos de la guía.
+
+      <br><br>
+
+      <button class="btn" onclick="ver('${id}')">
+        Abrir guía
+      </button>
+    `;
+  } else {
+    r.innerHTML=
+      ii("bot")+
+      'No pude identificar el trámite. Prueba con: '+
+      '“quiero sacar mi licencia”, “necesito mi cédula”, '+
+      '“certificado de nacimiento”, “quiero sacar mi NIT” '+
+      'o “matrícula universitaria”.';
+  }
+}
+
+/* ============================================
+   CONEXIÓN CON GOOGLE APPS SCRIPT
+============================================ */
+
+const SHEETS_URL =
+  "https://script.google.com/macros/s/AKfycbzZ6FkVu1YmhjXGqhBIUedmqjRC8WX6NOWb15aeQWq6WElrC85QroB6cUE0gKDL1asa/exec";
+
+/* ============================================
+   REGISTRO DE USUARIOS
+============================================ */
+
+let regOk=false;
+let pendiente=null;
 let tramitePend=null;
-function aviso(t,ok){const d=document.createElement("div");d.className="toast "+(ok?"ok":"err");d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),7000)}
+
+try {
+  regOk=localStorage.getItem("tf_registrado")==="1";
+} catch(error) {
+  console.warn("No se pudo leer el registro local.");
+}
+
+function requerirRegistro(fn,nombre) {
+  if(regOk) {
+    fn();
+    return;
+  }
+
+  pendiente=fn;
+
+  document.getElementById("regTema").textContent=
+    nombre
+      ? "Para ver la guía de «"+nombre+
+        "» necesitas registrarte primero. Recibirás un correo de bienvenida después de registrarte."
+      : "Para continuar necesitas registrarte primero. Recibirás un correo de bienvenida después de registrarte.";
+
+  document.getElementById("formMsg").style.display="none";
+  document.getElementById("regModal").style.display="block";
+}
+
+function enviarForm(e) {
+  e.preventDefault();
+
+  const m=document.getElementById("formMsg");
+  const b=e.target.querySelector('button[type="submit"]');
+
+  const mostrar=(t,tipo)=>{
+    const c={
+      ok:["#dcfce7","#166534"],
+      error:["#fee2e2","#991b1b"],
+      info:["#fff7ed","#9a3412"]
+    }[tipo];
+
+    m.style.display="block";
+    m.textContent=t;
+    m.style.background=c[0];
+    m.style.color=c[1];
+  };
+
+  m.style.display="none";
+
+  const datosForm={
+    nombre:document.getElementById("nombre").value.trim(),
+    telefono:document.getElementById("telefono").value.trim(),
+    correo:document.getElementById("correo").value.trim(),
+    acepto:document.getElementById("acepto").checked,
+    tramite:tramitePend || ""
+  };
+
+  b.disabled=true;
+  b.textContent="Enviando...";
+
+  mostrar(
+    "Enviando tus datos, un momento...",
+    "info"
+  );
+
+  fetch(SHEETS_URL,{
+    method:"POST",
+    headers:{
+      "Content-Type":"text/plain;charset=utf-8"
+    },
+    body:JSON.stringify(datosForm)
+  })
+  .then(r=>r.json())
+  .then(res=>{
+    if(res && (res.ok || res.success)) {
+      mostrar(
+        res.correoEnviado
+          ? "¡Registro exitoso! Te enviamos un correo de bienvenida."
+          : "¡Registro exitoso! Puedes continuar, aunque no se pudo enviar el correo de bienvenida.",
+        "ok"
+      );
+
+      e.target.reset();
+      registroListo();
+
+      aviso(
+        res.correoEnviado
+          ? "¡Registro exitoso! Revisa tu correo de bienvenida."
+          : "¡Registro exitoso! Ya puedes consultar tu trámite.",
+        true
+      );
+    } else {
+      mostrar(
+        "No se pudo guardar: "+
+        ((res && (res.mensaje || res.error)) ||
+        "intenta nuevamente."),
+        "error"
+      );
+    }
+  })
+  .catch(error=>{
+    console.error(error);
+
+    mostrar(
+      "No pudimos verificar el registro. Revisa tu conexión y confirma si tus datos llegaron antes de intentarlo otra vez.",
+      "error"
+    );
+  })
+  .finally(()=>{
+    b.disabled=false;
+    b.innerHTML=ii("enviar")+"Enviar";
+  });
+}
+
+function registroListo() {
+  regOk=true;
+
+  try {
+    localStorage.setItem("tf_registrado","1");
+  } catch(error) {
+    console.warn("No se pudo guardar el registro local.");
+  }
+
+  cerrarReg();
+
+  if(pendiente) {
+    const f=pendiente;
+    pendiente=null;
+    f();
+  }
+}
+
+function cerrarReg() {
+  document.getElementById("regModal").style.display="none";
+}
+
+/* ============================================
+   NOTIFICACIONES
+============================================ */
+
+function aviso(t,ok) {
+  const d=document.createElement("div");
+
+  d.className="toast "+(ok?"ok":"err");
+  d.textContent=t;
+
+  document.body.appendChild(d);
+
+  setTimeout(()=>{
+    d.remove();
+  },7000);
+}
+
+/* ============================================
+   EVENTOS
+============================================ */
+
+document.getElementById("registroForm")
+  .addEventListener("input",()=>{
+    const boton=document.querySelector(
+      "#registroForm button"
+    );
+
+    if(!boton.disabled) {
+      document.getElementById("formMsg")
+        .style.display="none";
+    }
+  });
+
+document.querySelectorAll("[data-ii]").forEach(el=>{
+  el.innerHTML=ii(el.dataset.ii);
+});
+
+document.querySelectorAll("[data-ic]").forEach(el=>{
+  el.innerHTML=ic(el.dataset.ic);
+});
+
+window.onclick=e=>{
+  if(e.target===document.getElementById("modal")) {
+    cerrar();
+  }
+
+  if(e.target===document.getElementById("regModal")) {
+    cerrarReg();
+  }
+};
+
+/* ============================================
+   INICIAR PÁGINA
+============================================ */
+
 render();
+
 </script>
+
 </body>
 </html>
