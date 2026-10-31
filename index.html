@@ -1,105 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trámite Fácil SCZ</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#eef1f5;color:#1f2937}
-header{background:linear-gradient(135deg,#0f2942,#1e4976);color:white;padding:20px 7%;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:25px;font-weight:bold}.logo span{color:#e2c05a}
-nav a{color:white;text-decoration:none;margin-left:22px}
-.hero{background:linear-gradient(135deg,#0f2942,#1e4976);color:white;text-align:center;padding:65px 20px 80px}
-.hero h1{font-size:42px;margin-bottom:15px}.hero p{font-size:18px;max-width:700px;margin:auto}
-.search{max-width:700px;margin:30px auto 0;background:white;padding:7px;border-radius:12px;display:flex}
-.search input{flex:1;border:0;outline:0;padding:15px;font-size:16px}.search button{border:0;background:#c9a227;padding:0 24px;border-radius:9px;font-weight:bold;cursor:pointer}
-.container{width:86%;max-width:1200px;margin:45px auto}.title{text-align:center;margin-bottom:28px}.title h2{font-size:30px;margin-bottom:8px}.title p{color:#64748b}
-.categories,.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px}
-.category,.card{background:white;border-radius:15px;padding:24px;box-shadow:0 5px 18px #00000010}
-.category{text-align:center;cursor:pointer;transition:.2s}.category:hover{transform:translateY(-4px)}
-.icon{width:54px;height:54px;border-radius:12px;background:#e6ecf4;color:#0f2942;display:flex;align-items:center;justify-content:center;margin:0 0 14px}.category .icon{margin:0 auto 12px}.i{width:1.1em;height:1.1em;vertical-align:-0.2em;margin-right:8px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.icon svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.card p{color:#64748b;font-size:14px;line-height:1.6;margin:10px 0}
-.btn{width:100%;padding:12px;border:0;background:#1e4976;color:white;border-radius:8px;cursor:pointer;font-weight:bold}.btn:hover{background:#163a5f}
-.linkbtn{display:inline-block;width:100%;text-align:center;padding:12px;border:0;background:#16a34a;color:white;border-radius:8px;cursor:pointer;font-weight:bold;text-decoration:none;margin-top:8px}.linkbtn:hover{background:#15803d}
-#resultados{margin-top:30px}.resultado{background:white;padding:20px;border-radius:12px;margin-bottom:14px;border-left:5px solid #1e4976}
-.resultado button{margin-top:12px;padding:9px 15px;border:0;background:#1e4976;color:white;border-radius:7px;cursor:pointer}
-.ia{background:#0f172a;color:white;padding:32px;border-radius:16px;margin-top:50px}.ia h2{margin-bottom:10px}
-.iaform{display:flex;margin-top:20px}.iaform input{flex:1;padding:13px;border:0;border-radius:8px 0 0 8px;outline:0}.iaform button{padding:13px 20px;border:0;background:#c9a227;border-radius:0 8px 8px 0;cursor:pointer;font-weight:bold}
-#respuesta{display:none;background:#334155;padding:18px;border-radius:8px;margin-top:18px;line-height:1.6}
-.modal{display:none;position:fixed;inset:0;background:#000a;z-index:10;overflow:auto}.modalbox{background:white;width:90%;max-width:750px;margin:50px auto;padding:30px;border-radius:15px;position:relative}
-.close{position:absolute;right:20px;top:12px;font-size:28px;cursor:pointer}.info{margin:18px 0}.info h3{color:#0f2942;margin-bottom:7px}.info ul,.info ol{margin-left:22px;line-height:1.8}
-.check{background:#eef3f9;padding:18px;border-radius:10px}.check label{display:block;margin:10px 0}
-.costo-box{background:#fef9c3;border-left:4px solid #eab308;padding:14px;border-radius:8px;margin:10px 0}
-footer{background:#0f172a;color:white;text-align:center;padding:32px;margin-top:60px}footer p{color:#cbd5e1;margin-top:7px}
-.proyecto-card{border-top:4px solid #1e4976}
-.proyecto-card h3{color:#0f2942;margin-bottom:10px;font-size:19px}
-.proyecto-card p{color:#475569;font-size:14.5px;line-height:1.7;margin:0}
-.form-box{background:white;border-radius:15px;padding:30px;box-shadow:0 5px 18px #00000010;max-width:640px;margin:0 auto}
-.form-box label{display:block;font-weight:bold;margin:14px 0 6px;font-size:14px}
-.form-box input[type=text],.form-box input[type=tel],.form-box input[type=email]{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:8px;font-size:15px}
-.form-box input:focus{outline:2px solid #1e4976;border-color:transparent}
-.form-box .consent{display:flex;gap:8px;font-weight:normal;color:#475569;line-height:1.5}
-#formMsg{display:none;margin-top:14px;padding:12px;border-radius:8px;font-size:14px}
-@media(max-width:700px){header{flex-direction:column;gap:15px}nav a{margin:0 7px}.hero h1{font-size:32px}.search,.iaform{flex-direction:column;gap:7px}.search button,.iaform button{padding:13px;border-radius:8px}}
-</style>
-</head>
-<body>
-<header>
-<div class="logo">Trámite Fácil <span>SCZ</span></div>
-<nav><a href="#inicio">Inicio</a><a href="#tramites">Trámites</a><a href="#asistente">Asistente IA</a><a href="#registro">Registro</a><a href="#proyecto">Sobre el proyecto</a></nav>
-</header>
-
-<section class="hero" id="inicio">
-<h1>Haz tus trámites más fáciles</h1>
-<p>Encuentra requisitos, documentos, pasos, costos y el enlace oficial para realizar tus trámites en Santa Cruz.</p>
-<div class="search">
-<input id="buscador" placeholder="Ejemplo: licencia de conducir">
-<button onclick="buscar()"><span data-ii="buscar"></span>Buscar</button>
-</div>
-</section>
-
-<div class="container">
-<div class="title"><h2>¿Qué trámite necesitas?</h2><p>Selecciona una categoría o utiliza el buscador.</p></div>
-<div class="categories">
-<div class="category" onclick="filtrar('vehiculos')"><div class="icon" data-ic="vehiculos"></div><h3>Vehículos</h3></div>
-<div class="category" onclick="filtrar('identificacion')"><div class="icon" data-ic="identificacion"></div><h3>Identificación</h3></div>
-<div class="category" onclick="filtrar('impuestos')"><div class="icon" data-ic="impuestos"></div><h3>Impuestos</h3></div>
-<div class="category" onclick="filtrar('educacion')"><div class="icon" data-ic="educacion"></div><h3>Educación</h3></div>
-<div class="category" onclick="filtrar('documentos')"><div class="icon" data-ic="documentos"></div><h3>Documentos</h3></div>
-<div class="category" onclick="filtrar('otros')"><div class="icon" data-ic="otros"></div><h3>Otros</h3></div>
-</div>
-
-<div class="title" id="tramites"><h2>Trámites disponibles</h2><p>Selecciona uno para consultar su guía.</p></div>
-<div class="cards" id="cards"></div>
-<div id="resultados"></div>
-
-<div class="ia" id="asistente">
-<h2><span data-ii="bot"></span>Asistente Trámite Fácil</h2>
-<p>Escribe qué trámite necesitas y recibe una orientación inicial.</p>
-<div class="iaform"><input id="pregunta" placeholder="Ejemplo: necesito sacar mi licencia"><button onclick="ia()">Consultar</button></div>
-<div id="respuesta"></div>
-</div>
-
-<div class="title" id="registro" style="margin-top:55px"><h2>Regístrate</h2><p>Déjanos tus datos para mantenerte informado sobre tus trámites.</p></div>
-<div class="form-box">
-<form id="registroForm" onsubmit="enviarForm(event)">
-<label for="nombre">Nombre completo</label><input type="text" id="nombre" required maxlength="80" autocomplete="name">
-<label for="telefono">Número de teléfono</label><input type="tel" id="telefono" required pattern="[0-9+ ]{7,15}" maxlength="15" autocomplete="tel" placeholder="Ejemplo: 71234567">
-<label for="correo">Correo electrónico</label><input type="email" id="correo" required maxlength="100" autocomplete="email">
-<label class="consent"><input type="checkbox" id="acepto" required> Acepto que mis datos se guarden para recibir orientación sobre trámites.</label>
-<button class="btn" type="submit" style="margin-top:18px"><span data-ii="enviar"></span>Enviar</button>
+uired> Acepto que mis datos se guarden para recibir orientación sobre trámites.</label>
+<button class="btn" type="submit" style="margin-top:20px"><span data-ii="enviar"></span>Enviar</button>
 <div id="formMsg"></div>
-</form></div>
-
-<div class="title" id="proyecto" style="margin-top:55px"><h2>Sobre este proyecto</h2><p>Pensado desde la perspectiva de quien entra a esta página.</p></div>
-<div class="cards">
-<div class="card proyecto-card"><div class="icon" data-ic="tarea"></div><h3>Tarea</h3><p>Ayudar al usuario a encontrar de forma rápida y confiable la información que necesita para realizar un trámite en Santa Cruz: qué requisitos pide, qué documentos debe llevar, cuáles son los pasos, cuánto cuesta y dónde debe ir a realizarlo.</p></div>
-<div class="card proyecto-card"><div class="icon" data-ic="accion"></div><h3>Acción</h3><p>El usuario busca o selecciona una categoría de trámite (Vehículos, Identificación, Impuestos, Educación, Documentos, Otros), elige el trámite específico dentro de la lista de trámites disponibles para consultar su guía, y opcionalmente escribe su consulta en el Asistente Trámite Fácil para recibir una orientación inicial.</p></div>
-<div class="card proyecto-card"><div class="icon" data-ic="resultado"></div><h3>Resultado</h3><p>El usuario obtiene una guía clara del trámite elegido: requisitos, documentos necesarios, pasos a seguir, costos aproximados y el enlace o dirección de la institución oficial donde debe realizarlo, ahorrando tiempo e incertidumbre.</p></div>
-</div>
-</div>
-
-<div class="modal" id="modal"><div class="modalbox"><span class="close" onclick="cerrar()">×</span><div id="modalContenido"></div></div></div>
+</form></div></div></div>
 
 <footer><h3>Trámite Fácil SCZ</h3><p>Proyecto académico · Santa Cruz de la Sierra</p><p>Los costos y direcciones se actualizan periódicamente, pero pueden variar. Verifica siempre la información vigente en la institución oficial correspondiente.</p></footer>
 
@@ -150,19 +52,21 @@ pasos:["Consultar la convocatoria de tu facultad.","Llenar el formulario de prei
 link:"https://admisionweb.uagrm.edu.bo/",linkTexto:"Ir al portal de admisiones UAGRM",
 mapaLink:"https://www.google.com/maps/search/UAGRM+Campus+Universitario+Santa+Cruz",mapaTexto:"Ver ubicación del campus"}
 };
-function render(filtro=null){let c=document.getElementById("cards");c.innerHTML="";Object.entries(datos).forEach(([id,t])=>{if(!filtro||t.cat===filtro||filtro==="otros")c.innerHTML+=`<div class="card" data-cat="${t.cat}"><div class="icon">${ic(t.cat)}</div><h3>${t.titulo}</h3><p>${t.desc}</p><button class="btn" onclick="ver('${id}')">Ver información</button></div>`})}
-function ver(id){let t=datos[id];document.getElementById("modalContenido").innerHTML=`<h2>${ii(t.cat)}${t.titulo}</h2><p>${t.desc}</p><div class="info"><h3>${ii("clip")}Requisitos</h3><ul>${t.req.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="info"><h3>${ii("documentos")}Documentos</h3><ul>${t.docs.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="info"><h3>${ii("lugar")}Lugar</h3><p>${t.lugar}</p><a class="linkbtn" style="background:#1e4976" href="${t.mapaLink}" target="_blank" rel="noopener">${ii("lugar")}${t.mapaTexto}</a></div><div class="info"><h3>${ii("costo")}Costo</h3><div class="costo-box">${t.costo}</div></div><div class="info"><h3>${ii("pasos")}Pasos</h3><ol>${t.pasos.map(x=>`<li>${x}</li>`).join("")}</ol></div><div class="check"><h3>${ii("check")}Mi checklist</h3>${t.docs.map(x=>`<label><input type="checkbox"> ${x}</label>`).join("")}</div><a class="linkbtn" href="${t.link}" target="_blank" rel="noopener">${ii("link")}${t.linkTexto}</a><p style="margin-top:18px;font-size:13px;color:#64748b">${ii("alerta")}Verifica siempre la información vigente en la institución oficial.</p>`;document.getElementById("modal").style.display="block"}
+function render(filtro=null){let c=document.getElementById("cards");c.innerHTML="";Object.entries(datos).forEach(([id,t])=>{if(!filtro||t.cat===filtro||filtro==="otros")c.innerHTML+=`<div class="card" data-cat="${t.cat}" onclick="ver('${id}')"><div class="icon">${ic(t.cat)}</div><h3>${t.titulo}</h3><p>${t.desc}</p><button class="btn" type="button">Ver información</button></div>`})}
+function ver(id){tramitePend=id;requerirRegistro(()=>verGuia(id),datos[id].titulo)}
+function verGuia(id){let t=datos[id];document.getElementById("modalContenido").innerHTML=`<h2>${ii(t.cat)}${t.titulo}</h2><p>${t.desc}</p><div class="info"><h3>${ii("clip")}Requisitos</h3><ul>${t.req.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="info"><h3>${ii("documentos")}Documentos</h3><ul>${t.docs.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="info"><h3>${ii("lugar")}Lugar</h3><p>${t.lugar}</p><a class="linkbtn sec" href="${t.mapaLink}" target="_blank" rel="noopener">${ii("lugar")}${t.mapaTexto}</a></div><div class="info"><h3>${ii("costo")}Costo</h3><div class="costo-box">${t.costo}</div></div><div class="info"><h3>${ii("pasos")}Pasos</h3><ol>${t.pasos.map(x=>`<li>${x}</li>`).join("")}</ol></div><div class="check"><h3>${ii("check")}Mi checklist</h3>${t.docs.map(x=>`<label><input type="checkbox"> ${x}</label>`).join("")}</div><a class="linkbtn" href="${t.link}" target="_blank" rel="noopener">${ii("link")}${t.linkTexto}</a><p style="margin-top:18px;font-size:13px;color:#64748b">${ii("alerta")}Verifica siempre la información vigente en la institución oficial.</p>`;document.getElementById("modal").style.display="block"}
 function cerrar(){document.getElementById("modal").style.display="none"}
 function filtrar(cat){render(cat);document.getElementById("tramites").scrollIntoView({behavior:"smooth"})}
 function buscar(){let q=document.getElementById("buscador").value.toLowerCase().trim(),r=document.getElementById("resultados");r.innerHTML="";if(!q){r.innerHTML='<div class="resultado">Escribe el trámite que necesitas buscar.</div>';return}let ok=false;Object.entries(datos).forEach(([id,t])=>{if((t.titulo+" "+t.desc).toLowerCase().includes(q)){ok=true;r.innerHTML+=`<div class="resultado"><h3>${ii(t.cat)}${t.titulo}</h3><p>${t.desc}</p><button onclick="ver('${id}')">Ver información</button></div>`}});if(!ok)r.innerHTML='<div class="resultado"><h3>'+ii("buscar")+'No encontramos ese trámite</h3><p>Prueba con palabras como licencia, cédula, nacimiento, NIT o matrícula.</p></div>'}
-function ia(){let q=document.getElementById("pregunta").value.toLowerCase(),r=document.getElementById("respuesta");r.style.display="block";let id=q.includes("licencia")||q.includes("conducir")?"licencia":q.includes("cedula")||q.includes("cédula")||q.includes("identidad")?"cedula":q.includes("nacimiento")||q.includes("certificado")?"nacimiento":q.includes("nit")||q.includes("impuesto")||q.includes("tribut")?"nit":q.includes("matricula")||q.includes("universidad")||q.includes("matrícula")?"matricula":null;if(id)r.innerHTML=`<strong>${ii(datos[id].cat)}Creo que necesitas información sobre: ${datos[id].titulo}.</strong><br><br>Te recomiendo revisar los requisitos, documentos, costo y pasos de la guía.<br><br><button class="btn" onclick="ver('${id}')">Abrir guía</button>`;else r.innerHTML=ii("bot")+'No pude identificar el trámite. Prueba con: “quiero sacar mi licencia”, “necesito mi cédula”, “certificado de nacimiento”, “quiero sacar mi NIT” o “matrícula universitaria”.'}
-window.onclick=e=>{if(e.target===document.getElementById("modal"))cerrar()}
+function ia(){tramitePend=null;requerirRegistro(iaRun)}
+function iaRun(){let q=document.getElementById("pregunta").value.toLowerCase(),r=document.getElementById("respuesta");r.style.display="block";let id=q.includes("licencia")||q.includes("conducir")?"licencia":q.includes("cedula")||q.includes("cédula")||q.includes("identidad")?"cedula":q.includes("nacimiento")||q.includes("certificado")?"nacimiento":q.includes("nit")||q.includes("impuesto")||q.includes("tribut")?"nit":q.includes("matricula")||q.includes("universidad")||q.includes("matrícula")?"matricula":null;if(id)r.innerHTML=`<strong>${ii(datos[id].cat)}Creo que necesitas información sobre: ${datos[id].titulo}.</strong><br><br>Te recomiendo revisar los requisitos, documentos, costo y pasos de la guía.<br><br><button class="btn" onclick="ver('${id}')">Abrir guía</button>`;else r.innerHTML=ii("bot")+'No pude identificar el trámite. Prueba con: “quiero sacar mi licencia”, “necesito mi cédula”, “certificado de nacimiento”, “quiero sacar mi NIT” o “matrícula universitaria”.'}
+window.onclick=e=>{if(e.target===document.getElementById("modal"))cerrar();if(e.target===document.getElementById("regModal"))cerrarReg()}
 const ICONS={"vehiculos": "<svg viewBox=\"0 0 24 24\"><path d=\"M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2\"/><circle cx=\"7\" cy=\"17\" r=\"2\"/><path d=\"M9 17h6\"/><circle cx=\"17\" cy=\"17\" r=\"2\"/></svg>", "identificacion": "<svg viewBox=\"0 0 24 24\"><rect x=\"2\" y=\"5\" width=\"20\" height=\"14\" rx=\"2\"/><circle cx=\"8.5\" cy=\"11\" r=\"2\"/><path d=\"M5.5 16c.5-1.2 1.6-2 3-2s2.5.8 3 2M14 10h4M14 14h4\"/></svg>", "impuestos": "<svg viewBox=\"0 0 24 24\"><rect x=\"2\" y=\"6\" width=\"20\" height=\"12\" rx=\"2\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/><path d=\"M6 12h.01M18 12h.01\"/></svg>", "educacion": "<svg viewBox=\"0 0 24 24\"><path d=\"M22 10 12 5 2 10l10 5 10-5z\"/><path d=\"M6 12v5c3 2 9 2 12 0v-5\"/></svg>", "documentos": "<svg viewBox=\"0 0 24 24\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><path d=\"M14 2v6h6M8 13h8M8 17h8\"/></svg>", "otros": "<svg viewBox=\"0 0 24 24\"><path d=\"M3 21h18M5 21V10M9 21V10M15 21V10M19 21V10M2 10l10-6 10 6z\"/></svg>", "tarea": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><circle cx=\"12\" cy=\"12\" r=\"6\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></svg>", "accion": "<svg viewBox=\"0 0 24 24\"><path d=\"m3 3 7.1 17.6 2.5-7.5 7.5-2.5z\"/></svg>", "resultado": "<svg viewBox=\"0 0 24 24\"><path d=\"M22 11.1V12a10 10 0 1 1-5.9-9.1\"/><path d=\"m9 11 3 3L22 4\"/></svg>"};
 function ic(k){return ICONS[k]||ICONS.otros}
 Object.assign(ICONS,{"clip": "<svg viewBox=\"0 0 24 24\"><rect x=\"8\" y=\"2\" width=\"8\" height=\"4\" rx=\"1\"/><path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M12 11h4M12 16h4M8 11h.01M8 16h.01\"/></svg>", "lugar": "<svg viewBox=\"0 0 24 24\"><path d=\"M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/></svg>", "costo": "<svg viewBox=\"0 0 24 24\"><path d=\"M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"/></svg>", "pasos": "<svg viewBox=\"0 0 24 24\"><path d=\"M10 6h11M10 12h11M10 18h11M4 6h1v4M4 10h2M6 18H4c0-1 2-2 2-3s-1-1.5-2-1\"/></svg>", "check": "<svg viewBox=\"0 0 24 24\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"m9 12 2 2 4-4\"/></svg>", "link": "<svg viewBox=\"0 0 24 24\"><path d=\"M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\"/></svg>", "alerta": "<svg viewBox=\"0 0 24 24\"><path d=\"m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3zM12 9v4M12 17h.01\"/></svg>", "buscar": "<svg viewBox=\"0 0 24 24\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/></svg>", "bot": "<svg viewBox=\"0 0 24 24\"><path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\"/></svg>", "enviar": "<svg viewBox=\"0 0 24 24\"><path d=\"M22 2 11 13M22 2l-7 20-4-9-9-4z\"/></svg>"});
 function ii(k){return (ICONS[k]||ICONS.otros).replace("<svg",'<svg class="i"')}
 // Pega aquí la URL de tu Google Apps Script (Implementar > Aplicación web)
-const SHEETS_URL="https://script.google.com/macros/s/AKfycbyeF8EBOx3cj1iwJ9SNlxBxE8Z6UP9NTAPp-ybHlqvBbMD3zMZXYxq1OkOuidjQwNdo/exec";
+const SHEETS_URL="https://script.google.com/macros/s/AKfycbzZ6FkVu1YmhjXGqhBIUedmqjRC8WX6NOWb15aeQWq6WElrC85QroB6cUE0gKDL1asa/exec";
 function enviarForm(e){
 e.preventDefault();
 const m=document.getElementById("formMsg"),b=e.target.querySelector("button");
@@ -174,7 +78,8 @@ const datosForm = {
   nombre: document.getElementById("nombre").value.trim(),
   telefono: document.getElementById("telefono").value.trim(),
   correo: document.getElementById("correo").value.trim(),
-  acepto: document.getElementById("acepto").checked
+  acepto: document.getElementById("acepto").checked,
+  tramite: tramitePend||""
 };
 
 b.disabled=true;b.textContent="Enviando...";
@@ -183,7 +88,7 @@ fetch(SHEETS_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-
 .then(r=>r.json())
 .then(res=>{
   if(res&&res.ok){
-    mostrar(res.correoEnviado?"¡Gracias! Tu registro se guardó y te enviamos un correo de bienvenida. Revisa también tu carpeta de spam.":"¡Gracias! Tu registro se guardó correctamente.","ok");
+    mostrar(res.correoEnviado?"¡Casi listo! Te enviamos un correo de confirmación. Ábrelo y presiona el botón para continuar con tu trámite. Revisa también tu carpeta de spam.":"Tu registro se guardó, pero no pudimos enviar el correo. Intenta de nuevo.","ok");
     e.target.reset();
   }else{
     mostrar("No se pudo guardar: "+((res&&res.error)||"intenta nuevamente."),"error");
@@ -195,6 +100,31 @@ fetch(SHEETS_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-
 document.getElementById("registroForm").addEventListener("input",()=>{if(!document.querySelector("#registroForm button").disabled)document.getElementById("formMsg").style.display="none"});
 document.querySelectorAll("[data-ii]").forEach(el=>el.innerHTML=ii(el.dataset.ii));
 document.querySelectorAll("[data-ic]").forEach(el=>el.innerHTML=ic(el.dataset.ic));
+// Registro obligatorio: no se muestra ninguna guía hasta que la persona se registre (una sola vez por navegador)
+let regOk=false,pendiente=null;
+try{regOk=localStorage.getItem("tf_registrado")==="1"}catch(_){}
+function requerirRegistro(fn,nombre){
+if(regOk){fn();return}
+pendiente=fn;
+document.getElementById("regTema").textContent=nombre?"Para ver la guía de «"+nombre+"» necesitas registrarte primero. Te enviaremos un correo para confirmar tu registro.":"Para continuar necesitas registrarte primero. Te enviaremos un correo para confirmar tu registro.";
+document.getElementById("formMsg").style.display="none";
+document.getElementById("regModal").style.display="block"}
+function registroListo(){
+regOk=true;try{localStorage.setItem("tf_registrado","1")}catch(_){}
+cerrarReg();
+if(pendiente){const f=pendiente;pendiente=null;f()}}
+function cerrarReg(){document.getElementById("regModal").style.display="none"}
+let tramitePend=null;
+function aviso(t,ok){const d=document.createElement("div");d.className="toast "+(ok?"ok":"err");d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),7000)}
+// Al abrir el enlace del correo (?confirmar=...&tramite=...) se confirma el registro y se abre la guía pedida
+(function(){const p=new URLSearchParams(location.search),tk=p.get("confirmar");if(!tk)return;
+const tr=p.get("tramite");history.replaceState(null,"",location.pathname);
+fetch(SHEETS_URL+"?confirmar="+encodeURIComponent(tk)).then(r=>r.json()).then(res=>{
+if(res&&res.ok){regOk=true;try{localStorage.setItem("tf_registrado","1")}catch(_){}
+aviso("¡Registro confirmado"+(res.nombre?", "+res.nombre:"")+"! Ya puedes consultar tu trámite.",true);
+if(datos[tr])verGuia(tr);else document.getElementById("tramites").scrollIntoView({behavior:"smooth"})
+}else aviso("El enlace de confirmación no es válido. Regístrate de nuevo.",false)})
+.catch(()=>aviso("No pudimos confirmar tu registro. Revisa tu conexión e intenta de nuevo.",false))})();
 render();
 </script>
 </body>
