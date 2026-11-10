@@ -736,6 +736,11 @@ nav a:hover {
 }
 
 
+/* MAPA */
+.mapa-box {margin-top:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+.mapa-box iframe {display:block;width:100%;height:260px;border:0}
+.mapa-nota {font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.5}
+
 /* AYUDA */
 .ayuda-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
 .ayuda-card {background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:16px;padding:24px;box-shadow:0 2px 10px rgba(15,41,66,.05)}
@@ -1198,6 +1203,7 @@ const datos = {
 
   licencia: {
     cat:"vehiculos",
+    mapaQ:"SEGIP Oficina Distrito 5 Av. 2 de Agosto Santa Cruz de la Sierra Bolivia",
     icon:"🚗",
     titulo:"Licencia de conducir",
     desc:"Guía de orientación para el trámite de licencia de conducir.",
@@ -1237,6 +1243,7 @@ const datos = {
 
   cedula: {
     cat:"identificacion",
+    mapaQ:"SEGIP Oficina Distrito 5 Av. 2 de Agosto Santa Cruz de la Sierra Bolivia",
     icon:"🪪",
     titulo:"Cédula de identidad",
     desc:"Orientación general para obtención, renovación o actualización de la cédula de identidad.",
@@ -1274,6 +1281,7 @@ const datos = {
 
   nacimiento: {
     cat:"documentos",
+    mapaQ:"SERECI Santa Cruz de la Sierra Bolivia",
     icon:"📄",
     titulo:"Certificado de nacimiento",
     desc:"Orientación para solicitar un certificado de nacimiento en Santa Cruz.",
@@ -1309,6 +1317,7 @@ const datos = {
 
   nit: {
     cat:"impuestos",
+    mapaQ:"Servicio de Impuestos Nacionales Santa Cruz de la Sierra Bolivia",
     icon:"💰",
     titulo:"NIT",
     desc:"Orientación general sobre el Número de Identificación Tributaria.",
@@ -1346,6 +1355,7 @@ const datos = {
 
   matricula: {
     cat:"educacion",
+    mapaQ:"UAGRM Campus Universitario Santa Cruz de la Sierra Bolivia",
     icon:"🎓",
     titulo:"Matrícula universitaria",
     desc:"Guía general para organizar información sobre procesos de matrícula (ejemplo: UAGRM).",
@@ -1554,6 +1564,23 @@ function verGuia(id) {
     <div class="info">
       <h3>${ii("lugar")}Lugar</h3>
       <p>${t.lugar}</p>
+
+      <div class="mapa-box">
+        <iframe loading="lazy" title="Mapa de la oficina"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=${encodeURIComponent(t.mapaQ)}&hl=es&z=15&output=embed"></iframe>
+      </div>
+
+      <a class="linkbtn"
+         href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(t.mapaQ)}&travelmode=driving"
+         target="_blank"
+         rel="noopener">
+        ${ii("lugar")}Cómo llegar desde mi ubicación
+      </a>
+      <p class="mapa-nota">
+        Se abre Google Maps y te pide permiso para usar tu GPS. Tu ubicación
+        la usa solo Google Maps: esta página no la guarda.
+      </p>
 
       <a class="linkbtn sec"
          href="${t.mapaLink}"
