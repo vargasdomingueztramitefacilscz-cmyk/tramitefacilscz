@@ -735,6 +735,21 @@ nav a:hover {
   margin-top:4px;
 }
 
+
+/* AYUDA */
+.ayuda-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.ayuda-card {background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:16px;padding:24px;box-shadow:0 2px 10px rgba(15,41,66,.05)}
+.ayuda-card h3 {color:var(--navy);font-size:18px;margin-bottom:10px}
+.ayuda-card ol,.ayuda-card ul {margin-left:20px;color:#334155;line-height:1.75;font-size:14.5px}
+.ayuda-card p {color:#475569;font-size:14.5px;line-height:1.7}
+.ayuda-card details {border-top:1px solid var(--line);padding:10px 0}
+.ayuda-card details:first-of-type {border-top:0}
+.ayuda-card summary {cursor:pointer;font-weight:600;color:var(--navy);font-size:14.5px}
+.ayuda-card details p {margin-top:6px}
+.ayuda-pdf {max-width:420px;margin:26px auto 0;text-align:center}
+.ayuda-pdf .linkbtn {background:var(--gold);color:#2b2205}
+.ayuda-pdf .linkbtn:hover {background:var(--gold-d);color:#fff}
+
 /* PIE DE PÁGINA */
 footer {
   background:linear-gradient(180deg,#e6effc,#d9e6f8);
@@ -835,6 +850,7 @@ footer p {
     <a href="#tramites">Trámites</a>
     <a href="#asistente">Asistente IA</a>
     <a href="#proyecto">Sobre el proyecto</a>
+    <a href="#ayuda">Ayuda</a>
   </nav>
 </header>
 
@@ -946,6 +962,66 @@ footer p {
       </p>
     </div>
 
+  </div>
+
+  <!-- AYUDA / MANUAL -->
+  <div class="title" id="ayuda" style="margin-top:60px">
+    <h2>Ayuda y manual de uso</h2>
+    <p>Todo lo que necesitas para usar la página sin ayuda de nadie.</p>
+  </div>
+
+  <div class="ayuda-grid">
+
+    <div class="ayuda-card">
+      <h3>Cómo usar la página</h3>
+      <ol>
+        <li>Elige el trámite en <strong>Trámites</strong> o escribe tu necesidad en el <strong>Asistente</strong>.</li>
+        <li>Se abre el formulario de registro: completa <strong>nombre, teléfono y correo</strong> (todos obligatorios).</li>
+        <li>Marca la casilla de aceptación y pulsa <strong>Enviar</strong>.</li>
+        <li>Espera el aviso verde <em>«Registro guardado…»</em>: se abrirá la guía con requisitos, documentos, costo y pasos.</li>
+      </ol>
+      <p style="margin-top:10px">El registro se pide en cada consulta.</p>
+    </div>
+
+    <div class="ayuda-card">
+      <h3>Problemas frecuentes</h3>
+      <details>
+        <summary>El formulario no me deja enviar</summary>
+        <p>Revisa que todos los campos estén llenos, que el teléfono tenga entre 7 y 15 dígitos y que hayas marcado la casilla de aceptación.</p>
+      </details>
+      <details>
+        <summary>Sale «No se completó el registro»</summary>
+        <p>Revisa tu conexión a internet y vuelve a pulsar Enviar. Si se repite, avisa al soporte del grupo.</p>
+      </details>
+      <details>
+        <summary>No me llegó el correo</summary>
+        <p>Mira la carpeta de spam. El registro puede haberse guardado aunque el correo se demore.</p>
+      </details>
+      <details>
+        <summary>El asistente no entiende mi consulta</summary>
+        <p>Usa palabras clave: licencia, cédula, nacimiento, NIT o matrícula.</p>
+      </details>
+    </div>
+
+    <div class="ayuda-card">
+      <h3>Datos y soporte</h3>
+      <p>
+        Tus datos se guardan en una hoja de Google Sheets con acceso restringido
+        a los responsables del proyecto (ver la Política de Privacidad más abajo).
+        Puedes pedir su corrección o eliminación al soporte del grupo.
+      </p>
+      <p style="margin-top:10px">
+        <strong>Soporte del grupo:</strong>
+        <a id="soporteCorreo" href="mailto:vargasdomingueztramitefacilscz@gmail.com" style="color:var(--blue)">vargasdomingueztramitefacilscz@gmail.com</a><br>Lunes a viernes, de 8:00 a 18:00.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="ayuda-pdf">
+    <a class="linkbtn" href="manual-tramite-facil-scz.pdf" target="_blank" rel="noopener">
+      Descargar el manual completo (PDF)
+    </a>
   </div>
 </div>
 
